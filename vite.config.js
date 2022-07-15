@@ -4,7 +4,7 @@ export default defineConfig({
   root: 'src',
   publicDir: "../public",
   build: {
-    outDir: '../dist',
+    outDir: '../dist',  // note that dev-dist always appears under src/ :()
     emptyOutDir: true  
   },
   plugins: [
@@ -27,16 +27,21 @@ export default defineConfig({
             type: 'image/png'
           },
           {
-            // TODO should be 512 =- check source image used to genernate
+            // TODO should be 512 - generate with a better source image
             src: 'pwa-384x384.png',
             sizes: '384x384',
             type: 'image/png'
+          },
+          {
+            // TODO should be 512 - generate with a better source image
+            src: 'pwa-384x384.png',
+            sizes: '384x384',
+            type: 'image/png',
+            purpose: 'any maskable'
           }
         ]
       },
       devOptions: {
         enabled: true
       }
-    })
-  ]
 })
