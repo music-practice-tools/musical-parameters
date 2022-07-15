@@ -1,5 +1,7 @@
 # Random musical parameter generator
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8fc41265-496f-42ab-8bc3-dd35a5b7f885/deploy-status)](https://app.netlify.com/sites/musical-parameters/deploys)
+
 ## Requirements
 
 Randomly generate a set of musical parameters as the basis for practice / composition
