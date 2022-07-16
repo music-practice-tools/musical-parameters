@@ -16,9 +16,9 @@ export default defineConfig({
 //      },
       includeAssets: ['favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'My Awesome App',
-        short_name: 'MyApp',
-        description: 'My Awesome App description',
+        name: 'Musical Parameters',
+        short_name: 'MusicParams',
+        description: 'Generate Musical Parameters',
         theme_color: '#ffffff',
         icons: [
           {
@@ -27,15 +27,13 @@ export default defineConfig({
             type: 'image/png'
           },
           {
-            // TODO should be 512 - generate with a better source image
-            src: 'pwa-384x384.png',
-            sizes: '384x384',
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
             type: 'image/png'
           },
           {
-            // TODO should be 512 - generate with a better source image
-            src: 'pwa-384x384.png',
-            sizes: '384x384',
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'
           }
