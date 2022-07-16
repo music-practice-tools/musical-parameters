@@ -14,7 +14,7 @@ export default defineConfig({
 //      workbox: {
 //        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
 //      },
-      includeAssets: ['favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'masked-icon.svg'],
+      includeAssets: ['pwa-512x512.png', 'favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'Musical Parameters',
         short_name: 'MusicParams',
