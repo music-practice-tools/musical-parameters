@@ -5,7 +5,7 @@ export default defineConfig({
   publicDir: "../public",
   build: {
     outDir: '../dist',  // note that dev-dist always appears under src/ :()
-    emptyOutDir: true  
+    emptyOutDir: true
   },
   plugins: [
     VitePWA({
@@ -44,4 +44,7 @@ export default defineConfig({
       devOptions: {
         enabled: true
       }
+    })
+  ]
 })
+  
