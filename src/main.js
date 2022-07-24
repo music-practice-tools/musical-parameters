@@ -1,17 +1,26 @@
-import './style.css'
-import logo from './pwa-512x512.png'
-import { setupCounter } from './counter.js'
+import logo from "./icons/pwa-512x512.png";
+import { createParametersHeader } from "./parameters-header.js";
+import { createParameterPicker } from "./parameter-picker.js";
+import parameters from "./parameters.json";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${logo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Generate Musical Parameters</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-  </div>
-`
+const app = document.querySelector("#app");
+app.innerHTML = `
+    <header>
+      <a href="https://developer.mozilla.org/en-US/ndocs/Web/JavaScript" target="_blank">
+        <img src="${logo}" class="logo vanilla" alt="logo" />
+      </a>
+      <h1>Generate Musical Parameters</h1>
+    </header>
+    <main class="card" id="card">
+      
+    </main>
+`;
 
-setupCounter(document.querySelector('#counter'))
+const card = app.querySelector("#card");
+card.appendChild(
+  createParametersHeader({ id: "all", name: "All Properties", values: [""] })
+);
+const pickerElements = parameters.map((param) => createParameterPicker(param));
+pickerElements.forEach((el) => {
+  card.appendChild(el);
+});

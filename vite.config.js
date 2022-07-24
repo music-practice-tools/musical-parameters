@@ -1,20 +1,24 @@
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+
+import { dirname } from 'node:path'
+import { fileURLToPath } from 'url';
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = dirname(_filename);
+
+import { resolve } from 'path'
+
 export default defineConfig({
-  root: 'src',
-  publicDir: "../public",
   build: {
-    outDir: '../dist',  // note that dev-dist always appears under src/ :()
-    emptyOutDir: true
   },
   plugins: [
     VitePWA({
-      // see https://github.com/antfu/vite-plugin-pwa/blob/main/src/types.ts#L14-L140 
       registerType: 'autoUpdate',
-//      workbox: {
-//        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
-//      },
-      includeAssets: ['pwa-512x512.png', 'favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'masked-icon.svg'],
+      workbox: {
+        // Add images to precache
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+      },
+      includeAssets: ['style.css', 'pwa-512x512.png', 'favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
       manifest: {
         name: 'Musical Parameters',
         short_name: 'MusicParams',
