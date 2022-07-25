@@ -1,0 +1,49 @@
+- id: tonal-centre
+  name: Tonal Centre
+  values:
+    - F
+    - Bb
+    - Eb
+    - Ab
+    - Db
+    - F#
+    - B
+    - E
+    - A
+    - D
+- id: mode
+  name: Parent Mode
+  values:
+    - Ionian
+    - Dorian
+    - Phrygian
+    - Lydian
+    - Mixolydian
+    - Aeolian
+    - Locrian
+- id: tempo
+  name: Tempo
+  values:
+    - '70'
+    - '80'
+    - '90'
+    - '100'
+    - '110'
+- id: genre
+  name: Genre
+  values:
+    - Death Metal
+    - Neo Classical Rock
+    - Yacht Rock
+    - Disco
+    - Post Bop Jazz
+    - Coffee House Jazz
+- id: tim-sig
+  name: Time Signature
+  values:
+    - 2/2
+    - 3/4
+    - 4/4
+    - 5/4
+    - 6/8
+    - 13/16
