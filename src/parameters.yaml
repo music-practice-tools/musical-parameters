@@ -1,5 +1,4 @@
-- id: tonal-centre
-  name: Tonal Centre
+- name: Tonal Centre
   values:
     - F
     - Bb
@@ -11,8 +10,7 @@
     - E
     - A
     - D
-- id: mode
-  name: Parent Mode
+- name: Parent Mode
   values:
     - Ionian
     - Dorian
@@ -21,16 +19,14 @@
     - Mixolydian
     - Aeolian
     - Locrian
-- id: tempo
-  name: Tempo
+- name: Tempo
   values:
     - '70'
     - '80'
     - '90'
     - '100'
     - '110'
-- id: genre
-  name: Genre
+- name: Genre
   values:
     - Death Metal
     - Neo Classical Rock
@@ -38,8 +34,7 @@
     - Disco
     - Post Bop Jazz
     - Coffee House Jazz
-- id: tim-sig
-  name: Time Signature
+- name: Time Signature
   values:
     - 2/2
     - 3/4
