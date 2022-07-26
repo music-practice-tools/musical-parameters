@@ -1,5 +1,6 @@
 - name: Tonal Centre
   values:
+    - C
     - F
     - Bb
     - Eb
