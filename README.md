@@ -17,7 +17,7 @@
 
 ![image](https://user-images.githubusercontent.com/618922/180992783-b96ef061-e719-4136-b173-52dfc7fe111b.png)
 
-- refesh web page - if you have "installed" you might need to reload it somehow
+- refesh [web page](https://parameters.musicpracticetools.net/) - if you have "installed" you might need to reload it somehow
 
 
 
