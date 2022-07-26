@@ -11,6 +11,7 @@
     - E
     - A
     - D
+    - G
 - name: Parent Mode
   values:
     - Ionian
@@ -28,6 +29,11 @@
     - '100'
     - '110'
     - '120'
+- name: Feel
+  values:
+    - Straight
+    - 16th Shuffle
+    - 8th Shuffle
 - name: Genre
   values:
     - Death Metal
@@ -43,4 +49,5 @@
     - 4/4
     - 5/4
     - 6/8
+    - 7/8
     - 13/16
