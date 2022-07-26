@@ -4,7 +4,7 @@ export function createParametersHeader() {
   };
   const element = document.createElement("div");
   const onClick = (_) => {
-    const paramElements = document.querySelectorAll("div[data-id]");
+    const paramElements = document.querySelectorAll(".picker button");
     paramElements.forEach((element) => {
       element.click();
     });
