@@ -141,6 +141,75 @@
       - dim
       - minor Major 7
       - alt
+  - name: Root 2
+    values:
+      - C
+      - F
+      - B♭
+      - E♭
+      - A♭
+      - D♭
+      - F♯
+      - B
+      - E
+      - A
+      - D
+      - G
+  - name: Quality 2
+    values:
+      - Maj 7
+      - min 7
+      - 7
+      - m7b5
+      - dim
+      - minor Major 7
+      - alt
+  - name: Root 3
+    values:
+      - C
+      - F
+      - B♭
+      - E♭
+      - A♭
+      - D♭
+      - F♯
+      - B
+      - E
+      - A
+      - D
+      - G
+  - name: Quality 3
+    values:
+      - Maj 7
+      - min 7
+      - 7
+      - m7b5
+      - dim
+      - minor Major 7
+      - alt
+  - name: Root 4
+    values:
+      - C
+      - F
+      - B♭
+      - E♭
+      - A♭
+      - D♭
+      - F♯
+      - B
+      - E
+      - A
+      - D
+      - G
+  - name: Quality 4
+    values:
+      - Maj 7
+      - min 7
+      - 7
+      - m7b5
+      - dim
+      - minor Major 7
+      - alt
   - name: Time Signature
     values:
       - 2/2
