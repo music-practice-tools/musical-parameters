@@ -1,5 +1,8 @@
-- name: Tonal Centre
-  values:
+# Basics
+- set: Basic
+  params:
+  - name: Tonal Centre
+    values:
     - C
     - F
     - B♭
@@ -12,53 +15,103 @@
     - A
     - D
     - G
-- name: Parent Mode
-  values:
-    - Ionian
-    - Dorian
-    - Phrygian
-    - Lydian
-    - Mixolydian
-    - Aeolian
-    - Locrian
-    - Melodic Minor
-    - Harmonic Minor
-    - Wholetone
-    - Diminished (half-step)
-    - Diminished (whole-step)
-    - Pentatonic Minor
-    - Pentatonic Major
-- name: Tempo
-  values:
-    - '60'
-    - '70'
-    - '80'
-    - '90'
-    - '100'
-    - '110'
-    - '120'
-    - '130'
-    - '140'
-    - '150'
-- name: Feel
-  values:
-    - Straight
-    - 16th Shuffle
-    - 8th Shuffle
-- name: Genre
-  values:
-    - Death Metal
-    - Neo Classical Rock
-    - Yacht Rock
-    - Disco
-    - Post Bop Jazz
-    - Coffee House Jazz
-- name: Time Signature
-  values:
-    - 2/2
-    - 3/4
-    - 4/4
-    - 5/4
-    - 6/8
-    - 7/8
-    - 13/16
+  - name: Scale
+    values:
+      - Major
+      - Minor
+      - Melodic Minor
+      - Harmonic Minor
+  - name: Time Signature
+    values:
+      - 2/2
+      - 3/4
+      - 4/4
+      - 5/4
+      - 7/4
+      - 6/8
+      - 7/8
+      - 12/8
+  - name: Tempo
+    values:
+      - '60'
+      - '70'
+      - '80'
+      - '90'
+      - '100'
+      - '110'
+      - '120'
+      - '130'
+      - '140'
+      - '150'
+  - name: Feel
+    values:
+      - Straight
+      - 8th Shuffle
+      - 16th Shuffle
+# Al's set
+- set: Pointless
+  params:
+  - name: Tonal Centre
+    values:
+      - C
+      - F
+      - B♭
+      - E♭
+      - A♭
+      - D♭
+      - F♯
+      - B
+      - E
+      - A
+      - D
+      - G
+  - name: Parent Mode
+    values:
+      - Ionian
+      - Dorian
+      - Phrygian
+      - Lydian
+      - Mixolydian
+      - Aeolian
+      - Locrian
+      - Melodic Minor
+      - Harmonic Minor
+      - Wholetone
+      - Diminished (half-step)
+      - Diminished (whole-step)
+      - Pentatonic Minor
+      - Pentatonic Major
+  - name: Tempo
+    values:
+      - '60'
+      - '70'
+      - '80'
+      - '90'
+      - '100'
+      - '110'
+      - '120'
+      - '130'
+      - '140'
+      - '150'
+  - name: Feel
+    values:
+      - Straight
+      - 16th Shuffle
+      - 8th Shuffle
+  - name: Genre
+    values:
+      - Death Metal
+      - Neo Classical Rock
+      - Yacht Rock
+      - Disco
+      - Post Bop Jazz
+      - Coffee House Jazz
+  - name: Time Signature
+    values:
+      - 2/2
+      - 3/4
+      - 4/4
+      - 5/4
+      - 6/8
+      - 7/8
+      - 13/16
