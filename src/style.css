@@ -92,12 +92,12 @@ header {
 }
 
 .picker-name {
-  width: 35%;
+  width: 40%;
   text-align: left;
 }
 
 .picker-value {
-  width: 55%;
+  width: 50%;
   text-align: left;
   font-weight: bold;
 }
@@ -121,17 +121,22 @@ header {
 }
 
 .picker-header button,
-.picker button {
+.picker button,
+.picker-header select {
   font-size: xx-large;
+  color: #fff;
   background-color: #aaa;
   padding: 0;
   border: 0;
   text-align: right;
 }
 
+.picker-header select {
+  font-size: x-large;
+}
 .picker-header,
 .picker-header button
 {
-  background-color: #fff;
+  background-color: #888;
 }
 
