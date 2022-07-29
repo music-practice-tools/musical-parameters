@@ -115,3 +115,130 @@
       - 6/8
       - 7/8
       - 13/16
+# Random Chord Sequences
+- set: Random Chord Sequences
+  params:
+  - name: Root
+    values:
+      - C
+      - F
+      - B♭
+      - E♭
+      - A♭
+      - D♭
+      - F♯
+      - B
+      - E
+      - A
+      - D
+      - G
+  - name: Quality
+    values:
+      - Maj 7
+      - min 7
+      - 7
+      - m7b5
+      - dim
+      - minor Major 7
+      - alt
+ - name: Root
+    values:
+      - C
+      - F
+      - B♭
+      - E♭
+      - A♭
+      - D♭
+      - F♯
+      - B
+      - E
+      - A
+      - D
+      - G
+  - name: Quality
+    values:
+      - Maj 7
+      - min 7
+      - 7
+      - m7b5
+      - dim
+      - minor Major 7
+      - alt
+      - name: Root
+    values:
+      - C
+      - F
+      - B♭
+      - E♭
+      - A♭
+      - D♭
+      - F♯
+      - B
+      - E
+      - A
+      - D
+      - G
+  - name: Quality
+    values:
+      - Maj 7
+      - min 7
+      - 7
+      - m7b5
+      - dim
+      - minor Major 7
+      - alt
+      - name: Root
+    values:
+      - C
+      - F
+      - B♭
+      - E♭
+      - A♭
+      - D♭
+      - F♯
+      - B
+      - E
+      - A
+      - D
+      - G
+  - name: Quality
+    values:
+      - Maj 7
+      - min 7
+      - 7
+      - m7b5
+      - dim
+      - minor Major 7
+      - alt
+      - name: Root
+    values:
+      - C
+      - F
+      - B♭
+      - E♭
+      - A♭
+      - D♭
+      - F♯
+      - B
+      - E
+      - A
+      - D
+      - G
+  - name: Quality
+    values:
+      - Maj 7
+      - min 7
+      - 7
+      - m7b5
+      - dim
+      - minor Major 7
+      - alt
+  - name: Time Signature
+    values:
+      - 2/2
+      - 3/4
+      - 4/4
+      - 5/4
+      - 6/8
+      - 7/8
+      - 13/16
