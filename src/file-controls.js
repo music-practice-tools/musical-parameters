@@ -31,9 +31,9 @@ export function createFileControls(dataWrapper) {
     element.className = "files";
     element.innerHTML = window.showSaveFilePicker
       ? `
-    <span>File: </span><button id="save" title="Save to file" aria-label="Save">\u2913</button>
-    <button id="load" title="Load from file" aria-label="Load">\u2912</button>`
-      : "(Saving to file available in Chrome, Edge or Opera)";
+    <span>Your files: </span><button id="save" title="Save to file" aria-label="Save to file">\u2913</button>
+    <button id="load" title="Load from file" aria-label="Load file">\u2912</button>`
+      : "(Saving and loading files is possible using Chrome, Edge or Opera)";
   }
 
   const dataLoad = new CustomEvent("dataload", { bubbles: true });

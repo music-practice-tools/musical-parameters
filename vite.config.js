@@ -18,7 +18,7 @@ export default defineConfig({
         // Add images to precache
         globPatterns: ['**/*.{js,css,html,ico,png,svg}']
       },
-      includeAssets: ['style.css', 'pwa-512x512.png', 'favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
+      includeAssets: ['style.css', 'pwa-192x192.png', 'pwa-512x512.png', 'favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
       manifest: {
         name: 'Musical Parameters',
         short_name: 'MusicParams',
