@@ -131,6 +131,10 @@ header {
   margin-right: 5px;
 }
 
+.files a {
+  margin-right: 20px;
+}
+
 .files button {
   border-radius: 20px;
 }

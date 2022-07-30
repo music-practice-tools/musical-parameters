@@ -31,6 +31,7 @@ export function createFileControls(dataWrapper) {
     element.className = "files";
     element.innerHTML = window.showSaveFilePicker
       ? `
+    <a href="https://music-practice-tools.github.io/musical-parameters/">Examples</a>
     <span>Your files: </span><button id="save" title="Save to file" aria-label="Save to file">\u2913</button>
     <button id="load" title="Load from file" aria-label="Load file">\u2912</button>`
       : "(Saving and loading files is possible using Chrome, Edge or Opera)";
