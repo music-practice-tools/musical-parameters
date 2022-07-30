@@ -120,6 +120,21 @@ header {
   align-items: center;
 }
 
+.files {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.files * {
+  font-size: large;
+  margin-right: 5px;
+}
+
+.files button {
+  border-radius: 20px;
+}
+
 .picker-header button,
 .picker button,
 .picker-header select {
@@ -134,9 +149,8 @@ header {
 .picker-header select {
   font-size: x-large;
 }
+
 .picker-header,
-.picker-header button
-{
+.picker-header button {
   background-color: #888;
 }
-

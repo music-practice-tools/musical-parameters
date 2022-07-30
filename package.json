@@ -12,5 +12,8 @@
     "js-yaml": "^4.1.0",
     "vite": "3.0.2",
     "vite-plugin-pwa": "0.12.3"
+  },
+  "dependencies": {
+    "yaml": "2.1.1"
   }
 }
