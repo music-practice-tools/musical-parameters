@@ -33,7 +33,7 @@ export function createFileControls(dataWrapper) {
       ? `
     <span>File: </span><button id="save" title="Save to file" aria-label="Save">\u2913</button>
     <button id="load" title="Load from file" aria-label="Load">\u2912</button>`
-      : "(File access available in Chrome, Edge or Opera)";
+      : "(Saving to file available in Chrome, Edge or Opera)";
   }
 
   const dataLoad = new CustomEvent("dataload", { bubbles: true });
