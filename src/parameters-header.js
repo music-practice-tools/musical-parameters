@@ -1,12 +1,13 @@
 export function createParametersHeader(names) {
-  function render(element, {names}) {
+  function render(element, { names }) {
     const select = `<label>Set: 
     <select id="set">${names.map(
-      (name, i) => `<option value="${i}">${name}</option>`, names
+      (name, i) => `<option value="${i}">${name}</option>`,
+      names
     )}</select></label>`;
     element.innerHTML = `<div class="picker-header">
     <div>${select}</div>
-    <button aria-label="Choose all">\u{1F504}</button></div>`;
+    <button title="Pick all" aria-label="Pick all">\u{1F504}</button></div>`;
   }
 
   const element = document.createElement("div");
@@ -23,7 +24,7 @@ export function createParametersHeader(names) {
     }
   });
 
-  render(element, {names});
+  render(element, { names });
 
   return element;
 }
