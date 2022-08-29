@@ -2,9 +2,15 @@ import logo from "./icons/pwa-512x512.png";
 import { createParametersHeader } from "./parameters-header.js";
 import { createParameterPicker } from "./parameter-picker.js";
 import { createFileControls } from "./file-controls.js";
-import parameters from "./parameters.json";
+import initialParameters from "./parameters.json";
 
-function render(element, { image }) {
+// Global exception handler
+window.addEventListener("error", (event) => {
+  const error = event.error;
+  alert(`${error.type}: ${error.message}\n`);
+});
+
+function renderTemplate(element, { image }) {
   element.innerHTML = `
     <header>
       <a href="https://developer.mozilla.org/en-US/ndocs/Web/JavaScript" target="_blank">
@@ -17,21 +23,21 @@ function render(element, { image }) {
     `;
 }
 
-function renderHeader(element, { setNames }) {
+function renderFileControls(element) {
+  while (element.childNodes.length) {
+    element.removeChild(element.lastChild);
+  }
+  element.appendChild(createFileControls());
+}
+
+function renderCollectionHeader(element, { setNames }) {
   while (element.childNodes.length) {
     element.removeChild(element.lastChild);
   }
   element.appendChild(createParametersHeader(setNames));
 }
 
-function renderFileControls(element, { dataWrapper }) {
-  while (element.childNodes.length) {
-    element.removeChild(element.lastChild);
-  }
-  element.appendChild(createFileControls(dataWrapper));
-}
-
-function renderParams(element, { setParams }) {
+function renderCollectionRows(element, { setParams }) {
   while (element.childNodes.length > 1) {
     element.removeChild(element.lastChild);
   }
@@ -41,26 +47,31 @@ function renderParams(element, { setParams }) {
 }
 
 const app = document.querySelector("#app");
-render(app, { image: logo });
+renderTemplate(app, { image: logo });
 
 const controls = app.querySelector("#controls");
-const dataWrapper = [parameters];
-renderFileControls(controls, { dataWrapper });
+renderFileControls(controls);
+
+function renderCollection(container, parameters) {
+  const setNames = parameters.map((param) => param.set);
+  renderCollectionHeader(container, { setNames });
+  renderCollectionRows(container, { setParams: parameters[0] });
+}
+
 
 const card = app.querySelector("#card");
+let parameterCollection = initialParameters;
 
-function onLoad() {
-  const parameters = dataWrapper[0];
-  const setNames = parameters.map((param) => param.set);
-  renderHeader(card, { setNames });
-  renderParams(card, { setParams: parameters[0] });
-}
-onLoad();
-
+// Collection loaded
 controls.addEventListener("dataload", (e) => {
-  onLoad();
+  parameterCollection = e.detail;
+  renderCollection(card, parameterCollection);
 });
+
+// Set changed
 card.addEventListener("input", (e) => {
-  const parameters = dataWrapper[0];
-  renderParams(card, { setParams: parameters[e.target.value] });
+  const setIndex = e.target.value;
+  renderCollectionRows(card, { setParams: parameterCollection[setIndex] });
 });
+
+renderCollection(card, parameterCollection);
