@@ -28,37 +28,35 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 1.5rem;
   line-height: 1;
+  margin-left: 1rem;
 }
 
 #app {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
   padding: 0rem;
   text-align: center;
 }
 
+header {
+  margin-bottom: 0rem;
+}
+
+header, .card, .files {
+margin-left :.5rem;
+margin-right :.5rem;
+}
+
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 4em;
   will-change: filter;
 }
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
-}
-
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -84,11 +82,10 @@ header {
 
 .card {
   display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(50vw, 1fr));
   background-color: #fff;
   color: #444;
-  padding: 2em;
 }
 
 .picker-name {
@@ -114,7 +111,7 @@ header {
   padding: 5px 20px;
   text-align: left;
 
-  font-size: x-large;
+  font-size: large;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -123,13 +120,11 @@ header {
 .files {
   display: flex;
   justify-content: right;
-  align-items: center;
+  align-items: baseline;
+  font-size: large;
+  margin-bottom: .5rem;
 }
 
-.files * {
-  font-size: large;
-  margin-right: 5px;
-}
 
 .files a {
   margin-right: 20px;
@@ -142,7 +137,7 @@ header {
 .picker-header button,
 .picker button,
 .picker-header select {
-  font-size: xx-large;
+  font-size: large;
   color: #fff;
   background-color: #aaa;
   padding: 0;
@@ -151,7 +146,7 @@ header {
 }
 
 .picker-header select {
-  font-size: x-large;
+  font-size: large;
 }
 
 .picker-header,
@@ -168,9 +163,10 @@ header {
 }
 
 /* Separate rule for compatibility, :focus-within is required on modern Firefox and Chrome */
-input.visually-hidden:focus + label {
+input.visually-hidden:focus+label {
   outline: thin dotted;
 }
-input.visually-hidden:focus-within + label {
+
+input.visually-hidden:focus-within+label {
   outline: thin dotted;
 }
