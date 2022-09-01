@@ -46,21 +46,20 @@ function renderCollectionRows(element, { setParams }) {
   });
 }
 
-const app = document.querySelector("#app");
-renderTemplate(app, { image: logo });
-
-const controls = app.querySelector("#controls");
-renderFileControls(controls);
-
 function renderCollection(container, parameters) {
   const setNames = parameters.map((param) => param.set);
   renderCollectionHeader(container, { setNames });
   renderCollectionRows(container, { setParams: parameters[0] });
 }
 
-
+const app = document.querySelector("#app");
+renderTemplate(app, { image: logo });
+const controls = app.querySelector("#controls");
 const card = app.querySelector("#card");
 let parameterCollection = initialParameters;
+
+renderFileControls(controls);
+renderCollection(card, parameterCollection);
 
 // Collection loaded
 controls.addEventListener("dataload", (e) => {
@@ -74,4 +73,3 @@ card.addEventListener("input", (e) => {
   renderCollectionRows(card, { setParams: parameterCollection[setIndex] });
 });
 
-renderCollection(card, parameterCollection);
