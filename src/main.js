@@ -13,12 +13,10 @@ window.addEventListener("error", (event) => {
 function renderTemplate(element, { image }) {
   element.innerHTML = `
     <header>
-      <a href="https://developer.mozilla.org/en-US/ndocs/Web/JavaScript" target="_blank">
-        <img src="${image}" class="logo vanilla" alt="logo" />
-      </a>
+      <img src="${image}" class="logo" alt="logo" />
       <h1>Generate Musical Parameters</h1>
     </header>
-    <div id="controls"></div>
+    <nav id="controls"></nav>
     <main class="card" id="card"></main>
     `;
 }
