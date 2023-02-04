@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import yaml from '@rollup/plugin-yaml'
 
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'url';
@@ -12,6 +13,7 @@ export default defineConfig({
   build: {
   },
   plugins: [
+    yaml(),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {

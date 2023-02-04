@@ -2,7 +2,7 @@ import logo from "./icons/pwa-512x512.png";
 import { createParametersHeader } from "./parameters-header.js";
 import { createParameterPicker } from "./parameter-picker.js";
 import { createFileControls } from "./file-controls.js";
-import initialParameters from "./parameters.json";
+import initialParameters from "../docs/examples/Initial-Parameters.yaml";
 
 // Global exception handler
 window.addEventListener("error", (event) => {
@@ -12,6 +12,7 @@ window.addEventListener("error", (event) => {
 
 function renderTemplate(element, { image }) {
   element.innerHTML = `
+  
     <header>
       <img src="${image}" class="logo" alt="logo" />
       <h1>Generate Musical Parameters</h1>

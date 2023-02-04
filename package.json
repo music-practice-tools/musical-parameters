@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "js-yaml": "^4.1.0",
-    "vite": "3.0.9",
-    "vite-plugin-pwa": "0.12.4"
+    "@rollup/plugin-yaml": "^4.0.1",
+    "vite": "4.0.4",
+    "vite-plugin-pwa": "0.14.1"
   },
   "dependencies": {
-    "yaml": "2.1.1"
+    "yaml": "2.2.1"
   }
 }

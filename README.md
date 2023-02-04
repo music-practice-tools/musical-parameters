@@ -13,7 +13,7 @@
 
 ![image](https://user-images.githubusercontent.com/618922/180992619-e5b9ad34-6361-4540-b614-4108edc4eeee.png)
 
-- Wait for the Netlifyt status on [README page](https://github.com/music-practice-tools/musical-parameters) to say "success" - takes a few minutes adn may require a page refresh
+- Wait for the Netlifyt status on [README page](https://github.com/music-practice-tools/musical-parameters) to say "success" - takes a few minutes and may require a page refresh
 
 ![image](https://user-images.githubusercontent.com/618922/180992783-b96ef061-e719-4136-b173-52dfc7fe111b.png)
 
