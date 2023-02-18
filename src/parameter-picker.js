@@ -1,6 +1,8 @@
 import { pickRandom } from "./random.js";
 
 export function createParameterPicker({ name, values }) {
+  const normalisedValues = values.map((value) => (Array.isArray(value) && value.length == 2) ? value : [value, value.replace(/ /g, "_")])
+
   const render = (element, { name, value }) => {
     element.innerHTML = `<div class="picker">
     <div class="picker-name">${name}:</div>
@@ -11,15 +13,21 @@ export function createParameterPicker({ name, values }) {
   const element = document.createElement("div");
 
   const onClick = (_) => {
-    const value = pickRandom(values);
-    render(element, { name, value });
+    const value = pickRandom(normalisedValues);
+    render(element, { name, value: value[0] });
+    element.dispatchEvent(
+      new CustomEvent("valueset", { bubbles: true, detail: { name, value } })
+    );
   };
 
   element.addEventListener("click", (e) => {
-    if (e.target.nodeName == "BUTTON") onClick();
+    if (e.target.nodeName == "BUTTON")
+    { 
+      onClick();
+    }
   });
 
-  onClick();
+  setTimeout( onClick, 0);
 
   return element;
 }

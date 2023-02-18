@@ -1,4 +1,5 @@
 import logo from "./icons/pwa-512x512.png";
+import { debounce } from "./debounce.js";
 import { createParametersHeader } from "./parameters-header.js";
 import { createParameterPicker } from "./parameter-picker.js";
 import { createFileControls } from "./file-controls.js";
@@ -56,19 +57,54 @@ renderTemplate(app, { image: logo });
 const controls = app.querySelector("#controls");
 const card = app.querySelector("#card");
 let parameterCollection = initialParameters;
-
-renderFileControls(controls);
-renderCollection(card, parameterCollection);
+let values = {}
+let mediaTemplate
 
 // Collection loaded
 controls.addEventListener("dataload", (e) => {
   parameterCollection = e.detail;
+  values = {}
+  mediaTemplate = parameterCollection[0].mediaTemplate
   renderCollection(card, parameterCollection);
 });
 
 // Set changed
 card.addEventListener("input", (e) => {
   const setIndex = e.target.value;
+  mediaTemplate = parameterCollection[setIndex].mediaTemplate
   renderCollectionRows(card, { setParams: parameterCollection[setIndex] });
 });
 
+function interpolate(str, obj) {
+  return str.replace(/\${([^}]+)}/g, (_, prop) => obj[prop])
+}
+
+const audio = new Audio();
+  
+function play(media) {
+  audio.src=media
+  audio.load()
+  audio.play();
+}
+
+const safeMediaPlay = debounce(
+  (values) => {
+    const media = interpolate(mediaTemplate, values)
+    play(media)
+  },
+  250
+)
+
+// value changed
+card.addEventListener("valueset", (e) =>
+{
+  if (mediaTemplate){
+    const { name, value } = e.detail;
+    values[name] = value[1];
+    safeMediaPlay(values);
+}})
+
+renderFileControls(controls);
+controls.dispatchEvent(
+  new CustomEvent("dataload", { detail: parameterCollection })
+);
