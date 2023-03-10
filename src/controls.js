@@ -27,15 +27,15 @@ async function loadFile() {
   return { yaml, filename: file.name };
 }
 
-function parseAndDispatchYaml(yaml, filename, element) {
+export function parseAndDispatchYaml(yaml, filename, element) {
   try {
     const paramsCollection = parse(yaml);
     element.dispatchEvent(
       new CustomEvent("dataload", { bubbles: true, detail: paramsCollection })
     );
   } catch (e) {
-    throw new ErrorEvent("Yaml file error", {
-      message: `An error occurred reading the file '${filename}':\n\n${e.message}\n\nYou might like to use a tool like https://jsonformatter.org/yaml-validator`,
+    throw new ErrorEvent("Parameter file error", {
+      message: `An error occurred reading the file '${filename}':\n\n${e.message}\n\nYou might like to use a tool like https://jsonformatter.org/yaml-validator`
     });
   }
 }
@@ -48,11 +48,12 @@ const uploadIcon = `<svg ${iconStyle} xmlns="http://www.w3.org/2000/svg" fill="n
 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
 </svg>`;
 
-export function createFileControls() {
+export function createControls(hasMedia) {
   function render(element) {
-    element.className = "files";
+    element.className = "controls";
     element.innerHTML = `
-    <a href="https://music-practice-tools.github.io/musical-parameters/">Examples ${downloadIcon}</a>
+    ${(hasMedia) ? '<audio autoplay controls loop></audio>' : ''}
+    <a href="/docs/index.html">Examples ${downloadIcon}</a>
     <span>Load file: </span>
     ${
       hasFileSystemAccessAPI

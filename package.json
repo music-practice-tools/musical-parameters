@@ -10,8 +10,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-yaml": "^4.0.1",
-    "vite": "4.0.4",
-    "vite-plugin-pwa": "0.14.1"
+    "vite": "4.1.4",
+    "vite-plugin-pwa": "0.14.4"
   },
   "dependencies": {
     "yaml": "2.2.1"

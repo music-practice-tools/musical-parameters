@@ -48,7 +48,7 @@ header {
   margin-bottom: 0rem;
 }
 
-header, .card, .files {
+header, .card, .controls {
 margin-left :.5rem;
 margin-right :.5rem;
 }
@@ -117,20 +117,25 @@ header {
   align-items: center;
 }
 
-.files {
+.controls {
   display: flex;
   justify-content: right;
-  align-items: baseline;
+  align-items: baseline; 
   font-size: large;
   margin-bottom: .5rem;
 }
 
 
-.files a {
+.controls a,
+.controls audio {
   margin-right: 20px;
 }
 
-.files button {
+.controls audio {
+  align-self: flex-end;
+}
+
+.controls button {
   border-radius: 20px;
 }
 

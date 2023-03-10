@@ -10,10 +10,14 @@ const _dirname = dirname(_filename);
 import { resolve } from 'path'
 
 export default defineConfig({
+  appType: 'mpa',
+  resolve: { 
+    preserveSymlinks: true
+  },
   build: {
+    assetsInlineLimit: 0
   },
   plugins: [
-    yaml(),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
