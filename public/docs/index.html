@@ -8,31 +8,28 @@
 </head>
 
 <body>
+  <h1>Operating Notes</h1>
+  <section>
+    <ul>
+      <li>The Musical Parameters app can be installed as an app on your device and will work offline. There should be an install option in your web browser.</li>
+      <li>The "space" key will start stop any media playing.</li>
+      <li>The "P" key will pick a new set of parameters.</li>
+    </ul>
+  </section>
+  
   <h1>Example Musical Parameter files</h1>
-  <main>
-    <p>Note the Musical Parameters app can be installed as an app on your device and will work offline. There should be an install option in your web browser.</p>
-    <p>Select example to download to your device. It can then be loaded into the app.</p>
-    <div id="container"></div>
+  <section>
+    <p>Select an example to download to your device for subsequent loading, or open directly.</p>
+    <ul>
+      <li>Initial-Parameters.yaml: <a href="/examples/Initial-Parameters.yaml">Download</a> / <a href="/index.html?file=/examples/Initial-Parameters.yaml">Open</a></li>
+      <li>Common-Chord-Sequences-1.01.yaml: <a href="/examples/Common-Chord-Sequences-1.01.yaml">Download</a> / <a href="/index.html?file=/examples/Common-Chord-Sequences-1.01.yaml">Open</a></li></li>
+      <li>IFR-Ear-Training-Tracks.yaml: <a href="/examples/IFR-Ear-Training-Tracks.yaml">Download</a> / <a href="/examples/IFR-Ear-Training-Tracks.yaml">Open</a></li>
+    </ul>
     <form>
       <input type="button" value="Go back to app" onclick="history.back()">
     </form>
     <p>This is an <a href="https://github.com/music-practice-tools/musical-parameters">open source project</a>) by Steve Lee.<p>
-  </main>
-  <script>
-    (async () => {
-      const response = await fetch('/examples/');
-      const data = await response.json();
-      let htmlString = '<ul>';
-
-      for (let file of data) {
-        htmlString += `<li><a href="${file.path}">${file.name}</a></li>`;
-      }
-
-      htmlString += '</ul>';
-      document.querySelector('#container').innerHTML = htmlString;
-    })()
-  </script>
-
+    </section>
   <body>
 
 </html>

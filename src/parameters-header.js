@@ -7,7 +7,7 @@ export function createParametersHeader(names) {
     )}</select></label>`;
     element.innerHTML = `<div class="picker-header">
     <div>${select}</div>
-    <button title="Pick all" aria-label="Pick all">\u{1F504}</button></div>`;
+    <button id="pick-all" title="Pick all" aria-label="Pick all">\u{1F504}</button></div>`;
   }
 
   const element = document.createElement("div");

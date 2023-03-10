@@ -94,7 +94,15 @@ card.addEventListener("valueset", (e) =>
 
 window.addEventListener('keyup', (e) => {
   const audio = app.querySelector("audio");
-  if (!!audio && e.code == 'Space')
+  if (e.code =="KeyP")
+  {
+    const pickAll = app.querySelector("#pick-all")
+    if (pickAll) 
+    { 
+      pickAll.click()
+    }
+  }
+  else if (!!audio && e.code == 'Space')
   {
     const method = audio.paused ? "play" : "pause"
     audio[method]()

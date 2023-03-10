@@ -22,9 +22,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         // Add images to precache
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,yaml}']
       },
-      includeAssets: ['style.css', 'pwa-192x192.png', 'pwa-512x512.png', 'favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
+      includeAssets: ['examples/*.yaml', 'style.css', 'pwa-192x192.png', 'pwa-512x512.png', 'favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],
       manifest: {
         name: 'Musical Parameters',
         short_name: 'MusicParams',
