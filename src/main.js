@@ -6,7 +6,7 @@ import initialParameters from "./Initial-Parameters.yaml?raw";
 //import { safeMediaPlay } from "./media.js";
 import { debounce } from "./debounce.js";
 
-// Global exception handler
+// Global exception handlers
 window.addEventListener("error", (event) => {
   const error = event.error;
   alert(`${error.type}: ${error.message}\n`);

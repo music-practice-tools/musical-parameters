@@ -2,6 +2,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8fc41265-496f-42ab-8bc3-dd35a5b7f885/deploy-status)](https://app.netlify.com/sites/musical-parameters/deploys)
 
+See [docs](./public/docs/index.html) for operating info.
+
 ## How to Update the Set of Parameters
 
 - Edit [this page](https://github.com/music-practice-tools/musical-parameters/blob/master/src/parameters.yaml) by clicking the pencil icon on right of heading
