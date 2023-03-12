@@ -1,13 +1,9 @@
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import yaml from '@rollup/plugin-yaml'
 
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'url';
 const _filename = fileURLToPath(import.meta.url);
-const _dirname = dirname(_filename);
-
-import { resolve } from 'path'
 
 export default defineConfig({
   appType: 'mpa',
