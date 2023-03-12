@@ -53,8 +53,8 @@ export function createControls(hasMedia) {
     element.className = "controls";
     element.innerHTML = `
     ${(hasMedia) ? '<audio autoplay controls loop></audio>' : ''}
-    <a href="/docs/index.html">Examples ${downloadIcon}</a>
-    <span>Load file: </span>
+    <div><a href="/docs/index.html">Examples ${downloadIcon}</a>
+    <span>Load file:</span> 
     ${
       hasFileSystemAccessAPI
         ? `<button style="border:0;" id="load-file" title="Load from file" aria-label="Load file">${uploadIcon}</button>`
@@ -62,7 +62,7 @@ export function createControls(hasMedia) {
         <input id="load-file" type="file" accept="text/yaml,.yaml" class="visually-hidden">
       </label>
       `
-    }`;
+    }</div>`;
   }
 
   const element = document.createElement("div");

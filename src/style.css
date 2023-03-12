@@ -118,25 +118,24 @@ header {
 }
 
 .controls {
-  display: flex;
-  justify-content: right;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); /* see notes below */
+  grid-gap: 0.5em;
   align-items: baseline; 
   font-size: large;
   margin-bottom: .5rem;
 }
 
-
-.controls a,
-.controls audio {
-  margin-right: 20px;
-}
-
-.controls audio {
-  align-self: flex-end;
-}
-
 .controls button {
   border-radius: 20px;
+}
+
+.controls span {
+  margin-left: 1em;
+}
+
+.controls audio {
+  height: 40px; 
 }
 
 .picker-header button,
