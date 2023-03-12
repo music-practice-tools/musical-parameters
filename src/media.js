@@ -12,7 +12,7 @@ audio.play().catch(()=>{}) // user needs to interact for play
 }
   
 export const safeMediaPlay = debounce(
-    (values) => {
+    (mediaTemplate, values) => {
       const media = interpolate(mediaTemplate, values)
       play(media)
     },
