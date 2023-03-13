@@ -22,34 +22,37 @@ renderApp(app, { image: logo });
 const controls = app.querySelector("#controls");
 const card = app.querySelector("#card");
 
+// state 
 const parsedUrl = new URL(window.location.href);
-let values=Object.fromEntries(parsedUrl.searchParams) 
-let parameterCollection = []
-let mediaTemplate
+let state = { 
+  values: Object.fromEntries(parsedUrl.searchParams),
+  set: 0, 
+  parameterCollection: [],
+  get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate }
+}
 
 // Collection loaded
 controls.addEventListener("dataload", (e) => {
-  parameterCollection = e.detail;
-  mediaTemplate = parameterCollection[0].mediaTemplate
-  renderControls(controls, !!mediaTemplate);
-  renderCollection(card, parameterCollection);
+  state.parameterCollection = e.detail;
+  state.set = 0
+  renderControls(controls, !!state.mediaTemplate);
+  renderCollection(card, state.parameterCollection);
 });
 
 // Set changed
 card.addEventListener("input", (e) => {
-  const setIndex = e.target.value;
-  mediaTemplate = parameterCollection[setIndex].mediaTemplate
-  renderControls(controls, !!mediaTemplate);
-  renderCollectionRows(card, { setParams: parameterCollection[setIndex] });
+  state.set = e.target.value;
+  renderControls(controls, !!state.mediaTemplate);
+  renderCollectionRows(card, { setParams: state.parameterCollection[state.set] });
 });
 
 // value changed
 card.addEventListener("valueset", (e) =>
 {
-  if (mediaTemplate){
+  if (state.mediaTemplate){
     const { name, value } = e.detail;
-    values[name] = value[1];
-    safeMediaPlay(mediaTemplate, values);
+    state.values[name] = value[1];
+    safeMediaPlay(state.mediaTemplate, state.values);
 }})
 
 // Key
@@ -71,7 +74,7 @@ window.addEventListener('keyup', (e) => {
 });
 
 // initial parameters
-const fileURI = values.file
+const fileURI = state.values.file
 if (fileURI)
 {
   fetchParameters(fileURI)
