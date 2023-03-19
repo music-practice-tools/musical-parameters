@@ -66,7 +66,9 @@ window.addEventListener('keyup', (e) => {
       pickAll.click()
     }
   }
-  else if (!!audio && e.code == 'Space')
+  else if (!!audio  
+            && e.target.getAttribute("id") != "player" // is handled by player 
+            && e.code == 'Space' )
   {
     const method = audio.paused ? "play" : "pause"
     audio[method]()

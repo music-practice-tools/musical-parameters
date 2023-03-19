@@ -52,7 +52,6 @@ export function createControls(hasMedia) {
   function render(element) {
     element.className = "controls";
     element.innerHTML = `
-    ${(hasMedia) ? '<audio autoplay controls loop></audio>' : ''}
     <div><a href="/docs/index.html">Examples ${downloadIcon}</a>
     <span>Load file:</span> 
     ${
@@ -62,7 +61,9 @@ export function createControls(hasMedia) {
         <input id="load-file" type="file" accept="text/yaml,.yaml" class="visually-hidden">
       </label>
       `
-    }</div>`;
+    }</div>
+    ${(hasMedia) ? '<audio id="player" zautoplay controls loop></audio>' : ''}
+    `;
   }
 
   const element = document.createElement("div");
