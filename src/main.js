@@ -25,7 +25,7 @@ const card = app.querySelector("#card");
 // state 
 const parsedUrl = new URL(window.location.href);
 let state = { 
-  values: Object.fromEntries(parsedUrl.searchParams),
+  values: Object.fromEntries(parsedUrl.searchParams), // current values including those in URL query string
   set: 0, 
   parameterCollection: [],
   get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate }
@@ -39,11 +39,13 @@ controls.addEventListener("dataload", (e) => {
   renderCollection(card, state.parameterCollection);
 });
 
-// Set changed
+// Set or value changed
 card.addEventListener("input", (e) => {
-  state.set = e.target.value;
-  renderControls(controls, !!state.mediaTemplate);
-  renderCollectionRows(card, { setParams: state.parameterCollection[state.set] });
+  if (e.target.id == "set") {
+    state.set = e.target.value;
+    renderControls(controls, !!state.mediaTemplate);
+    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] });
+  }
 });
 
 // value changed
@@ -51,9 +53,20 @@ card.addEventListener("valueset", (e) =>
 {
   if (state.mediaTemplate){
     const { name, value } = e.detail;
-    state.values[name] = value[1];
+    state.values[name] = value[1] ?? value[0];
     safeMediaPlay(state.mediaTemplate, state.values);
 }})
+
+// touch to background 
+window.addEventListener('touchend', (e) => {
+  const audio = app.querySelector("audio");
+  if (e.target.id == 'app' && !!audio )
+  {
+    e.preventDefault();
+    const method = audio.paused ? "play" : "pause"
+    audio[method]()  
+  }
+});
 
 // Key
 window.addEventListener('keyup', (e) => {

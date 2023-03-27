@@ -62,7 +62,7 @@ export function createControls(hasMedia) {
       </label>
       `
     }</div>
-    ${(hasMedia) ? '<audio id="player" zautoplay controls loop></audio>' : ''}
+    ${(hasMedia) ? '<audio id="player" controls loop></audio>' : ''}
     `;
   }
 
