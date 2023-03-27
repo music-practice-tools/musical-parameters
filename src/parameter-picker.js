@@ -4,12 +4,14 @@ export function createParameterPicker({ name, values }) {
   const normalisedValues = values.map((value) => (Array.isArray(value) && value.length == 2) ? value : [value, value.replace(/ /g, "_")])
 
   const render = (element, { name, value, values }) => {
-    let content = value 
+    let content = value
     if (values) {
       content = `<label>
       <select>${values.map(
-        (val, i) => `<option value="${i}" ${val[0]==value?'selected':''}>${val[0]}</option>`,
-        values
+        (val, i) => {
+          val = !Array.isArray(val) ? [val, val] : val
+          return `<option value="${i}" ${val[0]==value?'selected':''}>${val[0]}</option>`
+        }
       )}</select></label>`;
     }
 
