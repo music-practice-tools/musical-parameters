@@ -1,10 +1,9 @@
 export function createParametersHeader(names) {
   function render(element, { names }) {
-    const select = `<label>Set: 
+    const select = `<label><div class="select-wrapper">
     <select id="set">${names.map(
-      (name, i) => `<option value="${i}">${name}</option>`,
-      names
-    )}</select></label>`;
+      (name, i) => `<option value="${i}">${name}</option>`
+    )}</select></div></label>`;
     element.innerHTML = `<div class="picker-header">
     <div>${select}</div>
     <button id="pick-all" title="Pick all" aria-label="Pick all">\u{1F504}</button></div>`;

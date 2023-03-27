@@ -6,13 +6,13 @@ export function createParameterPicker({ name, values }) {
   const render = (element, { name, value, values }) => {
     let content = value
     if (values) {
-      content = `<label>
+      content = `<label><div class="select-wrapper">
       <select>${values.map(
         (val, i) => {
           val = !Array.isArray(val) ? [val, val] : val
           return `<option value="${i}" ${val[0]==value?'selected':''}>${val[0]}</option>`
         }
-      )}</select></label>`;
+      )}</select></div></label>`;
     }
 
     element.innerHTML = `<div class="picker">
