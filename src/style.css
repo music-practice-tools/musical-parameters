@@ -165,10 +165,11 @@ header {
   position: relative;
 }
 
-.picker .select-wrapper::after,
-.picker-header .select-wrapper::after {
-  content: "▼";
+.picker .select-wrapper::before,
+.picker-header .select-wrapper::before {
+  content: "v"; /*"▼"*/
   font-size: 1rem;
+  font-weight: 100;
   top: 0px;
   left: 0px;
   position: absolute;
@@ -178,10 +179,10 @@ header {
 .picker-header select {
   appearance: none;
   text-align: left;
-  margin-left: 1em;
+  margin-left: .7em;
   display: block;
   box-sizing: border-box;
-  width: 95%;
+  width: 92%;
 }
 
 .visually-hidden {
