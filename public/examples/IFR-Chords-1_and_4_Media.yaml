@@ -1,0 +1,23 @@
+# Improvise for Real Chords Backing Tracks
+- set: IFR Ear Training Tracks
+  mediaTemplate: "https://${mediaRoot}/${Styles}_(key_of_${Tonal Centre}).mp3"
+  params:
+  - name: Styles
+    values:
+      - [Bonfire Smokey Swing, Bonfire_Smokey_Swing]
+      - [Campfire Guitars, Campfire_Guitars]
+      - [Piano Ballad, Piano_Ballad]
+  - name: Tonal Centre
+    values:
+      - [A♭, Ab]
+      - A
+      - [B♭, Bb]
+      - B
+      - C
+      - [D♭, Db]
+      - D
+      - [E♭, Eb]
+      - E
+      - F
+      - [G♭, Gb]
+      - G
