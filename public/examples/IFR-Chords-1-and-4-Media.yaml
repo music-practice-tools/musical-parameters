@@ -1,6 +1,6 @@
 # Improvise for Real Chords Backing Tracks
 - set: IFR Ear Training Tracks
-  mediaTemplate: "https://${mediaRoot}/${Styles}_(key_of_${Tonal Centre}).mp3"
+  mediaTemplate: "https://${mediaRoot}/Chords_1_and_4_${Styles}_(key_of_${Tonal Centre}).mp3"
   params:
   - name: Styles
     values:
