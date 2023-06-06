@@ -6,7 +6,7 @@ export function renderApp(element, { image }) {
     element.innerHTML = `    
       <header>
         <img src="${image}" class="logo" alt="logo" />
-        <h1>Generate Musical Parameters</h1>
+        <h1>Musical Parameters</h1>
       </header>
       <nav id="controls"></nav>
       <main class="card" id="card"></main>
