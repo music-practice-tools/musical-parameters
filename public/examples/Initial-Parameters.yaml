@@ -21,7 +21,7 @@
       - Minor
       - Melodic Minor
       - Harmonic Minor
-    seldom:
+    extra:
       - Wholetone
       - Octatonic 
   - name: Time Signature

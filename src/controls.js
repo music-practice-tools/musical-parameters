@@ -48,7 +48,7 @@ const uploadIcon = `<svg ${iconStyle} xmlns="http://www.w3.org/2000/svg" fill="n
 <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
 </svg>`;
 
-export function createControls(hasMedia=false, showSeldom=true) {
+export function createControls(hasMedia=false, extra=null) {
   function render(element) {
     element.className = "controls";
     element.innerHTML = `
@@ -62,7 +62,7 @@ export function createControls(hasMedia=false, showSeldom=true) {
       </label>
       `
     }</div>
-    ${(showSeldom) ? '<div><input type="checkbox" id="seldom""><label for="seldom">Seldom</label></div>' : ''}
+    ${(extra !== null) ? ('<div><input type="checkbox" ' + ((extra===true) ? 'checked' : '') + ' id="Extra""><label for="Extra">Extra</label></div>') : ''}
     ${(hasMedia) ? '<audio id="player" controls loop></audio>' : ''}
     `;
   }
@@ -100,10 +100,10 @@ export function createControls(hasMedia=false, showSeldom=true) {
   render(element);
 
   element.addEventListener("change", (e) => {
-    if (e.target.id == "seldom")
+    if (e.target.id == "Extra")
     {
       element.dispatchEvent(
-        new CustomEvent("seldom", { bubbles: true, detail: { enabled: e.target.checked } })
+        new CustomEvent("Extra", { bubbles: true, detail: { enabled: e.target.checked } })
     );
   }
   })

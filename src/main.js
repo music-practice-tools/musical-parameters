@@ -29,21 +29,25 @@ let state = {
   set: 0,                     // set on data load
   parameterCollection: [],    // set on data load
   get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate },
-  get hasSeldom() { return this.parameterCollection[this.set].params.some((e)=>!!e.seldom) },
-  showSeldom: false
+  get _hasExtra() { return this.parameterCollection[this.set].params.some((e)=>!!e.extra) },
+  _showExtra: initialValues.showExtra == "true",
+  get extra() { // tristate: null, true, false 
+    return this._hasExtra ? this._showExtra : null
+  },
+  set extra(ext) { if (ext !== null && this._hasExtra) { this._showExtra = ext }}
 }
 
 // Collection loaded
 controls.addEventListener("dataload", (e) => {
   state.parameterCollection = e.detail;
   state.set = 0
-  renderControls(controls, !!state.mediaTemplate, !!state.hasSeldom);
-  renderCollection(card, state.parameterCollection, state.showSeldom);
+  renderControls(controls, !!state.mediaTemplate, state.extra);
+  renderCollection(card, state.parameterCollection, state.extra);
 });
 
-controls.addEventListener("seldom", (e) => {
-    state.showSeldom = e.detail.enabled
-    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.showSeldom);
+controls.addEventListener("Extra", (e) => {
+    state.extra = e.detail.enabled
+    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.extra);
 });
 
 // Set or value changed
@@ -51,8 +55,8 @@ card.addEventListener("input", (e) => {
   if (e.target.id == "set") {
     state.values = {...initialValues} // clear any set specific values
     state.set = e.target.value;
-    renderControls(controls, !!state.mediaTemplate, !!state.hasSeldom);
-    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.showSeldom);
+    renderControls(controls, !!state.mediaTemplate, state.extra);
+    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.extra);
   }
 });
 
