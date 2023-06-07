@@ -23,11 +23,11 @@ const controls = app.querySelector("#controls");
 const card = app.querySelector("#card");
 
 // state 
-const parsedUrl = new URL(window.location.href);
+const initialValues = Object.fromEntries((new URL(window.location.href)).searchParams)
 let state = { 
-  values: Object.fromEntries(parsedUrl.searchParams), // current values including those in URL query string
-  set: 0, 
-  parameterCollection: [],
+  values: {...initialValues}, // deep copy
+  set: 0,                     // set on data load
+  parameterCollection: [],    // set on data load
   get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate }
 }
 
@@ -42,6 +42,7 @@ controls.addEventListener("dataload", (e) => {
 // Set or value changed
 card.addEventListener("input", (e) => {
   if (e.target.id == "set") {
+    state.values = {...initialValues} // clear any set specific values
     state.set = e.target.value;
     renderControls(controls, !!state.mediaTemplate);
     renderCollectionRows(card, { setParams: state.parameterCollection[state.set] });
