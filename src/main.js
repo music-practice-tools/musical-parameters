@@ -71,7 +71,7 @@ window.addEventListener('touchend', (e) => {
 // Key
 window.addEventListener('keyup', (e) => {
   const audio = app.querySelector("audio");
-  if (e.code =="KeyP")
+  if (e.code =="KeyN")
   {
     const pickAll = app.querySelector("#pick-all")
     if (pickAll) 
@@ -79,7 +79,7 @@ window.addEventListener('keyup', (e) => {
       pickAll.click()
     }
   }
-  else if (!!audio && e.code == 'KeyS' )
+  else if (!!audio && e.code == 'KeyP' )
   {
     const method = audio.paused ? "play" : "pause"
     audio[method]()
