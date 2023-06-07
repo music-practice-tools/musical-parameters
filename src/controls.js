@@ -52,7 +52,7 @@ export function createControls(hasMedia) {
   function render(element) {
     element.className = "controls";
     element.innerHTML = `
-    <div><a href="/docs/index.html">Examples ${downloadIcon}</a>
+    <div><a href="/docs/">About ${downloadIcon}</a>
     <span>Load file:</span> 
     ${
       hasFileSystemAccessAPI

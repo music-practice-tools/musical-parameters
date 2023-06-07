@@ -4,16 +4,26 @@
 <head>
   <meta charset=UTF-8>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Musical Parameters Examples</title>
+  <title>About Musical Parameters</title>
 </head>
 
 <body>
+  <h1>About</h1>
+  <p>A small web app that displays sets of parameters each with several possible values.
+    Designed for selecting musical parameters for practicing etc. but should be generally useful.
+  </p>
+  <p>Select new values for all or a single parameter. Supports audio media playing of a file for a value.
+    The sets of parameters are defined in config files. Parameters can also be passed in the URL query string for use in the config file.
+  </p>
+
   <h1>Operating Notes</h1>
-  <p>Select a set of parameters for random values. Pick new random values for individual parameters or all at once.</p>
   <section>
     <ul>
-      <li>The "P" key will start / stop media playing. As will clicking/touching background areas.</li>
-      <li>The "N" key will pick a new set of parameters.</li>
+      <li>Select a set of parameters in top row.</li>
+      <li>Pick new random values for individual parameters or all at once using icons on the right end of each row.</li>
+      <li>Clicking on a parameter value will present a list of all values so one can be selected.</li>
+      <li>The "N" key will pick a new set of all parameters.</li>
+      <li>The "P" key will start / stop media playing if available. As will clicking/touching background areas.</li>
       <li>Media playing is initially paused until a manual interaction occurs.</li>
       <li>App can be installed as an app on your device and will work offline. There should be an install option in your web browser.</li>
     </ul>
