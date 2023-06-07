@@ -103,7 +103,7 @@ export function createControls(hasMedia=false, showSeldom=true) {
     if (e.target.id == "seldom")
     {
       element.dispatchEvent(
-        new CustomEvent("seldom", { bubbles: true, detail: { enabled: e.target.value == "on" } })
+        new CustomEvent("seldom", { bubbles: true, detail: { enabled: e.target.checked } })
     );
   }
   })
