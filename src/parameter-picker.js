@@ -1,6 +1,9 @@
 import { pickRandom } from "./random.js";
 
-export function createParameterPicker({ name, values }) {
+export function createParameterPicker({ name, values, seldom }, showSeldom=false) {
+  if (showSeldom && seldom){
+    values = [...values, ...seldom]  
+  }
   const normalisedValues = values.map((value) => (Array.isArray(value) && value.length == 2) ? value : [value, value.replace(/ /g, "_")])
 
   const render = (element, { name, value, values }) => {

@@ -13,11 +13,11 @@ export function renderApp(element, { image }) {
       `;
 }
   
-export function renderControls(element, hasMedia) {
+export function renderControls(element, hasMedia, showSeldom) {
     while (element.childNodes.length) {
       element.removeChild(element.lastChild);
     }
-    element.appendChild(createControls(hasMedia));
+    element.appendChild(createControls(hasMedia, showSeldom));
 }
   
 export function renderCollectionHeader(element, { setNames }) {
@@ -27,17 +27,17 @@ export function renderCollectionHeader(element, { setNames }) {
     element.appendChild(createParametersHeader(setNames));
 }
   
-export function renderCollectionRows(element, { setParams }) {
+export function renderCollectionRows(element, { setParams }, showSeldom) {
     while (element.childNodes.length > 1) {
       element.removeChild(element.lastChild);
     }
     setParams.params.forEach((param) => {
-      element.appendChild(createParameterPicker(param));
+      element.appendChild(createParameterPicker(param, showSeldom));
     });
 }
   
-export function renderCollection(container, parameters) {
+export function renderCollection(container, parameters, showSeldom) {
     const setNames = parameters.map((param) => param.set);
     renderCollectionHeader(container, { setNames });
-    renderCollectionRows(container, { setParams: parameters[0] });
+    renderCollectionRows(container, { setParams: parameters[0], showSeldom });
 }

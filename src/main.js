@@ -28,15 +28,22 @@ let state = {
   values: {...initialValues}, // deep copy
   set: 0,                     // set on data load
   parameterCollection: [],    // set on data load
-  get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate }
+  get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate },
+  get hasSeldom() { return this.parameterCollection[this.set].params.some((e)=>!!e.seldom) },
+  showSeldom: false
 }
 
 // Collection loaded
 controls.addEventListener("dataload", (e) => {
   state.parameterCollection = e.detail;
   state.set = 0
-  renderControls(controls, !!state.mediaTemplate);
-  renderCollection(card, state.parameterCollection);
+  renderControls(controls, !!state.mediaTemplate, !!state.hasSeldom);
+  renderCollection(card, state.parameterCollection, state.showSeldom);
+});
+
+controls.addEventListener("seldom", (e) => {
+    state.showSeldom = e.detail.enabled
+    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.showSeldom);
 });
 
 // Set or value changed
@@ -44,8 +51,8 @@ card.addEventListener("input", (e) => {
   if (e.target.id == "set") {
     state.values = {...initialValues} // clear any set specific values
     state.set = e.target.value;
-    renderControls(controls, !!state.mediaTemplate);
-    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] });
+    renderControls(controls, !!state.mediaTemplate, !!state.hasSeldom);
+    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.showSeldom);
   }
 });
 

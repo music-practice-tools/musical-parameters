@@ -21,6 +21,9 @@
       - Minor
       - Melodic Minor
       - Harmonic Minor
+    seldom:
+      - Wholetone
+      - Octatonic 
   - name: Time Signature
     values:
       - 2/2
