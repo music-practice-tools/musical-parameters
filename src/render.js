@@ -31,7 +31,6 @@ export function renderCollectionRows(element, { setParams }, showExtra) {
     while (element.childNodes.length > 1) {
       element.removeChild(element.lastChild);
     }
-    console.log(showExtra)
     setParams.params.forEach((param) => {
       const {name, values, extra} = param 
       const vals = (showExtra  == 1 && extra) ? [...values, ...extra] : (showExtra == 2 && extra) ? [...extra] : [...values];
