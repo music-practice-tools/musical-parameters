@@ -139,7 +139,7 @@
     values:
       - Maj 7
       - min 7
-      - 7
+      - '7'
       - m7b5
       - dim
       - minor Major 7
@@ -162,7 +162,7 @@
     values:
       - Maj 7
       - min 7
-      - 7
+      - '7'
       - m7b5
       - dim
       - minor Major 7
@@ -185,7 +185,7 @@
     values:
       - Maj 7
       - min 7
-      - 7
+      - '7'
       - m7b5
       - dim
       - minor Major 7
@@ -208,7 +208,7 @@
     values:
       - Maj 7
       - min 7
-      - 7
+      - '7'
       - m7b5
       - dim
       - minor Major 7
