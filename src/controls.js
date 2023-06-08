@@ -62,7 +62,11 @@ export function createControls(hasMedia=false, extra=null) {
       </label>
       `
     }</div>
-    ${(extra !== null) ? ('<div><input type="checkbox" ' + ((extra===true) ? 'checked' : '') + ' id="Extra""><label for="Extra">Extra</label></div>') : ''}
+    ${(extra !== null) ? `<label>Values: <select id="extra">
+          <option ${(extra==0) ? 'selected' : ''} value="0">Values</option>
+          <option ${(extra==1) ? 'selected' : ''} + value="1">Both</option>
+          <option ${(extra==2) ? 'selected' : ''} + value="2">Extra</option>
+          </select></label>` : ''}
     ${(hasMedia) ? '<audio id="player" controls loop></audio>' : ''}
     `;
   }
@@ -100,10 +104,10 @@ export function createControls(hasMedia=false, extra=null) {
   render(element);
 
   element.addEventListener("change", (e) => {
-    if (e.target.id == "Extra")
+    if (e.target.id == "extra")
     {
       element.dispatchEvent(
-        new CustomEvent("Extra", { bubbles: true, detail: { enabled: e.target.checked } })
+        new CustomEvent("extra", { bubbles: true, detail: { enabled: e.target.value } })
     );
   }
   })

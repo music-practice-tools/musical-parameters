@@ -30,8 +30,8 @@ let state = {
   parameterCollection: [],    // set on data load
   get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate },
   get _hasExtra() { return this.parameterCollection[this.set].params.some((e)=>!!e.extra) },
-  _showExtra: initialValues.showExtra == "true",
-  get extra() { // tristate: null, true, false 
+  _showExtra: initialValues.showExtra ?? 0, // 0, 1 or 2 as per select values
+  get extra() { // quadstate: null, 0, 1 or 2 
     return this._hasExtra ? this._showExtra : null
   },
   set extra(ext) { if (ext !== null && this._hasExtra) { this._showExtra = ext }}
@@ -45,7 +45,7 @@ controls.addEventListener("dataload", (e) => {
   renderCollection(card, state.parameterCollection, state.extra);
 });
 
-controls.addEventListener("Extra", (e) => {
+controls.addEventListener("extra", (e) => {
     state.extra = e.detail.enabled
     renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.extra);
 });

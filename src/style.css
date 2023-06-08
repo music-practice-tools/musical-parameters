@@ -138,6 +138,10 @@ header {
   height: 40px; 
 }
 
+.controls select {
+  font-size: large;
+}
+
 .picker-header button,
 .picker button,
 .picker select,
