@@ -27,12 +27,14 @@ export function renderCollectionHeader(element, { setNames }) {
     element.appendChild(createParametersHeader(setNames));
 }
   
-export function renderCollectionRows(element, { setParams }, extra) {
+export function renderCollectionRows(element, { setParams }, showExtra) {
     while (element.childNodes.length > 1) {
       element.removeChild(element.lastChild);
     }
     setParams.params.forEach((param) => {
-      element.appendChild(createParameterPicker(param, extra));
+      const {name, values, extra} = param 
+      const vals = (showExtra && extra) ? [...values, ...extra] : [...values];
+      element.appendChild(createParameterPicker(name, vals));
     });
 }
   
