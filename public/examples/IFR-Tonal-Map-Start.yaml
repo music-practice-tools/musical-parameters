@@ -1,0 +1,26 @@
+# Improvise for Real Tonal Map starting point
+- set: IFR Tonal Map Start
+  params:
+  - name: Note
+    values:
+      - G♯/A♭
+      - A
+      - B♭
+      - B/C♭
+      - C
+      - C♯/D♭
+      - D
+      - D♯/E♭
+      - E
+      - F
+      - F♯/G♭
+      - G
+  - name: Map Number
+    values:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7  
