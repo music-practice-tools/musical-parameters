@@ -77,8 +77,16 @@ export function createControls(hasMedia=false, extra=null) {
     element.addEventListener("click", (e) => {
       // get pointer event form svg path element
       if (e.target.parentNode.getAttribute("id") == "load-file") {
-        loadFile().then(({ yaml, filename }) => {
-          parseAndDispatchYaml(yaml, filename, element);
+        loadFile().catch((e) => {
+          if (e.name == 'AbortError') {
+            return Promise.resolve({});
+          }
+        })
+        .then(({ yaml, filename }) => {
+          if (yaml) {
+            console.log({ yaml, filename })
+            parseAndDispatchYaml(yaml, filename, element);
+          }
         });
       }
     });
