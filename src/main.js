@@ -37,12 +37,28 @@ let state = {
   set extra(ext) { if (ext !== null && this._hasExtra) { this._showExtra = ext }}
 }
 
+function doNext() {
+  const pickAll = app.querySelector("#pick-all")
+  if (pickAll) 
+  { 
+    pickAll.click()
+  }
+}
+
 // Collection loaded
 controls.addEventListener("dataload", (e) => {
   state.parameterCollection = e.detail;
   state.set = 0
   renderControls(controls, !!state.mediaTemplate, state.extra);
   renderCollection(card, state.parameterCollection, state.extra);
+
+  const audio = app.querySelector("#player");
+    // only called if no loop
+  audio.addEventListener("ended", (e) => { doNext() })
+
+  const autoNext = app.querySelector("#autonext");
+    autoNext.addEventListener("change", (e) =>
+      {audio.loop = !autoNext.checked})
 });
 
 controls.addEventListener("extra", (e) => {
@@ -85,11 +101,7 @@ window.addEventListener('keyup', (e) => {
   const audio = app.querySelector("audio");
   if (e.code =="KeyN")
   {
-    const pickAll = app.querySelector("#pick-all")
-    if (pickAll) 
-    { 
-      pickAll.click()
-    }
+    doNext()
   }
   else if (!!audio && e.code == 'KeyP' )
   {

@@ -67,7 +67,7 @@ export function createControls(hasMedia=false, extra=null) {
           <option ${(extra==1) ? 'selected' : ''} + value="1">Both</option>
           <option ${(extra==2) ? 'selected' : ''} + value="2">Extra</option>
           </select></label>` : ''}
-    ${(hasMedia) ? '<audio id="player" controls loop></audio>' : ''}
+    ${(hasMedia) ? '<audio id="player" controls loop></audio><label><input type="checkbox" id="autonext" />Auto Next</label' : ''}
     `;
   }
 
