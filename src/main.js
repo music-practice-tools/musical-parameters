@@ -49,7 +49,7 @@ function doNext() {
 controls.addEventListener("dataload", (e) => {
   state.parameterCollection = e.detail;
   state.set = 0
-  renderControls(controls, !!state.mediaTemplate, state.extra);
+  renderControls(controls, showMedia(), state.extra);
   renderCollection(card, state.parameterCollection, state.extra);
 
   const audio = app.querySelector("#player");
@@ -70,12 +70,16 @@ controls.addEventListener("extra", (e) => {
     renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.extra);
 });
 
+function showMedia(){ 
+  return state.mediaTemplate && ( !state.mediaTemplate.includes("mediaRoot") || state.values.hasOwnProperty('mediaRoot'))
+}
+
 // Set or value changed
 card.addEventListener("input", (e) => {
   if (e.target.id == "set") {
     state.values = {...initialValues} // clear any set specific values
     state.set = e.target.value;
-    renderControls(controls, !!state.mediaTemplate, state.extra);
+    renderControls(controls, showMedia(), state.extra);
     renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.extra);
   }
 });
@@ -83,7 +87,7 @@ card.addEventListener("input", (e) => {
 // value changed
 card.addEventListener("valueset", (e) =>
 {
-  if (state.mediaTemplate){
+  if (showMedia()){
     const { name, value } = e.detail;
     state.values[name] = value[1] ?? value[0];
     safeMediaPlay(state.mediaTemplate, state.values);
