@@ -75,7 +75,8 @@ export function createControls(hasMedia=false, extra=null) {
 
   if (hasFileSystemAccessAPI) {
     element.addEventListener("click", (e) => {
-      if (/*e.target.getAttribute("id") == "load-file"*/true) {
+      // get pointer event form svg path element
+      if (e.target.parentNode.getAttribute("id") == "load-file") {
         loadFile().then(({ yaml, filename }) => {
           parseAndDispatchYaml(yaml, filename, element);
         });

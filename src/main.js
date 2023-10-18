@@ -53,13 +53,17 @@ controls.addEventListener("dataload", (e) => {
   renderCollection(card, state.parameterCollection, state.extra);
 
   const audio = app.querySelector("#player");
+  if (audio) {
     // only called if no loop
-  audio.addEventListener("ended", (e) => { doNext() })
+    audio.addEventListener("ended", (e) => { doNext() })
 
-  const autoNext = app.querySelector("#autonext");
-    autoNext.addEventListener("change", (e) =>
-      {audio.loop = !autoNext.checked})
-});
+    const autoNext = app.querySelector("#autonext");
+      autoNext.addEventListener("change", (e) =>
+        { 
+          audio.loop = !autoNext.checked
+        })
+    }
+  });
 
 controls.addEventListener("extra", (e) => {
     state.extra = e.detail.enabled
