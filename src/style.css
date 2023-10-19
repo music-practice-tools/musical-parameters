@@ -71,6 +71,10 @@ margin-right :.5rem;
   button {
     background-color: #f9f9f9;
   }
+
+  .card {
+    background-color: #fff;
+  }
 }
 
 
@@ -84,7 +88,6 @@ header {
   display: grid;
   grid-gap: 8px;
   grid-template-columns: repeat(auto-fill, minmax(50vw, 1fr));
-  background-color: #fff;
   color: #444;
 }
 
