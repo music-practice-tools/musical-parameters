@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "4.1.4",
+    "vite": "^4.5.0",
     "vite-plugin-pwa": "0.14.4"
   },
   "dependencies": {
-    "yaml": "2.2.1"
+    "yaml": "^2.3.4"
   }
 }
