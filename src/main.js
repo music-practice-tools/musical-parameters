@@ -117,7 +117,8 @@ window.addEventListener('keyup', (e) => {
     audio[method]()
   }
   else if (e.code.startsWith('Digit')) {  // 0 - 9
-    const n = e.code.slice(-1) - 1 // 1 based
+    const digit = e.code.slice(-1)
+    const n = digit == '0' ? 9 : digit - 1 // 1 based
     const pickers = app.querySelectorAll("#picker-btn");
     const picker = pickers[n]
     if (picker) {
