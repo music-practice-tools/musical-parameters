@@ -18,7 +18,7 @@ export function createParameterPicker(name, values) {
     element.innerHTML = `<div class="picker">
     <div class="picker-name">${name}:</div>
     <div class="picker-value">${content}</div>
-    <button title="Pick new" aria-label="Pick new">\u{1F504}</button></div>`;
+    <button id="picker-btn" title="Pick new" aria-label="Pick new">\u{1F504}</button></div>`;
   };
 
   const element = document.createElement("div");

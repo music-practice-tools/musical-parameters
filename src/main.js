@@ -116,6 +116,15 @@ window.addEventListener('keyup', (e) => {
     const method = audio.paused ? "play" : "pause"
     audio[method]()
   }
+  else if (e.code.startsWith('Digit')) {  // 0 - 9
+    const n = e.code.slice(-1) - 1 // 1 based
+    const pickers = app.querySelectorAll("#picker-btn");
+    const picker = pickers[n]
+    if (picker) {
+      picker.click()
+    }
+  }
+
 });
 
 // initial parameters
