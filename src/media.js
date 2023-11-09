@@ -5,7 +5,7 @@ function interpolate(str, obj) {
   }
   
 function play(media) {
-const audio = app.querySelector("audio");
+  const audio = app.querySelector("audio");
   audio.src=media
   audio.load()
   audio.play().catch(()=>{}) // user needs to interact for play

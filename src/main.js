@@ -111,7 +111,7 @@ window.addEventListener('keyup', (e) => {
   {
     doNext()
   }
-  else if (!!audio && e.code == 'KeyP' )
+  else if (!!audio && (e.code == 'KeyP' || e.code =="Space"))
   {
     const method = audio.paused ? "play" : "pause"
     audio[method]()
