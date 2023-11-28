@@ -1,5 +1,5 @@
 import { createParametersHeader } from "./parameters-header.js";
-import { createParameterPicker } from "./parameter-picker.js";
+import { createParameterNote, createParameterPicker } from "./parameter-picker.js";
 import { createControls } from "./controls.js";
 
 export function renderApp(element, { image }) {
@@ -27,9 +27,12 @@ export function renderCollectionHeader(element, { setNames }) {
     element.appendChild(createParametersHeader(setNames));
 }
   
-export function renderCollectionRows(element, { setParams }, showExtra) {
+export function renderCollectionRows(element, hasNote, { setParams }, showExtra) {
     while (element.childNodes.length > 1) {
       element.removeChild(element.lastChild);
+    }
+    if (hasNote) {
+      element.appendChild(createParameterNote());
     }
     setParams.params.forEach((param) => {
       const {name, values, extra} = param 
@@ -38,8 +41,8 @@ export function renderCollectionRows(element, { setParams }, showExtra) {
     });
 }
   
-export function renderCollection(container, parameters, extra) {
+export function renderCollection(container, hasNote, parameters, extra) {
     const setNames = parameters.map((param) => param.set);
     renderCollectionHeader(container, { setNames });
-    renderCollectionRows(container, { setParams: parameters[0]}, extra );
+    renderCollectionRows(container, hasNote, { setParams: parameters[0]}, extra );
 }

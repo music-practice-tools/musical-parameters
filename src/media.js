@@ -1,8 +1,8 @@
-import { debounce } from "./debounce.js";
+import Scale from "@tonaljs/scale";
 
 function interpolate(str, obj) {
-    return str.replace(/\${([^}]+)}/g, (_, prop) => obj[prop])
-  }
+  return str.replace(/\${([^}]+)}/g, (_, prop) => obj[prop])
+}
   
 function play(media) {
   const audio = app.querySelector("audio");
@@ -11,11 +11,15 @@ function play(media) {
   audio.play().catch(()=>{}) // user needs to interact for play
 }
   
-export const safeMediaPlay = debounce(
-    (mediaTemplate, values) => {
+export function mediaPlay(mediaTemplate, values) {
       const media = interpolate(mediaTemplate, values)
       play(media)
-    },
-    250
-  )
-  
+    }
+
+
+export function noteUpdate(noteTemplate, values) {
+  const content = interpolate(noteTemplate, values)
+  const tonalCentre = Scale.degrees(values['Key'] + ' major')(values['Harmonic Environment']);
+  const note = document.querySelector("#note");
+  note.innerHTML = content + ' ' + tonalCentre
+}

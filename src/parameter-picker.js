@@ -1,5 +1,13 @@
 import { pickRandom } from "./random.js";
 
+export function createParameterNote() {
+  const element = document.createElement("div");
+
+  element.innerHTML = '<div id="note">&nbsp;</div>'
+
+  return element;
+}
+
 export function createParameterPicker(name, values) {
   const normalisedValues = values.map((value) => (Array.isArray(value) && value.length == 2) ? value : [value, value.replace(/ /g, "_")])
 

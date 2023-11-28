@@ -5,7 +5,8 @@ export function createParametersHeader(names) {
       `<div class="select-wrapper"><select id="set">${names.map(
         (name, i) => `<option value="${i}">${name}</option>`
       )}</select></div>`;
-    element.innerHTML = `<div class="picker-header">
+    element.innerHTML = `
+    <div class="picker-header">
     <div>${select}</div>
     <button id="pick-all" title="Pick new values - N key" aria-label="Pick all">\u{1F504}</button></div>`;
   }

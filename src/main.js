@@ -1,9 +1,11 @@
 import logo from "./icons/pwa-512x512.png";
 import { parseAndDispatchYaml } from "./controls.js";
 import { renderApp, renderControls, renderCollection, renderCollectionRows } from "./render.js"
-import { safeMediaPlay } from "./media.js";
+import { noteUpdate, mediaPlay } from "./media.js";
 import { fetchParameters } from "./fetch-parameters.js";
 import initialParameters from "./Initial-Parameters.yaml?raw";
+import { debounce } from "./debounce.js";
+
 
 // Global exception handlers
 window.addEventListener("error", (event) => {
@@ -29,6 +31,7 @@ let state = {
   set: 0,                     // set on data load
   parameterCollection: [],    // set on data load
   get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate },
+  get noteTemplate() { return this.parameterCollection[this.set].noteTemplate },
   get _hasExtra() { return this.parameterCollection[this.set].params.some((e)=>!!e.extra) },
   _showExtra: initialValues.showExtra ?? 0, // 0, 1 or 2 as per select values
   get extra() { // quadstate: null, 0, 1 or 2 
@@ -49,8 +52,8 @@ function doNext() {
 controls.addEventListener("dataload", (e) => {
   state.parameterCollection = e.detail;
   state.set = 0
-  renderControls(controls, showMedia(), state.extra);
-  renderCollection(card, state.parameterCollection, state.extra);
+  renderControls(controls, hasMedia(), state.extra);
+  renderCollection(card, hasNote(), state.parameterCollection, state.extra);
 
   const audio = app.querySelector("#player");
   if (audio) {
@@ -65,33 +68,48 @@ controls.addEventListener("dataload", (e) => {
     }
   });
 
-controls.addEventListener("extra", (e) => {
-    state.extra = e.detail.enabled
-    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.extra);
-});
-
-function showMedia(){ 
+function hasMedia(){ 
   return state.mediaTemplate && ( !state.mediaTemplate.includes("mediaRoot") || state.values.hasOwnProperty('mediaRoot'))
 }
+
+function hasNote(){ 
+  return !!state.noteTemplate
+}
+    
+controls.addEventListener("extra", (e) => {
+    state.extra = e.detail.enabled
+    renderCollectionRows(card, hasNote(), { setParams: state.parameterCollection[state.set] }, state.extra);
+});
 
 // Set or value changed
 card.addEventListener("input", (e) => {
   if (e.target.id == "set") {
     state.values = {...initialValues} // clear any set specific values
     state.set = e.target.value;
-    renderControls(controls, showMedia(), state.extra);
-    renderCollectionRows(card, { setParams: state.parameterCollection[state.set] }, state.extra);
+    renderControls(controls, hasMedia(),state.extra);
+    renderCollectionRows(card, hasNote(), { setParams: state.parameterCollection[state.set] }, state.extra);
   }
 });
 
 // value changed
 card.addEventListener("valueset", (e) =>
 {
-  if (showMedia()){
+  if (hasMedia() || hasNote()) {
     const { name, value } = e.detail;
     state.values[name] = value[1] ?? value[0];
-    safeMediaPlay(state.mediaTemplate, state.values);
-}})
+  }
+  debounce(
+    (state) => {     
+      if (hasMedia()){
+        mediaPlay(state.mediaTemplate, state.values);
+      }
+      if (hasNote()){
+        noteUpdate(state.noteTemplate, state.values);
+      }
+      },
+    250
+  )(state)
+})
 
 // touch to background 
 window.addEventListener('touchend', (e) => {
