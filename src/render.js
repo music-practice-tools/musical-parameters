@@ -1,5 +1,5 @@
 import { createParametersHeader } from "./parameters-header.js";
-import { createParameterNote, createParameterPicker } from "./parameter-picker.js";
+import { createParameterPicker } from "./parameter-picker.js";
 import { createControls } from "./controls.js";
 
 export function renderApp(element, { image }) {
@@ -20,19 +20,16 @@ export function renderControls(element, hasMedia, extra) {
     element.appendChild(createControls(hasMedia, extra));
 }
   
-export function renderCollectionHeader(element, { setNames }) {
+export function renderCollectionHeader(element, hasNote, { setNames }) {
     while (element.childNodes.length) {
         element.removeChild(element.lastChild);
     }
-    element.appendChild(createParametersHeader(setNames));
+    element.appendChild(createParametersHeader(hasNote, setNames));
 }
   
-export function renderCollectionRows(element, hasNote, { setParams }, showExtra) {
+export function renderCollectionRows(element, { setParams }, showExtra) {
     while (element.childNodes.length > 1) {
       element.removeChild(element.lastChild);
-    }
-    if (hasNote) {
-      element.appendChild(createParameterNote());
     }
     setParams.params.forEach((param) => {
       const {name, values, extra} = param 
@@ -43,6 +40,6 @@ export function renderCollectionRows(element, hasNote, { setParams }, showExtra)
   
 export function renderCollection(container, hasNote, parameters, extra) {
     const setNames = parameters.map((param) => param.set);
-    renderCollectionHeader(container, { setNames });
-    renderCollectionRows(container, hasNote, { setParams: parameters[0]}, extra );
+    renderCollectionHeader(container, hasNote, { setNames });
+    renderCollectionRows(container, { setParams: parameters[0]}, extra );
 }

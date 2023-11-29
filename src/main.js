@@ -48,6 +48,14 @@ function doNext() {
   }
 }
 
+function hasMedia(){ 
+  return state.mediaTemplate && ( !state.mediaTemplate.includes("mediaRoot") || state.values.hasOwnProperty('mediaRoot'))
+}
+
+function hasNote(){ 
+  return !!state.noteTemplate
+}
+    
 // Collection loaded
 controls.addEventListener("dataload", (e) => {
   state.parameterCollection = e.detail;
@@ -68,14 +76,6 @@ controls.addEventListener("dataload", (e) => {
     }
   });
 
-function hasMedia(){ 
-  return state.mediaTemplate && ( !state.mediaTemplate.includes("mediaRoot") || state.values.hasOwnProperty('mediaRoot'))
-}
-
-function hasNote(){ 
-  return !!state.noteTemplate
-}
-    
 controls.addEventListener("extra", (e) => {
     state.extra = e.detail.enabled
     renderCollectionRows(card, hasNote(), { setParams: state.parameterCollection[state.set] }, state.extra);
@@ -87,7 +87,7 @@ card.addEventListener("input", (e) => {
     state.values = {...initialValues} // clear any set specific values
     state.set = e.target.value;
     renderControls(controls, hasMedia(),state.extra);
-    renderCollectionRows(card, hasNote(), { setParams: state.parameterCollection[state.set] }, state.extra);
+    renderCollection(card, hasNote(), { setParams: state.parameterCollection[state.set] }, state.extra);
   }
 });
 
@@ -107,7 +107,7 @@ card.addEventListener("valueset", (e) =>
         noteUpdate(state.noteTemplate, state.values);
       }
       },
-    250
+    150
   )(state)
 })
 

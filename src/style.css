@@ -107,13 +107,13 @@ header {
 }
 
 .picker,
-.picker-header, #note {
+.picker-header {
   background-color: #aaa;
   color: #fff;
   border-radius: 30px;
   padding: 5px 20px;
   text-align: left;
-
+  
   font-size: large;
   display: flex;
   justify-content: space-between;
@@ -121,10 +121,10 @@ header {
 }
 
 #note {
-  font-weight: normal;
-  background-color: #888;
-  margin-left: 10px;
-  margin-right: 10px;
+  padding: 3px 10px;
+  margin: 0 20px;
+  flex-grow: 1;
+  color: #eee
 }
 
 .controls {

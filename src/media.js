@@ -18,8 +18,8 @@ export function mediaPlay(mediaTemplate, values) {
 
 
 export function noteUpdate(noteTemplate, values) {
-  const content = interpolate(noteTemplate, values)
   const tonalCentre = Scale.degrees(values['Key'] + ' major')(values['Harmonic Environment']);
   const note = document.querySelector("#note");
+  const content = interpolate(noteTemplate, values)
   note.innerHTML = content + ' ' + tonalCentre
 }
