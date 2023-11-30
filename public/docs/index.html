@@ -9,52 +9,75 @@
 
 <body>
   <h1>About Musical Parameters</h1>
-  <p>A web app that displays sets of parameters each with several possible values. 
-    The displayed value for each parameter can be randomly selected.
-    Designed for selecting musical parameters for practicing etc. but should be generally useful.
+  <p>A mobile friendly web app that displays sets of parameters each with a current value selected from several
+    possibilities.
+    The displayed value for each parameter can be randomly selected, both individually or for all at
+    once.
+    In addition, the displayed value for each can be manually selected.
+    Originally designed for selecting musical parameters for practicing, composing etc. but should be generally useful.
   </p>
-  <p>It is possible to select new values for all parameters or just a single one. 
-    Audio media can be played for a selected value.</p>
-  <p>The available parameters are defined in simple configuration files.
-     In addition values for the media file URL can be passed in the URL query string.
+  <p>Additional features alow audio media for the selected values to be played and the display of text based on the values.
   </p>
+  <p>The available parameters, media file URLs and note text are defined in simple configuration files (yaml format).
+    In addition values for the media file base URL can be passed in the URL query string.
+  </p>
+  <p>The app is designed to also work off line with locally stored config files but browser support is now limited
+    (Firefox no longer supports such so called PWAs).</p>
 
   <h1>Operating Notes</h1>
   <section>
     <ul>
       <li>Select a set of parameters in top row with &#x1F504; icon button at the right of the row.</li>
-      <li>Pick new random values for individual parameters using &#x1F504; icon buttons on the right end of each row.</li>
+      <li>Pick new random values for individual parameters using &#x1F504; icon buttons on the right end of each row.
+      </li>
       <li>Clicking on a parameter value will present a list of all values so one can be selected.</li>
       <li>The "N" key will pick a new value for all parameters.</li>
       <li>The number keys will pick a new value for the parameter at the row specified (first is 1).</li>
-      <li>The Space and "P" keys will play / pause media playing if available. As will clicking/touching background areas.</li>
+      <li>The Space and "P" keys will play / pause media playing if available. As will clicking/touching background
+        areas.</li>
       <li>Media playing is initially paused until a manual interaction occurs.</li>
-      <li>App can be installed as an app on your device and will work offline. There should be an install option in your web browser.</li>
+      <li>App can be installed as an app on your device and will work offline. There should be an install option in your
+        web browser.</li>
     </ul>
   </section>
-  
+
   <h1>Example Musical Parameter files</h1>
   <section>
     <p>Open, download or view an examples. If you download you can upload when offline.</p>
     <ul>
-      <li>Initial-Parameters: <a href="/index.html?file=/examples/Initial-Parameters.yaml">Open</a> / <a href="/examples/Initial-Parameters.yaml">Download</a> / <a href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/Initial-Parameters.yaml">View</a></li>
-      <li>Common-Chord-Sequences-1.01: <a href="/index.html?file=/examples/Common-Chord-Sequences-1.01.yaml">Open</a> / <a href="/examples/Common-Chord-Sequences-1.01.yaml">Download</a> / <a href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/Common-Chord-Sequences-1.01.yaml">View</a></li>
-      <li>IFR Tonal Map Start: <a href="/index.html?file=/examples/IFR-Tonal-Map-Start.yaml">Open</a> / <a href="/examples/IFR-Tonal-Map-Start.yaml">Download</a> / <a href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/IFR-Tonal-Map-Start.yaml">View</a></li>
-      <li>IFR-Ear-Training-Tracks: <a href="/index.html?file=/examples/IFR-Ear-Training-Tracks-Media.yaml">Open</a> / <a href="/examples/IFR-Ear-Training-Tracks-Media.yaml">Download</a> / <a href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/IFR-Ear-Training-Tracks-Media.yaml">View</a></li>
+      <li>Initial-Parameters: <a href="/index.html?file=/examples/Initial-Parameters.yaml">Open</a> / <a
+          href="/examples/Initial-Parameters.yaml">Download</a> / <a
+          href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/Initial-Parameters.yaml">View</a>
+      </li>
+      <li>Common-Chord-Sequences-1.01: <a href="/index.html?file=/examples/Common-Chord-Sequences-1.01.yaml">Open</a> /
+        <a href="/examples/Common-Chord-Sequences-1.01.yaml">Download</a> / <a
+          href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/Common-Chord-Sequences-1.01.yaml">View</a>
+      </li>
+      <li>IFR Tonal Map Start: <a href="/index.html?file=/examples/IFR-Tonal-Map-Start.yaml">Open</a> / <a
+          href="/examples/IFR-Tonal-Map-Start.yaml">Download</a> / <a
+          href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/IFR-Tonal-Map-Start.yaml">View</a>
+      </li>
+      <li>IFR-Ear-Training-Tracks: <a href="/index.html?file=/examples/IFR-Ear-Training-Tracks-Media.yaml">Open</a> / <a
+          href="/examples/IFR-Ear-Training-Tracks-Media.yaml">Download</a> / <a
+          href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/IFR-Ear-Training-Tracks-Media.yaml">View</a>
+      </li>
     </ul>
     <a href="..">Goto the App</a>
-    <p>This is an <a href="https://github.com/music-practice-tools/musical-parameters">open source project</a> by Steve Lee.<p>
-    </section>
+    <p>This is an <a href="https://github.com/music-practice-tools/musical-parameters">open source project</a> by Steve
+      Lee.
+    <p>
+  </section>
 
-    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-    <script>
-      kofiWidgetOverlay.draw('stevelee1084', {
-        'type': 'floating-chat',
-        'floating-chat.donateButton.text': 'Support me',
-        'floating-chat.donateButton.background-color': '#794bc4',
-        'floating-chat.donateButton.text-color': '#fff'
-      });
-    </script>
- <body>
+  <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+  <script>
+    kofiWidgetOverlay.draw('stevelee1084', {
+      'type': 'floating-chat',
+      'floating-chat.donateButton.text': 'Support me',
+      'floating-chat.donateButton.background-color': '#794bc4',
+      'floating-chat.donateButton.text-color': '#fff'
+    });
+  </script>
+
+  <body>
 
 </html>
