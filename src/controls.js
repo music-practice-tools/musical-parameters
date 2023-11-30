@@ -22,13 +22,13 @@ async function loadFile() {
 
 export function parseAndDispatchYaml(yaml, filename, element) {
   try {
-    const paramsCollection = parse(yaml);
+    const parameterCollection = parse(yaml);
     element.dispatchEvent(
-      new CustomEvent("dataload", { bubbles: true, detail: paramsCollection })
+      new CustomEvent("dataload", { bubbles: true, detail: { parameterCollection, filename } })
     );
   } catch (e) {
     throw new ErrorEvent("Parameter file error", {
-      message: `An error occurred reading the file '${filename}':\n\n${e.message}\n\nYou might like to use a tool like https://jsonformatter.org/yaml-validator`
+      message: `An error occurred reading '${filename}':\n\n${e.message}\n\nYou might like to use a tool like https://jsonformatter.org/yaml-validator`
     });
   }
 }
@@ -61,8 +61,7 @@ export function createControls(hasMedia = false) {
         })
           .then(({ yaml, filename }) => {
             if (yaml) {
-              console.log({ yaml, filename })
-              parseAndDispatchYaml(yaml, filename, element);
+              parseAndDispatchYaml(yaml, `File: ${filename}`, element);
             }
           });
       }
@@ -76,7 +75,7 @@ export function createControls(hasMedia = false) {
           reader.addEventListener(
             "load",
             (e) => {
-              parseAndDispatchYaml(reader.result, file.name, element);
+              parseAndDispatchYaml(reader.result, `File: ${file.name}`, element);
             },
             false
           );

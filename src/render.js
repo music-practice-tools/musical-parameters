@@ -10,6 +10,7 @@ export function renderApp(element, { image }) {
       </header>
       <nav id="controls"></nav>
       <main class="card" id="card"></main>
+      <footer class="footer" id="footer"></footer>
       `;
 }
   
@@ -42,4 +43,8 @@ export function renderCollection(container, hasNote, parameters) {
     const setNames = parameters.map((param) => param.set);
     renderCollectionHeader(container, hasNote, { setNames });
     renderCollectionRows(container, { setParams: parameters[0]} );
+}
+
+export function renderFooter(element, filename) {
+  element.innerHTML = `<span>${filename}</span>`
 }

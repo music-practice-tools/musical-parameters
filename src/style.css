@@ -52,9 +52,15 @@ header {
   margin-bottom: 0rem;
 }
 
-header, .card, .controls {
+header, .card, .controls, .footer {
 margin-left :.5rem;
 margin-right :.5rem;
+}
+
+.footer {
+  color: lightgrey;
+  margin: 10px;
+  text-align: left;
 }
 
 .logo {

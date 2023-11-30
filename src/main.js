@@ -1,6 +1,6 @@
 import logo from "./icons/pwa-512x512.png";
 import { parseAndDispatchYaml } from "./controls.js";
-import { renderApp, renderControls, renderCollection, renderCollectionRows } from "./render.js"
+import { renderApp, renderControls, renderCollection, renderCollectionRows, renderFooter } from "./render.js"
 import { noteUpdate, mediaPlay } from "./media.js";
 import { fetchParameters } from "./fetch-parameters.js";
 import initialParameters from "./Initial-Parameters.yaml?raw";
@@ -23,6 +23,7 @@ const app = document.querySelector("#app");
 renderApp(app, { image: logo });
 const controls = app.querySelector("#controls");
 const card = app.querySelector("#card");
+const footer = app.querySelector("#footer");
 
 // state 
 const initialValues = Object.fromEntries((new URL(window.location.href)).searchParams)
@@ -52,10 +53,11 @@ function hasNote(){
     
 // Collection loaded
 controls.addEventListener("dataload", (e) => {
-  state.parameterCollection = e.detail;
+  Object.assign(state, e.detail)
   state.set = 0
   renderControls(controls, hasMedia());
   renderCollection(card, hasNote(), state.parameterCollection);
+  renderFooter(footer, state.filename)
 
   const audio = app.querySelector("#player");
   if (audio) {
@@ -143,7 +145,8 @@ if (fileURI)
 {
   fetchParameters(fileURI)
   .then((yaml) => {
-    parseAndDispatchYaml(yaml, fileURI, controls);
+    const filename = (new URL(fileURI)).pathname.split('/').pop()
+    parseAndDispatchYaml(yaml, `URL: ${filename}`, controls);
   })
 }
 else {
