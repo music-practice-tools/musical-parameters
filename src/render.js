@@ -20,11 +20,11 @@ export function renderControls(element, hasMedia, extra) {
     element.appendChild(createControls(hasMedia, extra));
 }
   
-export function renderCollectionHeader(element, { setNames }) {
+export function renderCollectionHeader(element, hasNote, { setNames }) {
     while (element.childNodes.length) {
         element.removeChild(element.lastChild);
     }
-    element.appendChild(createParametersHeader(setNames));
+    element.appendChild(createParametersHeader(hasNote, setNames));
 }
   
 export function renderCollectionRows(element, { setParams }, showExtra) {
@@ -38,8 +38,8 @@ export function renderCollectionRows(element, { setParams }, showExtra) {
     });
 }
   
-export function renderCollection(container, parameters, extra) {
+export function renderCollection(container, hasNote, parameters, extra) {
     const setNames = parameters.map((param) => param.set);
-    renderCollectionHeader(container, { setNames });
+    renderCollectionHeader(container, hasNote, { setNames });
     renderCollectionRows(container, { setParams: parameters[0]}, extra );
 }

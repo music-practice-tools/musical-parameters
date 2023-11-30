@@ -13,6 +13,7 @@
     "vite-plugin-pwa": "0.14.4"
   },
   "dependencies": {
+    "@tonaljs/scale": "^4.12.2",
     "yaml": "^2.3.4"
   }
 }

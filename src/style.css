@@ -113,11 +113,18 @@ header {
   border-radius: 30px;
   padding: 5px 20px;
   text-align: left;
-
+  
   font-size: large;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+#note {
+  padding: 3px 10px;
+  margin: 0 20px;
+  flex-grow: 1;
+  color: #eee
 }
 
 .controls {
