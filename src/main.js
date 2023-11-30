@@ -91,6 +91,18 @@ card.addEventListener("input", (e) => {
   }
 });
 
+const debouncedUpdate = debounce(
+  (state) => {
+    if (hasMedia()){
+      mediaPlay(state.mediaTemplate, state.values);
+    }
+    if (hasNote()){
+      noteUpdate(state.noteTemplate, state.values);
+    }
+  },
+  200
+)
+
 // value changed
 card.addEventListener("valueset", (e) =>
 {
@@ -98,17 +110,7 @@ card.addEventListener("valueset", (e) =>
     const { name, value } = e.detail;
     state.values[name] = value[1] ?? value[0];
   }
-  debounce(
-    (state) => {     
-      if (hasMedia()){
-        mediaPlay(state.mediaTemplate, state.values);
-      }
-      if (hasNote()){
-        noteUpdate(state.noteTemplate, state.values);
-      }
-      },
-    150
-  )(state)
+  debouncedUpdate(state)
 })
 
 // touch to background 
