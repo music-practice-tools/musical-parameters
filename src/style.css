@@ -15,10 +15,14 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
+a,
+#load-file,
+#load-label {
   font-weight: 500;
   color: #646cff;
-  text-decoration: inherit;
+  text-decoration: underline;
+  margin-left: 5px;
+  font-size: inherit;
 }
 
 a:hover {
