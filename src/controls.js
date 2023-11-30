@@ -33,7 +33,7 @@ export function parseAndDispatchYaml(yaml, filename, element) {
   }
 }
 
-export function createControls(hasMedia = false, extra = null) {
+export function createControls(hasMedia = false) {
   function render(element) {
     element.className = "controls";
     element.innerHTML = `
@@ -45,12 +45,6 @@ export function createControls(hasMedia = false, extra = null) {
       </label>
       `
       }</div>
-    ${(extra !== null) ? `<label>Values: <select id="extra">
-          <option ${(extra == 0) ? 'selected' : ''} value="0">Values</option>
-          <option ${(extra == 1) ? 'selected' : ''} + value="1">Both</option>
-          <option ${(extra == 2) ? 'selected' : ''} + value="2">Extra</option>
-          </select></label>` : ''}
-    ${(hasMedia) ? '<audio id="player" controls loop></audio><label title="Pick new values at end of play"><input type="checkbox" id="autonext" />New values at end</label>' : ''}
     `;
   }
 
@@ -93,15 +87,6 @@ export function createControls(hasMedia = false, extra = null) {
   }
 
   render(element);
-
-  element.addEventListener("change", (e) => {
-    if (e.target.id == "extra") {
-      element.dispatchEvent(
-        new CustomEvent("extra", { bubbles: true, detail: { enabled: e.target.value } })
-      );
-    }
-  })
-
 
   return element;
 }

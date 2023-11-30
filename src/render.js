@@ -13,11 +13,11 @@ export function renderApp(element, { image }) {
       `;
 }
   
-export function renderControls(element, hasMedia, extra) {
+export function renderControls(element, hasMedia) {
     while (element.childNodes.length) {
       element.removeChild(element.lastChild);
     }
-    element.appendChild(createControls(hasMedia, extra));
+    element.appendChild(createControls(hasMedia));
 }
   
 export function renderCollectionHeader(element, hasNote, { setNames }) {
@@ -27,19 +27,19 @@ export function renderCollectionHeader(element, hasNote, { setNames }) {
     element.appendChild(createParametersHeader(hasNote, setNames));
 }
   
-export function renderCollectionRows(element, { setParams }, showExtra) {
+export function renderCollectionRows(element, { setParams }) {
     while (element.childNodes.length > 1) {
       element.removeChild(element.lastChild);
     }
     setParams.params.forEach((param) => {
-      const {name, values, extra} = param 
-      const vals = (showExtra  == 1 && extra) ? [...values, ...extra] : (showExtra == 2 && extra) ? [...extra] : [...values];
+      const {name, values} = param 
+      const vals = [...values];
       element.appendChild(createParameterPicker(name, vals));
     });
 }
   
-export function renderCollection(container, hasNote, parameters, extra) {
+export function renderCollection(container, hasNote, parameters) {
     const setNames = parameters.map((param) => param.set);
     renderCollectionHeader(container, hasNote, { setNames });
-    renderCollectionRows(container, { setParams: parameters[0]}, extra );
+    renderCollectionRows(container, { setParams: parameters[0]} );
 }

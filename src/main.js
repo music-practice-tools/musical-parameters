@@ -32,13 +32,7 @@ let state = {
   parameterCollection: [],    // set on data load
   get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate },
   get noteTemplate() { return this.parameterCollection[this.set].noteTemplate },
-  get _hasExtra() { return this.parameterCollection[this.set].params.some((e)=>!!e.extra) },
-  _showExtra: initialValues.showExtra ?? 0, // 0, 1 or 2 as per select values
-  get extra() { // quadstate: null, 0, 1 or 2 
-    return this._hasExtra ? this._showExtra : null
-  },
-  set extra(ext) { if (ext !== null && this._hasExtra) { this._showExtra = ext }}
-}
+  }
 
 function doNext() {
   const pickAll = app.querySelector("#pick-all")
@@ -60,8 +54,8 @@ function hasNote(){
 controls.addEventListener("dataload", (e) => {
   state.parameterCollection = e.detail;
   state.set = 0
-  renderControls(controls, hasMedia(), state.extra);
-  renderCollection(card, hasNote(), state.parameterCollection, state.extra);
+  renderControls(controls, hasMedia());
+  renderCollection(card, hasNote(), state.parameterCollection);
 
   const audio = app.querySelector("#player");
   if (audio) {
@@ -76,18 +70,13 @@ controls.addEventListener("dataload", (e) => {
     }
   });
 
-controls.addEventListener("extra", (e) => {
-    state.extra = e.detail.enabled
-    renderCollectionRows(card, hasNote(), { setParams: state.parameterCollection[state.set] }, state.extra);
-});
-
 // Set or value changed
 card.addEventListener("input", (e) => {
   if (e.target.id == "set") {
     state.values = {...initialValues} // clear any set specific values
     state.set = e.target.value;
-    renderControls(controls, hasMedia(),state.extra);
-    renderCollection(card, hasNote(), { setParams: state.parameterCollection[state.set] }, state.extra);
+    renderControls(controls, hasMedia());
+    renderCollection(card, hasNote(), { setParams: state.parameterCollection[state.set] });
   }
 });
 
