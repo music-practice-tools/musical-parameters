@@ -141,7 +141,7 @@ header {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); /* see notes below */
   grid-gap: 0.5em;
-  align-items: baseline; 
+  align-items: center; 
   font-size: large;
   margin-bottom: .5rem;
 }
