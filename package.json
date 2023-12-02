@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^4.5.0",
-    "vite-plugin-pwa": "0.14.4"
+    "vite": "5.0.4",
+    "vite-plugin-pwa": "0.17.2"
   },
   "dependencies": {
-    "@tonaljs/scale": "^4.12.2",
-    "yaml": "^2.3.4"
+    "@tonaljs/scale": "4.12.2",
+    "yaml": "2.3.4"
   }
 }
