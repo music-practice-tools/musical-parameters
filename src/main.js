@@ -120,6 +120,7 @@ window.addEventListener('keyup', (e) => {
   {
     const method = audio.paused ? "play" : "pause"
     audio[method]()
+    e.stopPropagation()
   }
   else if (e.code.startsWith('Digit')) {  // 0 - 9
     const digit = e.code.slice(-1)
@@ -129,6 +130,7 @@ window.addEventListener('keyup', (e) => {
     if (picker) {
       picker.click()
     }
+    e.stopPropagation()
   }
 });
 
