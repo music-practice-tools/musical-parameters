@@ -38,10 +38,10 @@ export function createControls(hasMedia = false) {
     element.className = "controls";
     element.innerHTML = `
     <div><a href="/docs/">About</a>
-    ${hasFileSystemAccessAPI 
+    ${hasFileSystemAccessAPI
         ? `<button style="border:0;" id="load-file" title="Load from file" aria-label="Load file">Load</button>`
-        : `<label id="load-label" aria-label="Load file">Load
-        <input id="load-file" type="file" accept="text/yaml,.yaml" class="visually-hidden">
+        : `<label id="load-label" aria-label="Load file" tabindex="0">Load
+        <input id="load-file" type="file" accept="text/yaml,.yaml" class="visually-hidden" tabindex="-1" >
       </label>
       `
       }</div>
@@ -84,6 +84,12 @@ export function createControls(hasMedia = false) {
         }
       }
     });
+    element.addEventListener('keyup', (e) => {
+      if (e.code =="Enter") {
+        e.target.click()
+        e.stopPropagation()
+      }
+    })
   }
 
   render(element);

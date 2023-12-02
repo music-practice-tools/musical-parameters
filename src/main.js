@@ -130,7 +130,6 @@ window.addEventListener('keyup', (e) => {
       picker.click()
     }
   }
-
 });
 
 // initial parameters
