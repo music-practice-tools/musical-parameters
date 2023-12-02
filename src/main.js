@@ -33,6 +33,8 @@ let state = {
   parameterCollection: [],    // set on data load
   get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate },
   get noteTemplate() { return this.parameterCollection[this.set].noteTemplate },
+  hasMedia() { return this.mediaTemplate && ( !this.mediaTemplate.includes("mediaRoot") || this.values.hasOwnProperty('mediaRoot')) },
+  hasNote() { return !!this.noteTemplate }
   }
 
 function doNext() {
@@ -43,20 +45,12 @@ function doNext() {
   }
 }
 
-function hasMedia(){ 
-  return state.mediaTemplate && ( !state.mediaTemplate.includes("mediaRoot") || state.values.hasOwnProperty('mediaRoot'))
-}
-
-function hasNote(){ 
-  return !!state.noteTemplate
-}
-    
 // Collection loaded
 controls.addEventListener("dataload", (e) => {
   Object.assign(state, e.detail)
   state.set = 0
-  renderControls(controls, hasMedia());
-  renderCollection(card, hasNote(), state.parameterCollection);
+  renderControls(controls, state.hasMedia());
+  renderCollection(card, state.hasNote(), state.parameterCollection);
   renderFooter(footer, state.filename)
 
   const audio = app.querySelector("#player");
@@ -77,17 +71,17 @@ card.addEventListener("input", (e) => {
   if (e.target.id == "set") {
     state.values = {...initialValues} // clear any set specific values
     state.set = e.target.value;
-    renderControls(controls, hasMedia());
-    renderCollection(card, hasNote(), { setParams: state.parameterCollection[state.set] });
+    renderControls(controls, state.hasMedia());
+    renderCollection(card, state.hasNote(), { setParams: state.parameterCollection[state.set] });
   }
 });
 
 const debouncedUpdate = debounce(
   (state) => {
-    if (hasMedia()){
+    if (state.hasMedia()){
       mediaPlay(state.mediaTemplate, state.values);
     }
-    if (hasNote()){
+    if (state.hasNote()){
       noteUpdate(state.noteTemplate, state.values);
     }
   },
@@ -97,7 +91,7 @@ const debouncedUpdate = debounce(
 // value changed
 card.addEventListener("valueset", (e) =>
 {
-  if (hasMedia() || hasNote()) {
+  if (state.hasMedia() || state.hasNote()) {
     const { name, value } = e.detail;
     state.values[name] = value[1] ?? value[0];
   }
