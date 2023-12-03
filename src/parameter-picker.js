@@ -6,13 +6,12 @@ export function createParameterPicker(name, values) {
   const render = (element, { name, value, values }) => {
     let content = value
     if (values) {
-      content = `<label><div class="select-wrapper">
-      <select>${values.map(
+      content = `<select>${values.map(
         (val, i) => {
           val = !Array.isArray(val) ? [val, val] : val
           return `<option value="${i}" ${val[0]==value?'selected':''}>${val[0]}</option>`
         }
-      )}</select></div></label>`;
+      )}</select>`;
     }
 
     element.innerHTML = `<div class="picker">
@@ -45,10 +44,10 @@ export function createParameterPicker(name, values) {
 
   element.addEventListener("click", (e) => {
     if (e.target.nodeName == "BUTTON")
-    { 
-      onClick();
-    }
-  });
+      { 
+        onClick();
+      }
+    });
 
   setTimeout( onClick, 0);
 

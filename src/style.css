@@ -104,12 +104,20 @@ header {
 .picker-name {
   width: 40%;
   text-align: left;
+  font-weight: 500;
 }
 
 .picker-value {
   width: 50%;
   text-align: left;
   font-weight: bold;
+  display: inherit;
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+#set {
+  font-weight: 600;
 }
 
 .card :first-child {
@@ -134,7 +142,6 @@ header {
   padding: 3px 10px;
   margin: 0 15px;
   flex-grow: 1;
-  color: #eee
 }
 
 .controls {
@@ -181,33 +188,31 @@ header {
 }
 
 .picker-header,
-.picker-header button,
-.picker-header select {
+.picker-header button {
   background-color: #888;
 }
 
-.select-wrapper {
-  position: relative;
+.picker-header select {
+  border-radius: 250px;
+/*  background-color: #888;*/
 }
 
-.picker .select-wrapper::before,
-.picker-header .select-wrapper::before {
-  content: "v"; /*"▼"*/
-  font-size: 1rem;
-  font-weight: 100;
-  top: 0px;
-  left: 0px;
-  position: absolute;
+.picker select {
+  border-radius: 25px;
+  background-color: #888;
 }
 
 .picker select,
 .picker-header select {
-  appearance: none;
   text-align: left;
-  margin-left: .7em;
   display: block;
   box-sizing: border-box;
   width: 92%;
+  padding: 1px 8px;
+}
+
+.picker select {
+  appearance: none;
 }
 
 .visually-hidden {

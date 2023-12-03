@@ -1,13 +1,13 @@
 export function createParametersHeader(hasNote, names) {
   function render(element, hasNote, { names }) {
     const select =  
-    (names.length == 1) ? `<span>${names[0]}</span>` :
-      `<div class="select-wrapper"><select id="set">${names.map(
+    (names.length == 1) ? `<span id="set">${names[0]}</span>` :
+      `<select id="set">${names.map(
         (name, i) => `<option value="${i}">${name}</option>`
-      )}</select></div>`;
+      )}</select>`;
     element.innerHTML = `
     <div class="picker-header">
-    <div>${select}</div>
+    <div class="picker-header-value">${select}</div>
     ${(hasNote) ? '<div id="note"><span>&nbsp;</span></div>' : ''}
     <button id="pick-all" title="Pick new values - N key" aria-label="Pick all">\u{1F504}</button></div>`;
   }
