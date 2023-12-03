@@ -211,10 +211,11 @@ header {
   padding: 1px 8px;
 }
 
+/*
 .picker select {
   appearance: none;
 }
-
+*/
 .visually-hidden {
   position: absolute !important;
   height: 1px;
