@@ -15,7 +15,7 @@ window.addEventListener("error", (event) => {
 });
 window.addEventListener("unhandledrejection", (event) => {
   event.preventDefault();  // hmm doesn't work in Ffx
-  throw(event.reason)
+  throw (event.reason)
 });
 
 // render
@@ -27,20 +27,19 @@ const footer = app.querySelector("#footer");
 
 // state 
 const initialValues = Object.fromEntries((new URL(window.location.href)).searchParams)
-let state = { 
-  values: {...initialValues}, // deep copy
+let state = {
+  values: { ...initialValues }, // deep copy
   set: 0,                     // set on data load
   parameterCollection: [],    // set on data load
   get mediaTemplate() { return this.parameterCollection[this.set].mediaTemplate },
   get noteTemplate() { return this.parameterCollection[this.set].noteTemplate },
-  hasMedia() { return this.mediaTemplate && ( !this.mediaTemplate.includes("mediaRoot") || this.values.hasOwnProperty('mediaRoot')) },
+  hasMedia() { return this.mediaTemplate && (!this.mediaTemplate.includes("mediaRoot") || this.values.hasOwnProperty('mediaRoot')) },
   hasNote() { return !!this.noteTemplate }
-  }
+}
 
 function doNext() {
   const pickAll = app.querySelector("#pick-all")
-  if (pickAll) 
-  { 
+  if (pickAll) {
     pickAll.click()
   }
 }
@@ -59,17 +58,16 @@ controls.addEventListener("dataload", (e) => {
     audio.addEventListener("ended", (e) => { doNext() })
 
     const autoNext = app.querySelector("#autonext");
-      autoNext.addEventListener("change", (e) =>
-        { 
-          audio.loop = !autoNext.checked
-        })
-    }
-  });
+    autoNext.addEventListener("change", (e) => {
+      audio.loop = !autoNext.checked
+    })
+  }
+});
 
 // Set or value changed
 card.addEventListener("input", (e) => {
   if (e.target.id == "set") {
-    state.values = {...initialValues} // clear any set specific values
+    state.values = { ...initialValues } // clear any set specific values
     state.set = e.target.value;
     renderControls(controls, state.hasMedia());
     renderCollection(card, state.hasNote(), { setParams: state.parameterCollection[state.set] });
@@ -78,10 +76,10 @@ card.addEventListener("input", (e) => {
 
 const debouncedUpdate = debounce(
   (state) => {
-    if (state.hasMedia()){
+    if (state.hasMedia()) {
       mediaPlay(state.mediaTemplate, state.values);
     }
-    if (state.hasNote()){
+    if (state.hasNote()) {
       noteUpdate(state.noteTemplate, state.values);
     }
   },
@@ -89,8 +87,7 @@ const debouncedUpdate = debounce(
 )
 
 // value changed
-card.addEventListener("valueset", (e) =>
-{
+card.addEventListener("valueset", (e) => {
   if (state.hasMedia() || state.hasNote()) {
     const { name, value } = e.detail;
     state.values[name] = value[1] ?? value[0];
@@ -101,23 +98,20 @@ card.addEventListener("valueset", (e) =>
 // touch to background 
 window.addEventListener('touchend', (e) => {
   const audio = app.querySelector("audio");
-  if (e.target.id == 'app' && !!audio )
-  {
+  if (e.target.id == 'app' && !!audio) {
     e.preventDefault();
     const method = audio.paused ? "play" : "pause"
-    audio[method]()  
+    audio[method]()
   }
 });
 
 // Key
 window.addEventListener('keyup', (e) => {
   const audio = app.querySelector("audio");
-  if (e.code =="KeyN")
-  {
+  if (e.code == "KeyN") {
     doNext()
   }
-  else if (!!audio && (e.code == 'KeyP' || e.code =="Space"))
-  {
+  else if (!!audio && (e.code == 'KeyP' || e.code == "Space")) {
     const method = audio.paused ? "play" : "pause"
     audio[method]()
     e.stopPropagation()
@@ -137,13 +131,12 @@ window.addEventListener('keyup', (e) => {
 
 // initial parameters
 const fileURI = state.values.file
-if (fileURI)
-{
+if (fileURI) {
   fetchParameters(fileURI)
-  .then((yaml) => {
-    const filename = (new URL(fileURI)).pathname.split('/').pop()
-    parseAndDispatchYaml(yaml, `URL: ${filename}`, controls);
-  })
+    .then((yaml) => {
+      const filename = (new URL(fileURI, 'https://example.com')).pathname.split('/').pop()
+      parseAndDispatchYaml(yaml, `URL: ${filename}`, controls);
+    })
 }
 else {
   parseAndDispatchYaml(initialParameters, 'Initial-Parameters.yaml', controls);
