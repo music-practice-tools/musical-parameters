@@ -32,7 +32,7 @@ const footer = app.querySelector('#footer')
 
 // state
 const initialValues = Object.fromEntries(
-  new URL(window.location.href).searchParams,
+  new URL(window.location.href).searchParams
 )
 let state = {
   values: { ...initialValues }, // deep copy

@@ -4,7 +4,7 @@ export function createParametersHeader(hasNote, names) {
       names.length == 1
         ? `<span id="set">${names[0]}</span>`
         : `<select id="set">${names.map(
-            (name, i) => `<option value="${i}">${name}</option>`,
+            (name, i) => `<option value="${i}">${name}</option>`
           )}</select>`
     element.innerHTML = `
     <div class="picker-header">

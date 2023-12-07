@@ -4,7 +4,7 @@ export function createParameterPicker(name, values) {
   const normalisedValues = values.map((value) =>
     Array.isArray(value) && value.length == 2
       ? value
-      : [value, value.replace(/ /g, '_')],
+      : [value, value.replace(/ /g, '_')]
   )
 
   const render = (element, { name, value, values }) => {
@@ -32,7 +32,7 @@ export function createParameterPicker(name, values) {
     }
     render(element, { name, value: value[0], values })
     element.dispatchEvent(
-      new CustomEvent('valueset', { bubbles: true, detail: { name, value } }),
+      new CustomEvent('valueset', { bubbles: true, detail: { name, value } })
     )
   }
 

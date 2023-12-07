@@ -27,7 +27,7 @@ export function parseAndDispatchYaml(yaml, filename, element) {
       new CustomEvent('dataload', {
         bubbles: true,
         detail: { parameterCollection, filename },
-      }),
+      })
     )
   } catch (e) {
     throw new ErrorEvent('Parameter file error', {
@@ -86,7 +86,7 @@ export function createControls(hasMedia = false) {
             (e) => {
               parseAndDispatchYaml(reader.result, `File: ${file.name}`, element)
             },
-            false,
+            false
           )
 
           reader.readAsText(file)
