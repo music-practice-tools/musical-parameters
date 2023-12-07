@@ -1,33 +1,33 @@
 # Improvise for Real Ear Training Backing Tracks
 - set: IFR Ear Training Tracks
-  mediaTemplate: "https://${mediaRoot}/${Styles}_(${Tonal Centre}).mp3"
+  mediaTemplate: 'https://${mediaRoot}/${Styles}_(${Tonal Centre}).mp3'
   params:
-  - name: Styles
-    values:
-      - [70s R&B, 70s_RnB_1_chord]
-      - [Bluegrass, Bluegrass_1_chord]
-      - [Bolero, Bolero_1_chord]
-      - [Bossa Nova, Bossa_Nova_1_chord]
-      - [Country Ballad, Country_Ballad_1_chord]
-      - [Country Swing, Country_Swing_1_chord]
-      - Drone
-      - [Funk, Funk_1_chord]
-      - [Jazz Ballad Quartet, Jazz_Ballad_Quartet_1_chord]
-      - [Pop Strumming Guitars, Pop_Strumming_Guitars_1_chord]
-      - [Reggae, Reggae_1_chord]
-      - [Rock Medium Tempo, Rock_Medium_Tempo_1_chord]
-      - [Slow Swing Blues, Slow_Swing_Blues_with_Organ]
-  - name: Tonal Centre
-    values:
-      - [A♭, Ab]
-      - A
-      - [B♭, Bb]
-      - B
-      - C
-      - [D♭, Db]
-      - D
-      - [E♭, Eb]
-      - E
-      - F
-      - [G♭, Gb]
-      - G
+    - name: Styles
+      values:
+        - [70s R&B, 70s_RnB_1_chord]
+        - [Bluegrass, Bluegrass_1_chord]
+        - [Bolero, Bolero_1_chord]
+        - [Bossa Nova, Bossa_Nova_1_chord]
+        - [Country Ballad, Country_Ballad_1_chord]
+        - [Country Swing, Country_Swing_1_chord]
+        - Drone
+        - [Funk, Funk_1_chord]
+        - [Jazz Ballad Quartet, Jazz_Ballad_Quartet_1_chord]
+        - [Pop Strumming Guitars, Pop_Strumming_Guitars_1_chord]
+        - [Reggae, Reggae_1_chord]
+        - [Rock Medium Tempo, Rock_Medium_Tempo_1_chord]
+        - [Slow Swing Blues, Slow_Swing_Blues_with_Organ]
+    - name: Tonal Centre
+      values:
+        - [A♭, Ab]
+        - A
+        - [B♭, Bb]
+        - B
+        - C
+        - [D♭, Db]
+        - D
+        - [E♭, Eb]
+        - E
+        - F
+        - [G♭, Gb]
+        - G

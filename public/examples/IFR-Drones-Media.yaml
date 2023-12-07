@@ -1,18 +1,18 @@
 # Improvise for Real Ear Training Backing Tracks
 - set: IFR Ear Training Drones
-  mediaTemplate: "https://${mediaRoot}/Drone_(${Tonal Centre}).mp3"
+  mediaTemplate: 'https://${mediaRoot}/Drone_(${Tonal Centre}).mp3'
   params:
-  - name: Tonal Centre
-    values:
-      - [A♭, Ab]
-      - A
-      - [B♭, Bb]
-      - B
-      - C
-      - [D♭, Db]
-      - D
-      - [E♭, Eb]
-      - E
-      - F
-      - [G♭, Gb]
-      - G
+    - name: Tonal Centre
+      values:
+        - [A♭, Ab]
+        - A
+        - [B♭, Bb]
+        - B
+        - C
+        - [D♭, Db]
+        - D
+        - [E♭, Eb]
+        - E
+        - F
+        - [G♭, Gb]
+        - G

@@ -52,9 +52,12 @@ header {
   margin-bottom: 0rem;
 }
 
-header, .card, .controls, .footer {
-margin-left :.5rem;
-margin-right :.5rem;
+header,
+.card,
+.controls,
+.footer {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .footer {
@@ -86,7 +89,6 @@ margin-right :.5rem;
     background-color: #fff;
   }
 }
-
 
 header {
   display: flex;
@@ -131,7 +133,7 @@ header {
   border-radius: 30px;
   padding: 5px 20px;
   text-align: left;
-  
+
   font-size: large;
   display: flex;
   justify-content: space-between;
@@ -146,12 +148,15 @@ header {
 
 .controls {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); /* see notes below */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(275px, 1fr)
+  ); /* see notes below */
   grid-gap: 0.5em;
   justify-items: center;
-  align-items: center; 
+  align-items: center;
   font-size: large;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .controls button {
@@ -163,7 +168,7 @@ header {
 }
 
 .controls audio {
-  height: 40px; 
+  height: 40px;
 }
 
 .controls select {
@@ -182,8 +187,7 @@ header {
   text-align: right;
 }
 
-.picker-header button
-{
+.picker-header button {
   font-size: 1.5em;
 }
 
@@ -194,7 +198,7 @@ header {
 
 .picker-header select {
   border-radius: 250px;
-/*  background-color: #888;*/
+  /*  background-color: #888;*/
 }
 
 .picker select {
@@ -225,10 +229,10 @@ header {
 }
 
 /* Separate rule for compatibility, :focus-within is required on modern Firefox and Chrome */
-input.visually-hidden:focus+label {
+input.visually-hidden:focus + label {
   outline: thin dotted;
 }
 
-input.visually-hidden:focus-within+label {
+input.visually-hidden:focus-within + label {
   outline: thin dotted;
 }
