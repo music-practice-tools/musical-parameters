@@ -1,4 +1,6 @@
+import { createPickerMenu } from './parameter-picker-menu.js'
 import { pickRandom } from './random.js'
+import { persistedRandomItem } from './random-item.js'
 
 export function createParameterPicker(name, values) {
   const normalisedValues = values.map((value) =>
@@ -7,7 +9,9 @@ export function createParameterPicker(name, values) {
       : [value, value.replace(/ /g, '_')]
   )
 
-  const render = (element, { name, value, values }) => {
+  let menuExpanded = false
+
+  const render = (element, { name, value, values, menuExpanded }) => {
     let content = value
     if (values) {
       content = `<select>${values.map((val, i) => {
@@ -21,19 +25,42 @@ export function createParameterPicker(name, values) {
     element.innerHTML = `<div class="picker">
     <div class="picker-name">${name}:</div>
     <div class="picker-value">${content}</div>
-    <button id="picker-btn" title="Pick new" aria-label="Pick new">\u{1F504}</button></div>`
+    <div>
+      <button class="picker-btn" title="Pick new" aria-label="Pick new">\u{1F504}</button>
+    <button class="picker-menu-btn" title="Picker options" aria-label="Picker options" aria-haspopup="dialog" aria-control="picker-menu" aria-expanded=${
+      menuExpanded ? 'true' : 'false'
+    }>&#8942;&nbsp;</button>
+    </div></div>`
   }
 
   const element = document.createElement('div')
 
-  const onClick = (value) => {
+  let itr
+  const onClick = (thisPicker, value) => {
     if (!value) {
-      value = pickRandom(normalisedValues)
+      if (!state.locked || thisPicker) {
+        if (state.every) {
+          if (!itr) {
+            itr = persistedRandomItem(normalisedValues)
+          }
+          value = itr.value
+          itr.getNextItem()
+        } else {
+          value = pickRandom(normalisedValues)
+        }
+      }
     }
-    render(element, { name, value: value[0], values })
+    if (value) {
+      render(element, { name, value: value[0], values, menuExpanded })
+    }
     element.dispatchEvent(
       new CustomEvent('valueset', { bubbles: true, detail: { name, value } })
     )
+  }
+
+  const { state, showPickerMenu } = createPickerMenu()
+  const onMenuClick = (target) => {
+    showPickerMenu(target)
   }
 
   element.addEventListener('input', (e) => {
@@ -42,16 +69,23 @@ export function createParameterPicker(name, values) {
     if (!Array.isArray(value)) {
       value = [value, value]
     }
-    onClick(value)
+    menuExpanded = false
+    onClick(true, value)
   })
 
   element.addEventListener('click', (e) => {
     if (e.target.nodeName == 'BUTTON') {
-      onClick()
+      if (e.target.className == 'picker-btn') {
+        onClick(e.isTrusted)
+      } else if (e.target.className == 'picker-menu-btn') {
+        onMenuClick(e.target)
+      }
     }
   })
 
-  setTimeout(onClick, 0)
+  setTimeout(() => {
+    onClick(true)
+  }, 0)
 
   return element
 }

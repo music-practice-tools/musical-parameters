@@ -15,7 +15,7 @@ export function createParametersHeader(hasNote, names) {
 
   const element = document.createElement('div')
   const onClick = (_) => {
-    const paramElements = document.querySelectorAll('.picker button')
+    const paramElements = document.querySelectorAll('.picker .picker-btn')
     paramElements.forEach((element) => {
       element.click()
     })

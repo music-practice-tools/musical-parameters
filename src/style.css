@@ -175,8 +175,9 @@ header {
   font-size: large;
 }
 
-.picker-header button,
-.picker button,
+.picker-header #pick-all,
+.picker .picker-btn,
+.picker .picker-menu-btn,
 .picker select,
 .picker-header select {
   font-size: large;
@@ -187,12 +188,16 @@ header {
   text-align: right;
 }
 
-.picker-header button {
+.picker .picker-menu-btn {
+  font-weight: 600;
+}
+
+.picker-header #pick-all {
   font-size: 1.5em;
 }
 
 .picker-header,
-.picker-header button {
+.picker-header #pick-all {
   background-color: #888;
 }
 
@@ -215,11 +220,36 @@ header {
   padding: 1px 8px;
 }
 
-/*
-.picker select {
-  appearance: none;
+#picker-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  display: none;
 }
-*/
+
+/* Styles for the modal content */
+#menu-content {
+  /* Set modal properties */
+  position: fixed;
+  transform: translate(-99%, 0%);
+  background-color: #999;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+/* Styles for the close button */
+#menu-close {
+  /* Set close button properties */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #888;
+  border: none;
+}
+
 .visually-hidden {
   position: absolute !important;
   height: 1px;
