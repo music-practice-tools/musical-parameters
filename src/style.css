@@ -69,30 +69,6 @@ header,
   will-change: filter;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a,
-  #load-file,
-  #load-label {
-    color: revert;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-
-  .card {
-    background-color: #fff;
-  }
-  .footer {
-    color: #bbb;
-  }
-}
-
 header {
   display: flex;
   justify-content: space-between;
@@ -195,12 +171,13 @@ header {
   text-align: right;
 }
 
-.picker .picker-menu-btn {
-  font-weight: 600;
+.picker-header #pick-all {
+  font-size: 30pt;
 }
 
-.picker-header #pick-all {
-  font-size: 1.5em;
+.picker .picker-btn,
+.picker .picker-menu-btn {
+  font-size: 23pt;
 }
 
 .picker-header,
@@ -223,7 +200,7 @@ header {
   display: block;
   box-sizing: border-box;
   width: 92%;
-  padding: 1px 8px;
+  padding: 7px 10px;
 }
 
 #picker-menu {
@@ -271,4 +248,37 @@ input.visually-hidden:focus + label {
 
 input.visually-hidden:focus-within + label {
   outline: thin dotted;
+}
+
+@media (any-pointer: fine) {
+  .pick-all {
+    font-size: 44pt;
+  }
+  .picker-btn {
+    font-size: 34pt;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a,
+  #load-file,
+  #load-label {
+    color: revert;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+
+  .card {
+    background-color: #fff;
+  }
+  .footer {
+    color: #bbb;
+  }
 }
