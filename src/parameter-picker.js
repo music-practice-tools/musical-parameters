@@ -46,16 +46,17 @@ export function createParameterPicker(name, values) {
           value = itr.value
           itr.getNextItem()
         } else {
+          itr = undefined
           value = pickRandom(normalisedValues)
         }
       }
     }
     if (value) {
       render(element, { name, value: value[0], values, menuExpanded })
+      element.dispatchEvent(
+        new CustomEvent('valueset', { bubbles: true, detail: { name, value } })
+      )
     }
-    element.dispatchEvent(
-      new CustomEvent('valueset', { bubbles: true, detail: { name, value } })
-    )
   }
 
   const { state, showPickerMenu } = createPickerMenu()
