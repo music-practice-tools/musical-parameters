@@ -84,6 +84,7 @@ header {
 
 #player {
   border-radius: 8px;
+  transform: scale(1.4);
 }
 
 .picker-name {
