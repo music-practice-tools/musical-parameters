@@ -84,7 +84,7 @@ header {
 
 #player {
   border-radius: 8px;
-  transform: scale(1.4);
+  transform: scale(1.2);
 }
 
 .picker-name {
@@ -173,12 +173,16 @@ header {
 }
 
 .picker-header #pick-all {
-  font-size: 30pt;
+  font-size: 40px;
+}
+
+.picker-btns {
+  display:flex;
 }
 
 .picker .picker-btn,
 .picker .picker-menu-btn {
-  font-size: 23pt;
+  font-size: 35px;
 }
 
 .picker-header,
@@ -249,15 +253,6 @@ input.visually-hidden:focus + label {
 
 input.visually-hidden:focus-within + label {
   outline: thin dotted;
-}
-
-@media (any-pointer: fine) {
-  .pick-all {
-    font-size: 44pt;
-  }
-  .picker-btn {
-    font-size: 34pt;
-  }
 }
 
 @media (prefers-color-scheme: light) {

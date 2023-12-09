@@ -25,11 +25,10 @@ export function createParameterPicker(name, values) {
     element.innerHTML = `<div class="picker">
     <div class="picker-name">${name}:</div>
     <div class="picker-value">${content}</div>
-    <div>
+    <div class="picker-btns">
       <button class="picker-btn" title="Pick new" aria-label="Pick new">\u{1F504}</button>
-    <button class="picker-menu-btn" title="Picker options" aria-label="Picker options" aria-haspopup="dialog" aria-control="picker-menu" aria-expanded=${
-      menuExpanded ? 'true' : 'false'
-    }>&#8942;&nbsp;</button>
+      <button class="picker-menu-btn" title="Picker options" aria-label="Picker options" aria-haspopup="dialog" aria-control="picker-menu" 
+      aria-expanded=${menuExpanded ? 'true' : 'false'}>&nbsp;&#8942;&nbsp;</button>
     </div></div>`
   }
 
