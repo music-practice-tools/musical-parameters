@@ -46,12 +46,25 @@ export function createPickerMenu() {
       .querySelector('#menu-close')
       .addEventListener('click', () => closeMenu(state), { once: true })
 
-    const rect = button.getBoundingClientRect()
-    menuContent.style.top = `${Math.floor(rect.bottom)}px`
-    menuContent.style.left = `${Math.floor(rect.left)}px`
+    const rectButton = button.getBoundingClientRect()
+    const top = Math.floor(rectButton.bottom)
+    const left = Math.floor(rectButton.left)
+    menuContent.style.top = `${top}px`
+    menuContent.style.left = `${left}px`
     button.setAttribute('aria-expanded', 'true')
     menu.style.display = 'block'
 
+    // move up if needed
+    const rectMenu = menuContent.getBoundingClientRect()
+    const fits =
+      rectMenu.bottom < document.body.getBoundingClientRect().bottom
+    if (!fits) {
+      const newTop = Math.floor(
+        rectButton.top - (rectMenu.bottom - rectMenu.top)
+      )
+      menuContent.style.top = `${newTop}px`
+    }
+    
     // Find the first and last focusable elements inside the menu
     var focusableElements = menuContent.querySelectorAll(
       'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
