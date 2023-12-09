@@ -51,7 +51,8 @@ export function createControls(hasMedia = false) {
     }</div>
     ${
       hasMedia
-        ? '<audio id="player" controls loop></audio><label title="Pick new values at end of play"><input type="checkbox" id="autonext" />New values at end</label>'
+        ? `<audio id="player" controls loop></audio>
+          <label title="Pick new values after playing"><input type="checkbox" id="autonext" />Jukebox</label>`
         : ''
     }
     `
