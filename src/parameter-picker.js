@@ -1,6 +1,5 @@
 import { createPickerMenu } from './parameter-picker-menu.js'
-import { pickRandom } from './random.js'
-import { persistedRandomItem } from './random-item.js'
+import { pickRandom, everyRandomItemPicker } from './random.js'
 
 export function createParameterPicker(name, values) {
   const normalisedValues = values.map((value) =>
@@ -18,7 +17,7 @@ export function createParameterPicker(name, values) {
         val = !Array.isArray(val) ? [val, val] : val
         return `<option value="${i}" ${val[0] == value ? 'selected' : ''}>${
           val[0]
-        }</option>`
+        }</option>` 
       })}</select>`
     }
 
@@ -34,18 +33,18 @@ export function createParameterPicker(name, values) {
 
   const element = document.createElement('div')
 
-  let itr
+  let itemPicker
   const onClick = (thisPicker, value) => {
     if (!value) {
       if (!state.locked || thisPicker) {
         if (state.every) {
-          if (!itr) {
-            itr = persistedRandomItem(normalisedValues)
+          if (!itemPicker) {
+            itemPicker = everyRandomItemPicker(normalisedValues)
           }
-          value = itr.value
-          itr.getNextItem()
+          value = itemPicker.value
+          itemPicker.getNextItem()
         } else {
-          itr = undefined
+          itemPicker = undefined
           value = pickRandom(normalisedValues)
         }
       }
