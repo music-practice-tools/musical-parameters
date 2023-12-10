@@ -35,23 +35,26 @@ const initialValues = Object.fromEntries(
   new URL(window.location.href).searchParams
 )
 let state = {
-  values: { ...initialValues }, // deep copy
-  set: 0, // set on data load
   parameterCollection: [], // set on data load
+  values: { ...initialValues }, // deep copy
+  currentSet: 0, // set on data load
+  get currentParams() {
+    return this.parameterCollection[this.currentSet].params
+  },
   get mediaTemplate() {
-    return this.parameterCollection[this.set].mediaTemplate
+    return this.parameterCollection[this.currentSet].mediaTemplate
   },
   get noteTemplate() {
-    return this.parameterCollection[this.set].noteTemplate
+    return this.parameterCollection[this.currentSet].noteTemplate
   },
-  hasMedia() {
+  get hasMedia() {
     return (
       this.mediaTemplate &&
       (!this.mediaTemplate.includes('mediaRoot') ||
         this.values.hasOwnProperty('mediaRoot'))
     )
   },
-  hasNote() {
+  get hasNote() {
     return !!this.noteTemplate
   },
 }
@@ -66,9 +69,9 @@ function doNext() {
 // Collection loaded
 controls.addEventListener('dataload', (e) => {
   Object.assign(state, e.detail)
-  state.set = 0
-  renderControls(controls, state.hasMedia())
-  renderCollection(card, state.hasNote(), state.parameterCollection)
+  state.currentSet = 0
+  renderControls(controls, state.hasMedia)
+  renderCollection(card, state.hasNote, state.parameterCollection)
   renderFooter(footer, state.filename)
 
   const audio = app.querySelector('#player')
@@ -89,26 +92,26 @@ controls.addEventListener('dataload', (e) => {
 card.addEventListener('input', (e) => {
   if (e.target.id == 'set') {
     state.values = { ...initialValues } // clear any set specific values
-    state.set = e.target.value
-    renderControls(controls, state.hasMedia())
-    renderCollection(card, state.hasNote(), {
-      setParams: state.parameterCollection[state.set],
+    state.currentSet = e.target.value
+    renderControls(controls, state.hasMedia)
+    renderCollection(card, state.hasNote, {
+      setParams: state.parameterCollection[state.currentSet],
     })
   }
 })
 
 const debouncedUpdate = debounce((state) => {
-  if (state.hasMedia()) {
-    mediaPlay(state.mediaTemplate, state.values)
+  if (state.hasMedia) {
+    mediaPlay(state.mediaTemplate, state.values, state.currentParams)
   }
-  if (state.hasNote()) {
-    noteUpdate(state.noteTemplate, state.values)
+  if (state.hasNote) {
+    noteUpdate(state.noteTemplate, state.values, state.currentParams)
   }
 }, 200)
 
 // value changed
 card.addEventListener('valueset', (e) => {
-  if (state.hasMedia() || state.hasNote()) {
+  if (state.hasMedia || state.hasNote) {
     const { name, value } = e.detail
     state.values[name] = value[1] ?? value[0]
   }
@@ -131,7 +134,7 @@ window.addEventListener('keyup', (e) => {
   if (e.code == 'KeyN') {
     doNext()
   } else if (!!audio && (e.code == 'KeyP' || e.code == 'Space')) {
-    const method = audio.paused ? 'play' : 'pause'
+      const method = audio.paused ? 'play' : 'pause'
     audio[method]()
     e.stopPropagation()
     e.preventDefault()
