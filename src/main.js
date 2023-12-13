@@ -148,6 +148,7 @@ window.addEventListener('keyup', (e) => {
       picker.click()
     }
     e.stopPropagation()
+    e.preventDefault() // shouldn't be one
   }
 })
 

@@ -72,6 +72,7 @@ export function createPickerMenu() {
     firstFocusableElement = focusableElements[0]
     lastFocusableElement = focusableElements[focusableElements.length - 1]
     firstFocusableElement.focus()
+    menuContent.tabIndex = -1 // Required to stop focus going to body when menu clicked
 
     menuContent.addEventListener('keydown', state) // Use object so can remove later
   }
