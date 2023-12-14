@@ -59,9 +59,10 @@ export function createControls(hasMedia = false) {
             <option value="1.4">1.4x&nbsp;</option>
             <option value="1.2">1.2x&nbsp;</option>
             <option value="1" selected>Normal&nbsp;</option>
-            <option value="0.9">0.8x&nbsp;</option>
-            <option value="0.8">0.6x&nbsp;</option>
-            <option value="0.7">0.4x&nbsp;</option>
+            <option value="0.85">0.85x&nbsp;</option>
+            <option value="0.7">0.7x&nbsp;</option>
+            <option value="0.65">0.65x&nbsp;</option>
+            <option value="0.5">0.5x&nbsp;</option>
           </select>
         </div>`
         : ''
