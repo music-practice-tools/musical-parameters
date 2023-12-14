@@ -37,8 +37,10 @@ function interpolate(str, obj, params) {
 function play(media) {
   const audio = app.querySelector('audio')
   audio.src = media
+  const rate = audio.playbackRate
   audio.load()
   audio.play().catch(() => {}) // user needs to interact for play
+  audio.playbackRate = rate // as is reset
 }
 
 export function mediaPlay(mediaTemplate, values, params) {

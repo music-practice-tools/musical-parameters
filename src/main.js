@@ -76,14 +76,19 @@ controls.addEventListener('dataload', (e) => {
 
   const audio = app.querySelector('#player')
   if (audio) {
-    // only called if no loop
+    // only called if no loop attribute
     audio.addEventListener('ended', (e) => {
       doNext()
     })
 
-    const autoNext = app.querySelector('#autonext')
-    autoNext.addEventListener('change', (e) => {
-      audio.loop = !autoNext.checked
+    const mediaMode = app.querySelector('#media-mode')
+    mediaMode.addEventListener('change', (e) => {
+      audio.loop = !mediaMode.value == 'loop'
+    })
+
+    const mediaSpeed = app.querySelector('#media-speed')
+    mediaSpeed.addEventListener('change', (e) => {
+      audio.playbackRate = mediaSpeed.value
     })
   }
 })
@@ -134,7 +139,7 @@ window.addEventListener('keyup', (e) => {
   if (e.code == 'KeyN') {
     doNext()
   } else if (!!audio && (e.code == 'KeyP' || e.code == 'Space')) {
-      const method = audio.paused ? 'play' : 'pause'
+    const method = audio.paused ? 'play' : 'pause'
     audio[method]()
     e.stopPropagation()
     e.preventDefault()

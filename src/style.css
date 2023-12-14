@@ -162,7 +162,8 @@ header {
 .picker .picker-btn,
 .picker .picker-menu-btn,
 .picker select,
-.picker-header select {
+.picker-header select,
+.controls select {
   font-size: large;
   color: #fff;
   background-color: #777;
@@ -193,11 +194,15 @@ header {
   border-radius: 15px;
 }
 
+.controls select,
 .picker select {
   border-radius: 15px;
   background-color: #555;
 }
 
+.controls select {
+  padding: 7px 10px;
+}
 .picker select,
 .picker-header select {
   text-align: left;

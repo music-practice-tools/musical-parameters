@@ -41,20 +41,31 @@ export function createControls(hasMedia = false) {
     element.className = 'controls'
     element.innerHTML = `
     <div><a href="/docs/">About</a>
-    ${
-      hasFileSystemAccessAPI
+    ${hasFileSystemAccessAPI
         ? `<button style="border:0;" id="load-file" title="Load from file" aria-label="Load file">Load</button>`
         : `<label id="load-label" aria-label="Load file" tabindex="0">Load
         <input id="load-file" type="file" accept="text/yaml,.yaml" class="visually-hidden" tabindex="-1" >
       </label>
       `
-    }</div>
-    ${
-      hasMedia
+      }</div>
+    ${hasMedia
         ? `<audio id="player" controls loop></audio>
-          <label title="Pick new values after playing"><input type="checkbox" id="autonext" />Jukebox</label>`
+        <div>
+          <select id="media-mode">
+            <option value="loop" selected>Loop 1</option>
+            <option value="shuffle" >Shuffle</option>
+          </select>
+          <select id="media-speed">
+            <option value="1.4">1.4x&nbsp;</option>
+            <option value="1.2">1.2x&nbsp;</option>
+            <option value="1" selected>Normal&nbsp;</option>
+            <option value="0.9">0.8x&nbsp;</option>
+            <option value="0.8">0.6x&nbsp;</option>
+            <option value="0.7">0.4x&nbsp;</option>
+          </select>
+        </div>`
         : ''
-    }
+      }
     `
   }
 
