@@ -14,6 +14,7 @@
     The displayed value for each parameter can be randomly selected, both individually or for all at
     once.
     In addition, the displayed value for each can be manually selected.
+    Audio media for the values can also be played if available.
     Originally designed for selecting musical parameters for practicing, composing etc. but should be generally useful.
   </p>
   <p>Additional features alow audio media for the selected values to be played and the display of text based on the values.
@@ -21,8 +22,8 @@
   <p>The available parameters, media file URLs and note text are defined in simple configuration files (yaml format).
     In addition values for the media file base URL can be passed in the URL query string.
   </p>
-  <p>The app is designed to also work off line with locally stored config files but browser support is now limited
-    (Firefox no longer supports such so called PWAs).</p>
+<!--  <p>The app is designed to also work off line with locally stored config files but browser support is now limited
+    (Firefox no longer supports such so called PWAs).</p>-->
 
   <h1>Operating Notes</h1>
   <section>
@@ -38,14 +39,15 @@
           <li>Lock: do not change the value when pick all clicked</li>
         </ul>
       </li>
+      <li>When available, media playing is initially paused until a manual interaction occurs due to browser behaviour.</li>
+      <li>At the end of playing the same track can repeat (loop 1) or new values chosen (Shuffle). 
+      <li>Playback speed can be varied from "Normal" to be faster or slower with pitches kept the same.</li>
       <li>The "N" key will pick a new value for all parameters.</li>
       <li>The number keys will pick a new value for the parameter at the row specified (first is 1).</li>
       <li>The Space and "P" keys will play / pause media playing if available. As will clicking/touching background
         areas.</li>
-      <li>Media playing is initially paused until a manual interaction occurs due to browser behaviour.</li>
-      <li>Media playback speed can be varied using the player's ... menu or right clicking on the player.</li>
-      <li>This app may be installed as to run locally on your device to work offline. There should be an install option in your
-        web browser (not Firefox).</li>
+      <!--<li>This app may be installed as to run locally on your device to work offline. There should be an install option in your
+        web browser (not Firefox).</li>-->
     </ul>
   </section>
 
