@@ -2,7 +2,7 @@ import Scale from '@tonaljs/scale'
 
 // invoked with this set to values
 const actions = {
-  tonalCentre(scale, degree) {
+  tonalCentre(params, scale, degree) {
     return Scale.degrees(this[scale] + ' major')(this[degree])
   },
   calcIndexFromTwo(params, values1, values2, width) {
