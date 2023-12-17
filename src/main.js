@@ -66,6 +66,12 @@ function doNext() {
   }
 }
 
+function toggleMedia() {
+  const stopped = document.querySelector('#media-mode').value == "stopped"
+  const method = audio.paused && !stopped ? 'play' : 'pause'
+  audio[method]()
+}
+
 // Collection loaded
 controls.addEventListener('dataload', (e) => {
   Object.assign(state, e.detail)
@@ -130,8 +136,8 @@ window.addEventListener('touchend', (e) => {
   const audio = app.querySelector('audio')
   if (e.target.id == 'app' && !!audio) {
     e.preventDefault()
-    const method = audio.paused ? 'play' : 'pause'
-    audio[method]()
+    e.stopPropagation()
+    toggleMedia()
   }
 })
 
@@ -141,8 +147,7 @@ window.addEventListener('keyup', (e) => {
   if (e.code == 'KeyN') {
     doNext()
   } else if (!!audio && (e.code == 'KeyP' || e.code == 'Space')) {
-    const method = audio.paused ? 'play' : 'pause'
-    audio[method]()
+    toggleMedia()
     e.stopPropagation()
     e.preventDefault()
   } else if (e.code.startsWith('Digit')) {
