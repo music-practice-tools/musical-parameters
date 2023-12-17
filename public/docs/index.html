@@ -11,17 +11,23 @@
   <h1>About Musical Parameters</h1>
   <p>A mobile friendly web app that displays sets of parameters each with a current value selected from several
     possibilities.
-    The displayed value for each parameter can be randomly selected, both individually or for all at
+    The displayed value for each parameter can be randomly selected, both individually or all at
     once.
     In addition, the displayed value for each can be manually selected.
     Originally designed for selecting musical parameters for practicing, composing etc. but should be generally useful.
   </p>
-  <p>Additional features alow playing audio media for the selected values and also the display of a text note based on the values.
+  <p>Additional features alow for the provision of audio media files to be played for selected values and also the
+    display of a text note based on the current values.
   </p>
-  <p>The available parameters, media file URLs and note text are defined in simple configuration files (yaml format).
-    In addition values for the media file base URL can be passed in the URL query string.
+  <p>This is not a ready-to-use app, rather like a word processor, it is a flexible tool that it requires configuration
+    files or documents
+    that specify the parameters, values, media files and text notes that are presented when using the app.
+    The configuration files are in [yaml format](https://yaml.org/) which aims to be human friendly but is still a
+    technical language.
+    We provide examples below. In addition a value for the base URL of any media file can be passed in the URL query
+    string.
   </p>
-<!--  <p>The app is designed to also work off line with locally stored config files but browser support is now limited
+  <!--  <p>The app is designed to also work off line with locally stored config files but browser support is now limited
     (Firefox no longer supports such so called PWAs).</p>-->
 
   <h1>Operating Notes</h1>
@@ -33,14 +39,18 @@
       <li>Clicking on a parameter value will present a list of all values so one can be selected.</li>
       <li>Clicking &#8942; on a row opens the settings. Clicking X or the Esc key will close.
         <ul>
-          <li>Any: pick any value from all values each time</li>
-          <li>Every: pick every single value until all have been chosen</li>
-          <li>Lock: do not change the value when pick all clicked</li>
+          <li>Any: pick any value from all values each time.</li>
+          <li>Every: pick every single value until all have been chosen.</li>
+          <li>Lock: do not change the value when pick all clicked.</li>
         </ul>
       </li>
-      <li>When available, media playing is initially paused until a manual interaction occurs due to browser behaviour.</li>
-      <li>At the end of playing the same track can repeat (loop 1) or new values chosen (Shuffle). 
-      <li>Playback speed can be varied from "Normal" to be faster or slower with pitches kept the same.</li>
+      <li>When media files are provided as part of the configuration:
+        <ul>
+          <li>Playing is initially paused until a manual interaction occurs; this is due to browser
+            behaviour.</li>
+          <li>At the end of playing the same track can repeat (Loop 1) or new values chosen (Shuffle).
+          <li>Playback speed can be varied from "Normal" to be faster or slower with pitches kept the same.</li>
+        </ul>
       <li>The "N" key will pick a new value for all parameters.</li>
       <li>The number keys will pick a new value for the parameter at the row specified (first is 1).</li>
       <li>The Space and "P" keys will play / pause media playing if available. As will clicking/touching background
@@ -66,7 +76,7 @@
           href="/examples/IFR-Tonal-Map-Start.yaml">Download</a> / <a
           href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/IFR-Tonal-Map-Start.yaml">View</a>
       </li>
-      <li>IFR-Ear-Training-Tracks: <a href="/index.html?file=/examples/IFR-Ear-Training-Tracks-Media.yaml">Open</a> / <a
+      <li>IFR-Ear-Training-Tracks (media playing requires access to IFR media files): <a href="/index.html?file=/examples/IFR-Ear-Training-Tracks-Media.yaml">Open</a> / <a
           href="/examples/IFR-Ear-Training-Tracks-Media.yaml">Download</a> / <a
           href="https://github.com/music-practice-tools/musical-parameters/tree/master/public/examples/IFR-Ear-Training-Tracks-Media.yaml">View</a>
       </li>
