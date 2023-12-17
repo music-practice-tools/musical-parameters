@@ -34,17 +34,21 @@ function interpolate(str, obj, params) {
   })
 }
 
-function play(media) {
+function play(media, pause=false) {
   const audio = app.querySelector('audio')
   const rate = audio.playbackRate // as is reset
   audio.src = media
   audio.load()
   audio.play().then(audio.playbackRate = rate).catch(() => { }) // user needs to interact for play
+  if (pause) {
+    audio.pause()
+  }
 }
 
 export function mediaPlay(mediaTemplate, values, params) {
   const media = interpolate(mediaTemplate, values, params)
-  play(media)
+  const stopped = document.querySelector('#media-mode').value == "stopped"
+  play(media, stopped)
 }
 
 export function noteUpdate(noteTemplate, values, params) {
