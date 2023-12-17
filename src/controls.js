@@ -54,6 +54,7 @@ export function createControls(hasMedia = false) {
           <select id="media-mode">
             <option value="loop" selected>Loop 1</option>
             <option value="shuffle" >Shuffle</option>
+            <option value="stopped" >Stopped</option>
           </select>
           <select id="media-speed">
             <option value="1.4">1.4x&nbsp;</option>

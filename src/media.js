@@ -39,7 +39,7 @@ function play(media) {
   const rate = audio.playbackRate // as is reset
   audio.src = media
   audio.load()
-  audio.play().then(audio.playbackRate = rate ).catch(() => {}) // user needs to interact for play
+  audio.play().then(audio.playbackRate = rate).catch(() => { }) // user needs to interact for play
 }
 
 export function mediaPlay(mediaTemplate, values, params) {

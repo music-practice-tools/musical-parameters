@@ -84,6 +84,8 @@ controls.addEventListener('dataload', (e) => {
     const mediaMode = app.querySelector('#media-mode')
     mediaMode.addEventListener('change', (e) => {
       audio.loop = !mediaMode.value == 'loop'
+      const method = mediaMode.value == stopped ? 'pause' : 'play'
+      audio[method]()
     })
 
     const mediaSpeed = app.querySelector('#media-speed')
