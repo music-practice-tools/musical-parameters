@@ -66,7 +66,7 @@ function doNext() {
   }
 }
 
-function toggleMedia() {
+function toggleAudio(audio) {
   const stopped = document.querySelector('#media-mode').value == "stopped"
   const method = audio.paused && !stopped ? 'play' : 'pause'
   audio[method]()
@@ -137,7 +137,7 @@ window.addEventListener('touchend', (e) => {
   if (e.target.id == 'app' && !!audio) {
     e.preventDefault()
     e.stopPropagation()
-    toggleMedia()
+    toggleAudio(audio)
   }
 })
 
@@ -147,7 +147,7 @@ window.addEventListener('keyup', (e) => {
   if (e.code == 'KeyN') {
     doNext()
   } else if (!!audio && (e.code == 'KeyP' || e.code == 'Space')) {
-    toggleMedia()
+    toggleAudio(audio)
     e.stopPropagation()
     e.preventDefault()
   } else if (e.code.startsWith('Digit')) {
