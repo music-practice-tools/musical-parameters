@@ -82,7 +82,7 @@ header {
 }
 
 #player {
-  border-radius: 8px;
+  border-radius: 10px;
   transform: scale(1.1);
 }
 
