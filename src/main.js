@@ -59,7 +59,7 @@ controls.addEventListener('dataload', (e) => {
   Object.assign(state, e.detail)
   state.currentSetIndex = 0
   const set = state.currentSet
-  renderControls(controls, { set })
+  renderControls(controls, { set, values: state.values })
   renderCollectionHeader(card, { set, setNames: state.setNames })
   renderCollectionRows(card, { set })
   renderFooter(footer, { set, filename: state.filename })
