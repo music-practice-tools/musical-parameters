@@ -3,14 +3,13 @@ import { parseAndDispatchYaml } from './controls.js'
 import {
   renderApp,
   renderControls,
-  renderCollection,
+  renderCollectionHeader,
   renderCollectionRows,
   renderFooter,
+  debouncedUpdate
 } from './render.js'
-import { noteUpdate, mediaPlay } from './media.js'
 import { fetchParameters } from './fetch-parameters.js'
 import initialParameters from './Initial-Parameters.yaml?raw'
-import { debounce } from './debounce.js'
 
 // Global exception handlers
 window.addEventListener('error', (event) => {
@@ -30,33 +29,16 @@ const controls = app.querySelector('#controls')
 const card = app.querySelector('#card')
 const footer = app.querySelector('#footer')
 
-// state
+// state`
 const initialValues = Object.fromEntries(
   new URL(window.location.href).searchParams
 )
 let state = {
   parameterCollection: [], // set on data load
   values: { ...initialValues }, // deep copy
-  currentSet: 0, // set on data load
-  get currentParams() {
-    return this.parameterCollection[this.currentSet].params
-  },
-  get mediaTemplate() {
-    return this.parameterCollection[this.currentSet].mediaTemplate
-  },
-  get noteTemplate() {
-    return this.parameterCollection[this.currentSet].noteTemplate
-  },
-  get hasMedia() {
-    return (
-      this.mediaTemplate &&
-      (!this.mediaTemplate.includes('mediaRoot') ||
-        this.values.hasOwnProperty('mediaRoot'))
-    )
-  },
-  get hasNote() {
-    return !!this.noteTemplate
-  },
+  currentSetIndex: 0, // set on data load
+  get currentSet() { return this.parameterCollection[this.currentSetIndex] },
+  get setNames() { return this.parameterCollection.map((set) => set.set) }
 }
 
 function doNext() {
@@ -75,10 +57,12 @@ function toggleAudio(audio) {
 // Collection loaded
 controls.addEventListener('dataload', (e) => {
   Object.assign(state, e.detail)
-  state.currentSet = 0
-  renderControls(controls, state.hasMedia)
-  renderCollection(card, state.hasNote, state.parameterCollection)
-  renderFooter(footer, state.filename)
+  state.currentSetIndex = 0
+  const set = state.currentSet
+  renderControls(controls, { set })
+  renderCollectionHeader(card, { set, setNames: state.setNames })
+  renderCollectionRows(card, { set })
+  renderFooter(footer, { set, filename: state.filename })
 
   const audio = app.querySelector('#player')
   if (audio) {
@@ -101,34 +85,24 @@ controls.addEventListener('dataload', (e) => {
   }
 })
 
-// Set or value changed
-card.addEventListener('input', (e) => {
+// Set (or value) changed, 
+app.addEventListener('input', (e) => {
   if (e.target.id == 'set') {
-    state.values = { ...initialValues } // clear any set specific values
-    state.currentSet = e.target.value
-    renderControls(controls, state.hasMedia)
-    renderCollection(card, state.hasNote, {
-      setParams: state.parameterCollection[state.currentSet],
-    })
+    const values = state.values = { ...initialValues } // clear any set specific values
+    state.currentSetIndex = e.target.value
+    const set = state.currentSet
+    renderControls(controls, { set, values })
+    renderCollectionRows(card, { set })
+    debouncedUpdate(set, values)
   }
 })
 
-const debouncedUpdate = debounce((state) => {
-  if (state.hasMedia) {
-    mediaPlay(state.mediaTemplate, state.values, state.currentParams)
-  }
-  if (state.hasNote) {
-    noteUpdate(state.noteTemplate, state.values, state.currentParams)
-  }
-}, 200)
-
 // value changed
 card.addEventListener('valueset', (e) => {
-  if (state.hasMedia || state.hasNote) {
-    const { name, value } = e.detail
-    state.values[name] = value[1] ?? value[0]
-  }
-  debouncedUpdate(state)
+  const { name, value } = e.detail
+  state.values[name] = value[1] ?? value[0]
+  const set = state.currentSet
+  debouncedUpdate(set, state.values)
 })
 
 // touch to background

@@ -1,6 +1,9 @@
 import { createParametersHeader } from './parameters-header.js'
 import { createParameterPicker } from './parameter-picker.js'
 import { createControls } from './controls.js'
+import { noteUpdate, mediaPlay } from './media.js'
+import { debounce } from './debounce.js'
+
 
 export function renderApp(element, { image }) {
   element.innerHTML = `    
@@ -14,37 +17,65 @@ export function renderApp(element, { image }) {
       `
 }
 
-export function renderControls(element, hasMedia) {
+function mediaTemplate(set) {
+  return set.parameterCollection[set.currentSet].mediaTemplate
+}
+
+function hasMedia(set, values) {
+  return (
+    set.mediaTemplate &&
+    (!set.mediaTemplate.includes('mediaRoot') ||
+      values.hasOwnProperty('mediaRoot'))
+  )
+}
+
+function noteTemplate(set) {
+  return set.parameterCollection[set.currentSet].noteTemplate
+}
+
+function hasNote(set) {
+  return !!set.noteTemplate
+}
+
+export function renderControls(element, { set, values }) {
   while (element.childNodes.length) {
     element.removeChild(element.lastChild)
   }
-  element.appendChild(createControls(hasMedia))
+  element.appendChild(createControls(hasMedia(set, values)))
 }
 
-export function renderCollectionHeader(element, hasNote, { setNames }) {
+export function renderCollectionHeader(element, { set, setNames }) {
   while (element.childNodes.length) {
     element.removeChild(element.lastChild)
   }
-  element.appendChild(createParametersHeader(hasNote, setNames))
+  element.appendChild(createParametersHeader(setNames))
 }
 
-export function renderCollectionRows(element, { setParams }) {
+export function renderCollectionRows(element, { set }) {
   while (element.childNodes.length > 1) {
     element.removeChild(element.lastChild)
   }
-  setParams.params.forEach((param) => {
+  set.params.forEach((param) => {
     const { name, values } = param
     const vals = [...values]
     element.appendChild(createParameterPicker(name, vals))
   })
 }
 
-export function renderCollection(container, hasNote, parameters) {
-  const setNames = parameters.map((param) => param.set)
-  renderCollectionHeader(container, hasNote, { setNames })
-  renderCollectionRows(container, { setParams: parameters[0] })
-}
-
-export function renderFooter(element, filename) {
+export function renderFooter(element, { filename }) {
   element.innerHTML = `<span>${filename}</span>`
 }
+
+// Called for updates out of normal render flow - debounced
+export const debouncedUpdate = debounce((set, values) => {
+  if (hasMedia(set, values)) {
+    mediaPlay(set.mediaTemplate, values, set.params)
+  }
+  if (hasNote(set)) {
+    noteUpdate(set.noteTemplate, values, set.params)
+  }else {
+    noteUpdate('', null, null)
+  }
+  
+}, 150)
+
