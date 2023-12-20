@@ -38,7 +38,8 @@ let state = {
   values: { ...initialValues }, // deep copy
   currentSetIndex: 0, // set on data load
   get currentSet() { return this.parameterCollection[this.currentSetIndex] },
-  get setNames() { return this.parameterCollection.map((set) => set.set) }
+  get setNames() { return this.parameterCollection.map((set) => set.set) },
+  get pickerSetIndex() { return this.parameterCollection.findIndex((value) => value.isPicker) }
 }
 
 function doNext() {
@@ -83,7 +84,7 @@ function onSetChange(index) {
     })
 
     const mediaMode = app.querySelector('#media-mode')
-    mediaMode.addEventListener('input', (e) => {
+    mediaMode.addEventListener('change', (e) => {
       audio.loop = !!(mediaMode.value == 'loop')
       const method = mediaMode.value == "stopped" ? 'pause' : 'play'
       audio[method]()
@@ -109,12 +110,11 @@ card.addEventListener('valueset', (e) => {
   state.values[name] = value[1] ?? value[0]
 
   if (state.currentSet.isPicker) {
-    const set = app.querySelector('#set')
     const newIndex = value[1]
-    set.options[newIndex].selected = true;
+    app.querySelector('#set').options[newIndex].selected = true;
     onSetChange(newIndex)
   }
-  
+
   debouncedUpdate(state.currentSet, state.values)
 })
 
@@ -133,6 +133,12 @@ window.addEventListener('keyup', (e) => {
   const audio = app.querySelector('audio')
   if (e.code == 'KeyN') {
     doNext()
+  } else if (e.code == 'KeyS') {
+    const set = app.querySelector('#set')
+    const pickerIndex = state.pickerSetIndex
+    if (pickerIndex != -1) {
+      onSetChange(pickerIndex)
+    }
   } else if (!!audio && (e.code == 'KeyP' || e.code == 'Space')) {
     toggleAudio(audio)
     e.stopPropagation()
