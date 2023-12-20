@@ -64,7 +64,7 @@ controls.addEventListener('dataload', (e) => {
   renderCollectionRows(card, { set })
   renderFooter(footer, { set, filename: state.filename })
 
-  onSetChange(0)
+  onSetChange(state.currentSetIndex)
 })
 
 function onSetChange(index) {
@@ -107,14 +107,15 @@ app.addEventListener('change', (e) => {
 card.addEventListener('valueset', (e) => {
   const { name, value } = e.detail
   state.values[name] = value[1] ?? value[0]
-  if (name == 'Activity') {
+
+  if (state.currentSet.isPicker) {
     const set = app.querySelector('#set')
     const newIndex = value[1]
     set.options[newIndex].selected = true;
     onSetChange(newIndex)
   }
-  const set = state.currentSet
-  debouncedUpdate(set, state.values)
+  
+  debouncedUpdate(state.currentSet, state.values)
 })
 
 // touch to background
