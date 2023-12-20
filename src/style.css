@@ -81,14 +81,6 @@ header {
   color: #444;
 }
 
-#media-controls {
-  display: nones;
-}
-#media-controls[data-has-media] {
-  display: block;
-}
-
-
 #player {
   border-radius: 10px;
   transform: scale(1.1);
