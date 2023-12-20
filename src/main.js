@@ -64,6 +64,17 @@ controls.addEventListener('dataload', (e) => {
   renderCollectionRows(card, { set })
   renderFooter(footer, { set, filename: state.filename })
 
+  onSetChange(0)
+})
+
+function onSetChange(index) {
+  const values = state.values = { ...initialValues } // clear any set specific values
+  state.currentSetIndex = index
+  const set = state.currentSet
+  renderControls(controls, { set, values })
+  renderCollectionRows(card, { set })
+  debouncedUpdate(set, values)
+
   const audio = app.querySelector('#player')
   if (audio) {
     // only called if no loop attribute
@@ -72,8 +83,8 @@ controls.addEventListener('dataload', (e) => {
     })
 
     const mediaMode = app.querySelector('#media-mode')
-    mediaMode.addEventListener('change', (e) => {
-      audio.loop = !mediaMode.value == 'loop'
+    mediaMode.addEventListener('input', (e) => {
+      audio.loop = !!(mediaMode.value == 'loop')
       const method = mediaMode.value == "stopped" ? 'pause' : 'play'
       audio[method]()
     })
@@ -83,17 +94,12 @@ controls.addEventListener('dataload', (e) => {
       audio.playbackRate = mediaSpeed.value
     })
   }
-})
+}
 
 // Set (or value) changed, 
-app.addEventListener('input', (e) => {
+app.addEventListener('change', (e) => {
   if (e.target.id == 'set') {
-    const values = state.values = { ...initialValues } // clear any set specific values
-    state.currentSetIndex = e.target.value
-    const set = state.currentSet
-    renderControls(controls, { set, values })
-    renderCollectionRows(card, { set })
-    debouncedUpdate(set, values)
+    onSetChange(e.target.value)
   }
 })
 
@@ -101,6 +107,12 @@ app.addEventListener('input', (e) => {
 card.addEventListener('valueset', (e) => {
   const { name, value } = e.detail
   state.values[name] = value[1] ?? value[0]
+  if (name == 'Activity') {
+    const set = app.querySelector('#set')
+    const newIndex = value[1]
+    set.options[newIndex].selected = true;
+    onSetChange(newIndex)
+  }
   const set = state.currentSet
   debouncedUpdate(set, state.values)
 })
