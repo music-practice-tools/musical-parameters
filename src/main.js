@@ -87,6 +87,7 @@ function onSetChange(index) {
       audio[method]()
     })
 
+    audio.playbackRate = 1
     const mediaSpeed = app.querySelector('#media-speed')
     mediaSpeed.addEventListener('change', (e) => {
       audio.playbackRate = mediaSpeed.value
@@ -97,6 +98,7 @@ function onSetChange(index) {
 // Set (or value) changed, 
 app.addEventListener('change', (e) => {
   if (e.target.id == 'set') {
+    console.log('cg')
     onSetChange(e.target.value)
   }
 })
