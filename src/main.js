@@ -60,11 +60,8 @@ controls.addEventListener('dataload', (e) => {
   Object.assign(state, e.detail)
   state.currentSetIndex = 0
   const set = state.currentSet
-  renderControls(controls, { set, values: state.values })
   renderCollectionHeader(card, { set, setNames: state.setNames })
-  renderCollectionRows(card, { set })
   renderFooter(footer, { set, filename: state.filename })
-
   onSetChange(state.currentSetIndex)
 })
 
@@ -109,12 +106,6 @@ card.addEventListener('valueset', (e) => {
   const { name, value } = e.detail
   state.values[name] = value[1] ?? value[0]
 
-  if (state.currentSet.isPicker) {
-    const newIndex = value[1]
-    app.querySelector('#set').options[newIndex].selected = true;
-    onSetChange(newIndex)
-  }
-
   debouncedUpdate(state.currentSet, state.values)
 })
 
@@ -134,11 +125,7 @@ window.addEventListener('keyup', (e) => {
   if (e.code == 'KeyN') {
     doNext()
   } else if (e.code == 'KeyS') {
-    const set = app.querySelector('#set')
-    const pickerIndex = state.pickerSetIndex
-    if (pickerIndex != -1) {
-      onSetChange(pickerIndex)
-    }
+    pickSet()
   } else if (!!audio && (e.code == 'KeyP' || e.code == 'Space')) {
     toggleAudio(audio)
     e.stopPropagation()

@@ -131,10 +131,9 @@ header {
 
 .controls {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(275px, 1fr)
-  ); /* see notes below */
+  grid-template-columns: repeat(auto-fill,
+      minmax(275px, 1fr));
+  /* see notes below */
   grid-gap: 0.5em;
   justify-items: center;
   align-items: center;
@@ -159,10 +158,11 @@ header {
 }
 
 .picker-header #pick-all,
+.picker-header #pick-set,
+.picker-header select,
 .picker .picker-btn,
 .picker .picker-menu-btn,
 .picker select,
-.picker-header select,
 .controls select {
   font-size: large;
   color: #fff;
@@ -172,12 +172,16 @@ header {
   text-align: right;
 }
 
+.picker-header #pick-set {
+  font-size: 34px;
+}
+
 .picker-header #pick-all {
   font-size: 40px;
 }
 
 .picker-btns {
-  display:flex;
+  display: flex;
 }
 
 .picker .picker-btn,
@@ -186,6 +190,7 @@ header {
 }
 
 .picker-header,
+.picker-header #pick-set,
 .picker-header #pick-all {
   background-color: #555;
 }
@@ -203,6 +208,7 @@ header {
 .controls select {
   padding: 7px 10px;
 }
+
 .picker select,
 .picker-header select {
   text-align: left;
@@ -218,7 +224,8 @@ header {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.3);
+  /* Semi-transparent background */
   display: none;
 }
 
@@ -254,11 +261,11 @@ header {
 }
 
 /* Separate rule for compatibility, :focus-within is required on modern Firefox and Chrome */
-input.visually-hidden:focus + label {
+input.visually-hidden:focus+label {
   outline: thin dotted;
 }
 
-input.visually-hidden:focus-within + label {
+input.visually-hidden:focus-within+label {
   outline: thin dotted;
 }
 
@@ -281,6 +288,7 @@ input.visually-hidden:focus-within + label {
   .card {
     background-color: #fff;
   }
+
   .footer {
     color: #bbb;
   }
