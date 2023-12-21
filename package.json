@@ -9,8 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "5.0.6",
-    "vite-plugin-pwa": "0.17.4"
+    "vite": "5.0.10"
   },
   "dependencies": {
     "@tonaljs/scale": "4.12.2",

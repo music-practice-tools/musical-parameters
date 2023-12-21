@@ -49,7 +49,6 @@ Work on Android phone - portrait only to start is OK
 
 - Static
 - Vanilla
-- PWA
 - Mobile first
 - vitejs
 - Netlify hosting
