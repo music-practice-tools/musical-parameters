@@ -12,7 +12,7 @@ export function createParametersHeader(names) {
     element.innerHTML = `
     <div class="picker-header">
     <div class="picker-header-value">${select}</div>
-    <button id="pick-set" title="Pick set - S key" aria-label="Pick set">\u{1F504}</button>
+    ${(names.length > 1) ? `<button id="pick-set" title="Pick set - S key" aria-label="Pick set">\u{1F504}</button>` : '' }
     <div id="note"><span>&nbsp;</span></div>
     <button id="pick-all" title="Pick new values - N key" aria-label="Pick all">\u{1F504}</button></div>`
   }
