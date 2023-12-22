@@ -57,6 +57,7 @@ function toggleAudio(audio) {
 
 // Collection loaded
 controls.addEventListener('dataload', (e) => {
+  console.log('dl')
   Object.assign(state, e.detail)
   state.currentSetIndex = 0
   const set = state.currentSet
@@ -66,6 +67,7 @@ controls.addEventListener('dataload', (e) => {
 })
 
 function onSetChange(index) {
+  console.log('dl')
   const values = state.values = { ...initialValues } // clear any set specific values
   state.currentSetIndex = index
   const set = state.currentSet
