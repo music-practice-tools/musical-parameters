@@ -8,8 +8,8 @@ import { debounce } from './debounce.js'
 export function renderApp(element, { image }) {
   element.innerHTML = `    
       <header>
-        <img src="${image}" class="logo" alt="logo" />
-        <h1>Musical Parameters</h1>
+        <img src="${image}" title="Musical Parameters" class="logo" alt="logo" />
+        <h1 id="title">Musical Parameters</h1>
       </header>
       <nav id="controls"></nav>
       <main class="card" id="card"></main>

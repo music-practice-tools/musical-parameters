@@ -1,5 +1,5 @@
 import logo from './icons/pwa-512x512.png'
-import { parseAndDispatchYaml } from './controls.js'
+import { parseAndDispatchYaml } from './parse-yaml.js'
 import {
   renderApp,
   renderControls,
@@ -34,6 +34,7 @@ const initialValues = Object.fromEntries(
   new URL(window.location.href).searchParams
 )
 let state = {
+  title: "", // set on data load
   parameterCollection: [], // set on data load
   values: { ...initialValues }, // deep copy
   currentSetIndex: 0, // set on data load
@@ -60,6 +61,8 @@ controls.addEventListener('dataload', (e) => {
   Object.assign(state, e.detail)
   state.currentSetIndex = 0
   const set = state.currentSet
+  console.log(state.title)
+  app.querySelector('#title').innerText = state.title
   renderCollectionHeader(card, { set, setNames: state.setNames })
   renderFooter(footer, { set, filename: state.filename })
   onSetChange(state.currentSetIndex)
