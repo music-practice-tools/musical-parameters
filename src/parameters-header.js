@@ -1,7 +1,6 @@
 import { randomInt } from './random.js'
 
 export function createParametersHeader(names) {
-  console.log('h', names.length)
   function render(element, { names }) {
     const select =
       names.length == 1
