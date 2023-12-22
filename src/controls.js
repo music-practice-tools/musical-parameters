@@ -1,5 +1,3 @@
-import { parse, stringify } from 'yaml'
-
 const opts = {
   startIn: 'desktop',
   suggestedName: 'Musical Parameters.yaml',

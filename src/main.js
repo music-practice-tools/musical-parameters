@@ -1,5 +1,5 @@
 import logo from './icons/pwa-512x512.png'
-import { parseAndDispatchYaml } from './parse-yaml.js'
+import { parseAndDispatchYaml } from './parse-file.js'
 import {
   renderApp,
   renderControls,

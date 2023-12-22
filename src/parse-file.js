@@ -1,3 +1,5 @@
+import { parse, stringify } from 'yaml'
+
 export function parseAndDispatchYaml(yaml, filename, element) {
     try {
       const parameterCollection = parse(yaml)
