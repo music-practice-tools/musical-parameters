@@ -10,6 +10,7 @@ import {
 } from './render.js'
 import { fetchParameters } from './fetch-parameters.js'
 import initialParameters from './Initial-Parameters.yaml?raw'
+import { randomInt } from './random.js'
 
 // Global exception handlers
 window.addEventListener('error', (event) => {
@@ -50,6 +51,13 @@ function doNext() {
   }
 }
 
+function pickSet() {
+  const set = app.querySelector('#set')
+  const newSetIndex = randomInt(0, set.options.length - 1)
+  set.options[newSetIndex].selected = true;
+  onSetChange(newSetIndex)
+}
+
 function toggleAudio(audio) {
   const stopped = document.querySelector('#media-mode').value == "stopped"
   const method = audio.paused && !stopped ? 'play' : 'pause'
@@ -61,7 +69,6 @@ controls.addEventListener('dataload', (e) => {
   Object.assign(state, e.detail)
   state.currentSetIndex = 0
   const set = state.currentSet
-  console.log(state.title)
   app.querySelector('#title').innerText = state.title
   renderCollectionHeader(card, { set, setNames: state.setNames })
   renderFooter(footer, { set, filename: state.filename })
