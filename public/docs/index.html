@@ -9,18 +9,18 @@
 
 <body>
   <h1>About Musical Parameters</h1>
-  <p>A mobile friendly web app that presents sets of parameters each with a current value selected and shown from
+  <p>A mobile-friendly web app that presents sets of parameters each with a current value selected from
     several possibilities. The displayed value for each parameter can be randomly selected, both individually or all at
     once. In addition, the displayed value for each can be manually selected.</p>
-  <p>Additional features alow the provision of audio files to be played for selected values and also the
-    display of a text note based on the current values.
+  <p>Options for how each value is selected include: from all values, using all values, or locked.</p>
+  <p>Additionally, audio files can be specified and played for selected values using a simple media player. Plus, the
+    display of a text note is possible based on the current values.
   </p>
-  <p>This is not a ready-to-use app, rather like a word processor, it is a tool that requires configuration
-    files (ie documents) that specify a set of parameters, values, media files and text notes that are presented
-    when using the app. These configuration files are in <a href="https://yaml.org/">yaml format</a> which aims to be
-    human friendly but is still a technical language.
-    We provide examples below. In addition a value for the base URL of any media file can be passed in the URL query
-    string.
+  <p>This is not a ready-to-use app, rather like a word processor, it is a tool that requires documents (ie
+    configuration files) that specify what the user sees, including the sets of parameters, values, media files and text
+    notes. These configuration files are created using <a href="https://yaml.org/">yaml format</a> which aims to be
+    human friendly but is still a technical language (see examples below). In addition a value for the base URL of
+    media files can be passed in the URL query string.
   </p>
   <p>
     Originally designed to generate random musical parameters for practicing, composing etc. in response to a request by
@@ -31,7 +31,7 @@
   <section>
     <ul>
       <li>If multiple sets of parameters are available, choose one by clicking on the name at the left in the top row.
-        Select a random set using &#x1F504; to the right of the set name selector. 
+        Select a random set using &#x1F504; to the right of the set name selector.
       </li>
       <li>Generate new a selection of values for all parameters with &#x1F504; icon button at the right of the top row.
         A new selection is chosen every time the page is displayed or refreshed.
@@ -51,13 +51,17 @@
           <li>Playing is initially paused until a manual interaction occurs; this is due to browser
             behaviour.</li>
           <li>At the end of playing the same track can repeat (Loop 1, the default) or new values chosen (Shuffle).
-          <li>Playback speed can be varied from "Normal" to be faster or slower with pitches kept the same.</li>
+            Playback can also be stopped.</li>.
+          <li>The speed of Playback can be varied from "Normal" to be faster or slower with pitches kept the same.</li>
         </ul>
-      <li>The "N" key will pick a new value for all parameters.</li>
-      <li>The number keys will pick a new value for the parameter at the row specified (first is 1).</li>
-      <li>The Space and "P" keys will play / pause media playing if available. As will clicking/touching background
-        areas.</li>
-      <li>The "S" key will pick a random set if more than one is provided in the file.</li>
+      <li>Full keyboard access allows playing media without seeing values:</li>
+      <ul>
+        <li>The "N" key will pick a new value for all parameters.</li>
+        <li>The number keys (1 to 0) pick a new value for the parameter at the row specified.</li>
+        <li>The Space and "P" keys will play / pause media playing if available. As will clicking/touching the background
+          area at the bottom.</li>
+        <li>The "S" key will pick a random set if more than one is provided.</li>
+      </ul>
     </ul>
   </section>
 
@@ -85,7 +89,7 @@
     </ul>
     <a href="..">Goto the App</a>
     <p>This is an <a href="https://github.com/music-practice-tools/musical-parameters">open source project</a> by Steve
-      Lee for <a href="https://blog.fullmeasure.uk">Fullmeasure</a>.
+      Lee for <a href="https://blog.fullmeasure.uk">Fullmeasure.uk</a>.
     <p>
   </section>
   <p>&nbsp;</p>
