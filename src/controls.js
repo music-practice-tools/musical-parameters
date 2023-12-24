@@ -1,3 +1,5 @@
+import { parseAndDispatchYaml } from './parse-file.js'
+
 const opts = {
   startIn: 'desktop',
   suggestedName: 'Musical Parameters.yaml',
