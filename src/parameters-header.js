@@ -28,7 +28,7 @@ export function createParametersHeader(names) {
 
   function pickSet() {
     const set = app.querySelector('#set')
-    const newSetIndex = randomInt(0, set.options.length - 1)
+    const newSetIndex = randomInt(0, set.options.length)
     set.options[newSetIndex].selected = true;
     set.dispatchEvent(new Event('change', { bubbles: true }))
   }
