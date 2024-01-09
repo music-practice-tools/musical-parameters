@@ -39,13 +39,16 @@ export function createPickerMenu() {
   function showPickerMenu(button) {
     trigger = button
 
+    function onClose(e) {
+      if (e.target.id == 'picker-menu' || e.target.id == 'menu-close') {
+        closeMenu(state)
+        menu.removeEventListener('click', onClose)
+      }
+    }
     menuContent.querySelector('#picker-opt-any').checked = !state.every
     menuContent.querySelector('#picker-opt-every').checked = state.every
     menuContent.querySelector('#picker-opt-locked').checked = state.locked
-    menuContent
-      .querySelector('#menu-close')
-      .addEventListener('click', () => closeMenu(state), { once: true })
-
+    menu.addEventListener('click', onClose)
     const rectButton = button.getBoundingClientRect()
     const top = Math.floor(rectButton.bottom)
     const left = Math.floor(rectButton.left)
@@ -56,15 +59,14 @@ export function createPickerMenu() {
 
     // move up if needed
     const rectMenu = menuContent.getBoundingClientRect()
-    const fits =
-      rectMenu.bottom < document.body.getBoundingClientRect().bottom
+    const fits = rectMenu.bottom < document.body.getBoundingClientRect().bottom
     if (!fits) {
       const newTop = Math.floor(
         rectButton.top - (rectMenu.bottom - rectMenu.top)
       )
       menuContent.style.top = `${newTop}px`
     }
-    
+
     // Find the first and last focusable elements inside the menu
     var focusableElements = menuContent.querySelectorAll(
       'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
