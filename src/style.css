@@ -58,9 +58,12 @@ header,
 }
 
 .footer {
+  padding-left: 0.5rem;
+  padding-right: 0.8rem;
+  display: flex;
+  justify-content: space-between;
   color: #555;
   margin: 10px;
-  text-align: left;
 }
 
 .logo {

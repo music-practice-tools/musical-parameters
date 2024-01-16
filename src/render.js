@@ -63,7 +63,7 @@ export function renderCollectionRows(element, { set }) {
 }
 
 export function renderFooter(element, { filename }) {
-  element.innerHTML = `<span>${filename}</span>`
+  element.innerHTML = `<span>${filename}</span><a target="_blank"href="https://ko-fi.com/stevelee1084">Support Steve</a>`
 }
 
 // Called for updates out of normal render flow - debounced
@@ -73,9 +73,9 @@ export const debouncedUpdate = debounce((set, values) => {
   }
   if (hasNote(set)) {
     noteUpdate(set.noteTemplate, values, set.params)
-  }else {
+  } else {
     noteUpdate('', null, null)
   }
-  
+
 }, 150)
 
