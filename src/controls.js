@@ -1,4 +1,4 @@
-import { parseAndDispatchYaml } from './parse-file.js'
+import { storeYaml, parseAndDispatchYaml } from './process-yaml.js'
 
 const opts = {
   startIn: 'desktop',
@@ -68,6 +68,7 @@ export function createControls(hasMedia = false) {
           })
           .then(({ yaml, filename }) => {
             if (yaml) {
+              storeYaml(yaml)
               parseAndDispatchYaml(yaml, `File: ${filename}`, element)
             }
           })
@@ -82,7 +83,9 @@ export function createControls(hasMedia = false) {
           reader.addEventListener(
             'load',
             (e) => {
-              parseAndDispatchYaml(reader.result, `File: ${file.name}`, element)
+              const yaml = reader.result
+              storeYaml(yaml)
+              parseAndDispatchYaml(yaml, `File: ${file.name}`, element)
             },
             false
           )

@@ -1,5 +1,5 @@
 import logo from './icons/pwa-512x512.png'
-import { parseAndDispatchYaml } from './parse-file.js'
+import { getYaml, storeYaml, parseAndDispatchYaml } from './process-yaml.js'
 import {
   renderApp,
   renderControls,
@@ -162,8 +162,11 @@ if (fileURI) {
     const filename = new URL(fileURI, 'https://example.com').pathname
       .split('/')
       .pop()
+    storeYaml(yaml)
     parseAndDispatchYaml(yaml, `URL: ${filename}`, controls)
   })
-} else {
-  parseAndDispatchYaml(initialParameters, 'Initial-Parameters.yaml', controls)
+} else 
+{  
+  let yaml = getYaml() ?? initialParameters
+  parseAndDispatchYaml(yaml, 'Initial-Parameters.yaml', controls)
 }
