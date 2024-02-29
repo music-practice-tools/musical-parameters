@@ -16,8 +16,8 @@
   <p>Additionally, audio files can be specified and played for selected values using a simple media player. Plus, the
     display of a text note is possible based on the current values.
   </p>
-  <p>This is not a ready-to-use app, rather like a word processor, it is a tool that requires documents (ie
-    configuration files) that specify what the user sees, including the sets of parameters, values, media files and text
+  <p>This is not a ready-to-use app, rather like a word processor, it is a tool that requires
+    configuration files that specify what the user sees, including the sets of parameters, values, media files and text
     notes. These configuration files are created using <a href="https://yaml.org/">yaml format</a> which aims to be
     human friendly but is still a technical language (see examples below). In addition a value for the base URL of
     media files can be passed in the URL query string.
@@ -30,6 +30,9 @@
   <h1>Operating Notes</h1>
   <section>
     <ul>
+      <li>Configuration files located on the web can be specified with a "?file=https://.....yaml" at the end of the app IRL.
+        Alternatively, local files can be loaded using the "Load" link. The last loaded file contents will be remembered unless overridden in the URL.
+      </li>
       <li>If multiple sets of parameters are available, choose one by clicking on the name at the left in the top row.
         Select a random set using &#x1F504; to the right of the set name selector.
       </li>
