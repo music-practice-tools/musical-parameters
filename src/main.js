@@ -162,7 +162,6 @@ if (fileURI) {
     const filename = new URL(fileURI, 'https://example.com').pathname
       .split('/')
       .pop()
-    storeYaml(yaml)
     parseAndDispatchYaml(yaml, `URL: ${filename}`, controls)
   })
 } else 
