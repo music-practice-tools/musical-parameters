@@ -68,8 +68,8 @@ export function createControls(hasMedia = false) {
           })
           .then(({ yaml, filename }) => {
             if (yaml) {
-              storeYaml(yaml)
               parseAndDispatchYaml(yaml, `File: ${filename}`, element)
+              storeYaml(yaml)
             }
           })
       }
@@ -84,8 +84,8 @@ export function createControls(hasMedia = false) {
             'load',
             (e) => {
               const yaml = reader.result
-              storeYaml(yaml)
               parseAndDispatchYaml(yaml, `File: ${file.name}`, element)
+              storeYaml(yaml)
             },
             false
           )
