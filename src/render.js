@@ -63,7 +63,7 @@ export function renderCollectionRows(element, { set }) {
 }
 
 export function renderFooter(element, { filename }) {
-  element.innerHTML = `<span>${filename}</span><a target="_blank"href="https://ko-fi.com/stevelee1084">Support Steve</a>`
+  element.innerHTML = `<span>${filename}</span><a target="_blank"href="https://ko-fi.com/stevelee1084">Reward Steve</a>`
 }
 
 // Called for updates out of normal render flow - debounced
