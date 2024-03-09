@@ -29,10 +29,6 @@ function hasMedia(set, values) {
   )
 }
 
-function noteTemplate(set) {
-  return set.parameterCollection[set.currentSet].noteTemplate
-}
-
 function hasNote(set) {
   return !!set.noteTemplate
 }
