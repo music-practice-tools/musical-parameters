@@ -33,7 +33,7 @@ function youTubePlay(item) {
   if (!yt) {
     const ytFrame = document.createElement('iframe')
     ytFrame.id = 'youtube'
-    ytFrame.type ='text/html'
+    ytFrame.setAttribute('type', 'text/html')
     ytFrame.src=`https://www.youtube.com/embed?${item.split('=')[1]}`
     document.body.appendChild(ytFrame)
     window.onYouTubeIframeAPIReady = function () {
