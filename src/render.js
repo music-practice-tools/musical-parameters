@@ -2,6 +2,7 @@ import { createParametersHeader } from './parameters-header.js'
 import { createParameterPicker } from './parameter-picker.js'
 import { createControls } from './controls.js'
 import { noteUpdate, mediaPlay } from './media.js'
+import { youTubePlay } from './youtube.js'
 import { debounce } from './debounce.js'
 
 
@@ -61,14 +62,19 @@ export function renderFooter(element, { filename }) {
 // Called for updates out of normal render flow 
 // debounced as will be called multiple times
 export const debouncedUpdate = debounce((set, values) => {
-  if (hasMedia(set, values)) {
-    mediaPlay(set.mediaTemplate, values, set.params)
-  }
   if (hasNote(set)) {
     noteUpdate(set.noteTemplate, values, set.params)
   } else {
     noteUpdate('', null, null)
   }
 
+  if (hasMedia(set, values)) {
+    mediaPlay(set.mediaTemplate, values, set.params)
+  } else {
+    const ytVideo = Object.values(values).find((el) => el.toString().startsWith('v='))
+    if (ytVideo) { 
+      youTubePlay(ytVideo)
+    }
+  }
 }, 150)
 
