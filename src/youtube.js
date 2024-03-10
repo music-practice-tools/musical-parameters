@@ -29,7 +29,7 @@ function enhanceYTFrames(ytFrames) {
 }
 
 function youTubePlay(item) {    
-  const yt = document.querySelector('frame#youtube')
+  const yt = document.querySelector('iframe#youtube')
   if (!yt) {
     const ytFrame = document.createElement('iframe')
     ytFrame.id = 'youtube'
