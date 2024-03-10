@@ -1,5 +1,5 @@
 import logo from './icons/pwa-512x512.png'
-import { getYaml, storeYaml, parseAndDispatchYaml } from './process-yaml.js'
+import { getYaml, parseAndDispatchYaml } from './process-yaml.js'
 import {
   renderApp,
   renderControls,
@@ -81,8 +81,7 @@ function onSetChange(index) {
   const set = state.currentSet
   renderControls(controls, { set, values })
   renderCollectionRows(card, { set })
-  debouncedUpdate(set, values)
-
+  
   const audio = app.querySelector('#player')
   if (audio) {
     // only called if no loop attribute
@@ -114,8 +113,9 @@ app.addEventListener('change', (e) => {
 
 // value changed
 card.addEventListener('valueset', (e) => {
-  const { name, value } = e.detail
-  state.values[name] = value[1] ?? value[0]
+  const {name, value} = e.detail
+  const [display, data] = value 
+  state.values[name] = data ?? display
 
   debouncedUpdate(state.currentSet, state.values)
 })

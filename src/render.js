@@ -17,10 +17,6 @@ export function renderApp(element, { image }) {
       `
 }
 
-function mediaTemplate(set) {
-  return set.parameterCollection[set.currentSet].mediaTemplate
-}
-
 function hasMedia(set, values) {
   return (
     set.mediaTemplate &&
@@ -62,7 +58,8 @@ export function renderFooter(element, { filename }) {
   element.innerHTML = `<span>${filename}</span><a target="_blank"href="https://ko-fi.com/stevelee1084">Reward Steve</a>`
 }
 
-// Called for updates out of normal render flow - debounced
+// Called for updates out of normal render flow 
+// debounced as will be called multiple times
 export const debouncedUpdate = debounce((set, values) => {
   if (hasMedia(set, values)) {
     mediaPlay(set.mediaTemplate, values, set.params)
