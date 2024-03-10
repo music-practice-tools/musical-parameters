@@ -20,8 +20,7 @@ function enhanceYTFrames(ytFrames) {
 
   ytFrames.forEach((frame) => {
     // Reload with API enabled
-    frame.src += frame.src.includes('?') ? '' : '?feature=oembed'
-    frame.src += `&enablejsapi=1&domain=${window.location.host}`
+    frame.src += `&feature=oembed&enablejsapi=1&domain=${window.location.host}`
     // @ts-ignore
 
     frame.ytPlayer = new YT.Player(frame, {
@@ -34,9 +33,9 @@ function youTubePlay(item) {
   if (!yt) {
     const ytFrame = document.createElement('iframe')
     ytFrame.id = 'youtube'
-    ytFrame.src=`https://www.youtube.com/watch?${item}`
+    ytFrame.type ='text/html'
+    ytFrame.src=`https://www.youtube.com/embed?${item.split('=')[1]}`
     document.body.appendChild(ytFrame)
-
     window.onYouTubeIframeAPIReady = function () {
       onYouTubeIframeAPIReady()
     }
