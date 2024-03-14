@@ -71,6 +71,7 @@ export const debouncedUpdate = debounce((set, values) => {
   if (hasMedia(set, values)) {
     mediaPlay(set.mediaTemplate, values, set.params)
   } else {
+    // first value with a video
     const ytVideo = Object.values(values).find((el) => el.toString().startsWith('v='))
     if (ytVideo) { 
       youTubePlay(ytVideo)
