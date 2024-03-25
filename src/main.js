@@ -26,7 +26,7 @@ window.addEventListener('unhandledrejection', (event) => {
 // render
 const app = document.querySelector('#app')
 renderApp(app, { image: logo })
-const controls = app.querySelector('#controls')
+const nav = app.querySelector('nav')
 const card = app.querySelector('#card')
 const footer = app.querySelector('#footer')
 
@@ -59,6 +59,7 @@ function pickSet() {
 }
 
 function toggleAudio(audio) {
+  alert('t')
   const stopped = document.querySelector('#media-mode').value == "stopped"
   const method = audio.paused && !stopped ? 'play' : 'pause'
   audio[method]()
@@ -79,29 +80,8 @@ function onSetChange(index) {
   const values = state.values = { ...initialValues } // clear any set specific values
   state.currentSetIndex = index
   const set = state.currentSet
-  renderControls(controls, { set, values })
+  renderControls(nav, { set, values })
   renderCollectionRows(card, { set })
-  
-  const audio = app.querySelector('#player')
-  if (audio) {
-    // only called if no loop attribute
-    audio.addEventListener('ended', (e) => {
-      doNext()
-    })
-
-    const mediaMode = app.querySelector('#media-mode')
-    mediaMode.addEventListener('change', (e) => {
-      audio.loop = !!(mediaMode.value == 'loop')
-      const method = mediaMode.value == "stopped" ? 'pause' : 'play'
-      audio[method]()
-    })
-
-    audio.playbackRate = 1
-    const mediaSpeed = app.querySelector('#media-speed')
-    mediaSpeed.addEventListener('change', (e) => {
-      audio.playbackRate = mediaSpeed.value
-    })
-  }
 }
 
 // Set (or value) changed, 
@@ -111,12 +91,18 @@ app.addEventListener('change', (e) => {
   }
 })
 
+// only called if play not looping
+// on app as youtube player creation is async
+app.addEventListener('ended', (e) => {
+  doNext()
+})
+
+
 // value changed
 card.addEventListener('valueset', (e) => {
-  const {name, value} = e.detail
-  const [display, data] = value 
+  const { name, value } = e.detail
+  const [display, data] = value
   state.values[name] = data ?? display
-
   debouncedUpdate(state.currentSet, state.values)
 })
 
@@ -162,10 +148,9 @@ if (fileURI) {
     const filename = new URL(fileURI, 'https://example.com').pathname
       .split('/')
       .pop()
-    parseAndDispatchYaml(yaml, `URL: ${filename}`, controls)
+    parseAndDispatchYaml(yaml, `URL: ${filename}`, nav)
   })
-} else 
-{  
+} else {
   let yaml = getYaml() ?? initialParameters
-  parseAndDispatchYaml(yaml, 'Initial-Parameters.yaml', controls)
+  parseAndDispatchYaml(yaml, 'Initial-Parameters.yaml', nav)
 }

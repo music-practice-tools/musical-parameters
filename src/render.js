@@ -18,9 +18,19 @@ export function renderApp(element, { image }) {
       `
 }
 
+// first value
+function youTubeValue(values) {
+  return Object.values(values).find((el) => el.toString().startsWith('v='))
+}
+
+function hasYouTube(set) {
+  return set.mediaTemplate && set.mediaTemplate.toLowerCase() == 'youtube'
+}
+
 function hasMedia(set, values) {
   return (
     set.mediaTemplate &&
+    !hasYouTube(set) &&
     (!set.mediaTemplate.includes('mediaRoot') ||
       values.hasOwnProperty('mediaRoot'))
   )
@@ -34,7 +44,7 @@ export function renderControls(element, { set, values }) {
   while (element.childNodes.length) {
     element.removeChild(element.lastChild)
   }
-  element.appendChild(createControls(hasMedia(set, values)))
+  element.appendChild(createControls(hasMedia(set, values), hasYouTube(set)))
 }
 
 export function renderCollectionHeader(element, { set, setNames }) {
@@ -72,8 +82,8 @@ export const debouncedUpdate = debounce((set, values) => {
     mediaPlay(set.mediaTemplate, values, set.params)
   } else {
     // first value with a video
-    const ytVideo = Object.values(values).find((el) => el.toString().startsWith('v='))
-    if (ytVideo) { 
+    const ytVideo = youTubeValue(values)
+    if (ytVideo) {
       youTubePlay(ytVideo)
     }
   }

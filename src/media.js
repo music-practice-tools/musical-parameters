@@ -1,6 +1,6 @@
 import Scale from '@tonaljs/scale'
 
-// invoked with this set to values
+// invoked with this being values
 const actions = {
   tonalCentre(params, scale, degree) {
     return Scale.degrees(this[scale] + ' major')(this[degree])
@@ -11,25 +11,29 @@ const actions = {
   },
 }
 
-function interpolate(str, obj, params) {
+function interpolate(str, objValues, arrParams) {
+  // Replace tokens of form ${name}
   return str.replace(/\${([^}]+)}/g, (_, prop) => {
     const matches = [...prop.matchAll(/([\w\s]+)[\(\,\)]/g)]
     if (matches.length) {
-      const captures = matches.map((a) => a[1])
-      const name = captures.shift()
+    // Is function call of form (param1, param2...)
+    const captures = matches.map((a) => a[1]) // => capturing group contents ie param
+      const actionName = captures.shift()
       const objParams = {}
-      params.forEach((elem) => {
+      arrParams.forEach((elem) => {
         objParams[elem.name] = elem.values
       })
+      // the params object followed by each function param
       const args = [objParams, ...captures]
       try {
-        const result = actions[name].apply(obj, args)
+        // vars become this for called action function
+        const result = actions[actionName].apply(objValues, args)
         return result
       } catch {
         return ''
       }
     } else {
-      return obj[prop]
+      return objValues[prop]
     }
   })
 }
