@@ -40,7 +40,7 @@ export function createControls(hasMedia = false, hasYoutube = false) {
     ${(!hasMedia && hasYoutube)
         ? `<div id="ytcontrols">
           <button id="playButton" class="playButton" data-paused=""></button>
-          <span id="videoTime"></span>
+          <span id="videoTime">0:00 / 0:00</span>
           </div>`
         : ''
       }
