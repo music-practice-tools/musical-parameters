@@ -21,7 +21,7 @@ async function loadFile() {
   return { yaml, filename: file.name }
 }
 
-export function createControls(hasMedia = false, hasYoutube = false) {
+export function createControls(parent, hasMedia = false, hasYoutube = false) {
   function render(element) {
     element.className = 'controls'
     element.innerHTML = `
@@ -34,7 +34,7 @@ export function createControls(hasMedia = false, hasYoutube = false) {
       `
       }</div>
     ${(hasMedia && !hasYoutube)
-        ? `<audio id="player" controls loop></audio>`
+        ? `<player id="player" controls loop></player>`
         : ''
       }
     ${(!hasMedia && hasYoutube)
@@ -115,6 +115,7 @@ export function createControls(hasMedia = false, hasYoutube = false) {
   }
 
   render(element)
+  parent.appendChild(element)
 
   function formatTime(seconds) {
     const mins = Math.floor(seconds / 60).toString()
@@ -122,23 +123,35 @@ export function createControls(hasMedia = false, hasYoutube = false) {
     return `${mins.padStart(1, '0')}:${secs.padStart(2, '0')}`
   }
 
-  function processAudio(audio, expanded) {
+  function processPlayerControls(player) {
     const mediaMode = app.querySelector('#media-mode')
     mediaMode.addEventListener('change', (e) => {
-      audio.loop = !!(mediaMode.value == 'loop')
+      player.loop = !!(mediaMode.value == 'loop')
       const method = mediaMode.value == "stopped" ? 'pause' : 'play'
-      audio[method]()
+      player[method]()
     })
 
-    audio.playbackRate = 1
+    player.playbackRate = 1
     const mediaSpeed = app.querySelector('#media-speed')
     mediaSpeed.addEventListener('change', (e) => {
-      audio.playbackRate = mediaSpeed.value
+      player.playbackRate = mediaSpeed.value
     })
 
-    if (expanded) {
-      const playButton = app.querySelector('#playButton')
-      audio.setStateFunc(({ duration, time, isPlaying }) => {
+    const showVideo = app.querySelector('#showVideo')
+    if (showVideo) {
+      showVideo.addEventListener('input', (e) => {
+        if (e.target.checked) {
+          player.getIframe().classList.remove("hidden")
+        } else {
+          player.getIframe().classList.add("hidden")
+        }
+      })
+    }
+
+    // Youtube specific player controls
+    const playButton = app.querySelector('#playButton')
+    if (playButton) {
+      player.setStateFunc(({ duration, time, isPlaying }) => {
         if (!isPlaying) {
           playButton.setAttribute('data-paused', '')
           playButton.setAttribute('aria-label', 'Play')
@@ -149,37 +162,20 @@ export function createControls(hasMedia = false, hasYoutube = false) {
           playButton.setAttribute('aria-label', 'Pause')
         }
       })
-      if (playButton) {
-        playButton.addEventListener('click', (e) => {
-          const isPlaying = (audio.getPlayerState() == 1)
-          const method = (isPlaying) ? 'pause' : 'play'
-          audio[method]()
-        })
-      }
-
-      const showVideo = app.querySelector('#showVideo')
-      if (showVideo) {
-        showVideo.addEventListener('input', (e) => {
-          if (e.target.checked) {
-            audio.getIframe().classList.remove("hidden")
-          } else {
-            audio.getIframe().classList.add("hidden")
-          }
-        })
-      }
+      playButton.addEventListener('click', (e) => {
+        const isPlaying = (player.getPlayerState() == 1)
+        const method = (isPlaying) ? 'pause' : 'play'
+        player[method]()
+      })
     }
   }
 
-  // TODO this is dodgy as rely on delay to alow adding to DOM
+  let promise
   if (!hasMedia && hasYoutube) {
-    youTubeLoad().then(player => processAudio(player, true))
-  } else if (hasMedia && !hasYoutube) {
-    setTimeout(() => {
-      const player = app.querySelector('#player')
-      processAudio(player, false)
-    }, 450)
-
+    promise = youTubeLoad()
+  } else if (hasMedia && !hasYoutube) {l
+    const player = app.querySelector('#player')
+    promise = Promise.resolve(player)
   }
-
-  return element
+  return promise.then((player) => processPlayerControls(player, true))
 }

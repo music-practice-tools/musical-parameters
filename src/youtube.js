@@ -2,6 +2,7 @@ function injectYTAPI() {
   // YouTube iFrame API
   // Might not be needed if script async now fully supported
   const script = document.createElement('script')
+  script.id = 'youtube'
   script.src = 'https://www.youtube.com/iframe_api'
   script.type = 'text/javascript'
   const head = document.querySelector('head')
@@ -17,8 +18,9 @@ function playVideo(player, { videoId, startSeconds = undefined, endSeconds = und
   })
 }
 
-let player     // set when player ready
+let player
 let cuedVideo  // to playing when player is ready
+let interval
 
 export function youTubePlay(item) {
   // Note seems safe to assume id doesn't include =
@@ -38,11 +40,11 @@ export function youTubePlay(item) {
 }
 
 function extendPlayer(proto) {
-  // TODO MDN says this kills optimisations
-  proto.yt_seekToAndPlay = function (seconds) {
-    this.seekTo(seconds, true)
-    this.playVideo()
+  if (proto.getPlayerTimeState) {
+    return
   }
+
+  // TODO MDN says this kills optimisations
   proto.getPlayerTimeState = function () {
     return {
       duration: this.getDuration(),
@@ -67,13 +69,8 @@ function extendPlayer(proto) {
   }
 }
 
-export function youTubePlayer() {
-  return player
-}
-
 export function youTubeLoad() {
   let { promise, resolve } = Promise.withResolvers();
-  let interval
 
   function callStateFunc(player) {
     if (player.stateFunc) {
@@ -137,7 +134,7 @@ export function youTubeLoad() {
   window.onYouTubeIframeAPIReady = function () {
     extendPlayer(YT.Player.prototype)
 
-    new YT.Player('ytVideo', {
+    let p = new YT.Player('ytVideo', {
       height: '180',
       width: '320',
       playerVars: {
@@ -148,10 +145,20 @@ export function youTubeLoad() {
         'onStateChange': onPlayerStateChange
       }
     });
-
     window.onunload = cleanup
   }
-  injectYTAPI()
+
+  if (window.YT) {
+    if (player) {
+      player.destroy();
+      player = undefined
+      stopPoll()
+    }
+    window.onYouTubeIframeAPIReady()
+  }
+  else {
+    injectYTAPI()
+  }
 
   return promise
 }

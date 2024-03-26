@@ -59,7 +59,6 @@ function pickSet() {
 }
 
 function toggleAudio(audio) {
-  alert('t')
   const stopped = document.querySelector('#media-mode').value == "stopped"
   const method = audio.paused && !stopped ? 'play' : 'pause'
   audio[method]()
@@ -81,7 +80,9 @@ function onSetChange(index) {
   state.currentSetIndex = index
   const set = state.currentSet
   renderControls(nav, { set, values })
-  renderCollectionRows(card, { set })
+    .then((p) => {
+      renderCollectionRows(card, { set })
+    })
 }
 
 // Set (or value) changed, 

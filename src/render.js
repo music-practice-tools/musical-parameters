@@ -44,7 +44,7 @@ export function renderControls(element, { set, values }) {
   while (element.childNodes.length) {
     element.removeChild(element.lastChild)
   }
-  element.appendChild(createControls(hasMedia(set, values), hasYouTube(set)))
+ return createControls(element, hasMedia(set, values), hasYouTube(set))
 }
 
 export function renderCollectionHeader(element, { set, setNames }) {
@@ -72,7 +72,7 @@ export function renderFooter(element, { filename }) {
 // Called for updates out of normal render flow 
 // debounced as will be called multiple times
 export const debouncedUpdate = debounce((set, values) => {
-  if (hasNote(set)) {
+    if (hasNote(set)) {
     noteUpdate(set.noteTemplate, values, set.params)
   } else {
     noteUpdate('', null, null)
