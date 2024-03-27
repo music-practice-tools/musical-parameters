@@ -173,9 +173,14 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
   let promise
   if (!hasMedia && hasYoutube) {
     promise = youTubeLoad()
-  } else if (hasMedia && !hasYoutube) {l
+  } else {
     const player = app.querySelector('#player')
     promise = Promise.resolve(player)
   }
-  return promise.then((player) => processPlayerControls(player, true))
+  console.log(hasMedia, hasYoutube, promise)
+  return promise.then((player) => {
+    if (player) {
+      processPlayerControls(player, true)
+    }
+  })
 }
