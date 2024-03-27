@@ -22,19 +22,12 @@ let player
 let cuedVideo  // to playing when player is ready
 let interval
 
-export function youTubePlay(item) {
-  // Note seems safe to assume id doesn't include =
-  const video = {
-    endSeconds: item.split('e=')[1]?.trim(),
-    startSeconds: item.split('e=')[0].split('s=')[1]?.trim(),
-    videoId: item.split('e=')[0].split('s=')[0].split('v=')[1]?.trim()
-  }
-
+export function youTubePlay(video) {
   if (player) {
     playVideo(player, video);
+    cuedVideo = undefined
   }
   {
-    // To play when player is ready
     cuedVideo = video
   }
 }
@@ -82,6 +75,7 @@ export function youTubeLoad() {
     resolve(player)
     if (cuedVideo) {
       playVideo(player, cuedVideo)
+      cuedVideo = undefined
     }
   }
 
@@ -106,7 +100,6 @@ export function youTubeLoad() {
 
   function onPlayerStateChange(event) {
     const { data: playerStatus, target: player } = event
-
     if (playerStatus == YT.PlayerState.PLAYING) {
       stopPoll()
       startPoll(player)
@@ -150,8 +143,11 @@ export function youTubeLoad() {
 
   if (window.YT) {
     if (player) {
+      player.loadVideoById('')
+      player.stopVideo()  // as destroy() doesn't
       player.destroy();
       player = undefined
+      cuedVideo = undefined
       stopPoll()
     }
     window.onYouTubeIframeAPIReady()

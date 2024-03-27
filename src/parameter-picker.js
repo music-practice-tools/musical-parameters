@@ -5,7 +5,7 @@ export function createParameterPicker(name, values) {
   const normalisedValues = values.map((value) =>
     Array.isArray(value) && value.length == 2
       ? value
-      : [value, value.replace(/ /g, '_')]
+      : [value, value.toString().replace(/ /g, '_')]
   )
 
   let menuExpanded = false
@@ -15,9 +15,8 @@ export function createParameterPicker(name, values) {
     if (values) {
       content = `<select>${values.map((val, i) => {
         val = !Array.isArray(val) ? [val, val] : val
-        return `<option value="${i}" ${val[0] == value ? 'selected' : ''}>${
-          val[0]
-        }</option>` 
+        return `<option value="${i}" ${val[0] == value ? 'selected' : ''}>${val[0]
+          }</option>`
       })}</select>`
     }
 

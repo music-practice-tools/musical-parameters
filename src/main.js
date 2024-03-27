@@ -12,10 +12,12 @@ import { fetchParameters } from './fetch-parameters.js'
 import initialParameters from './Initial-Parameters.yaml?raw'
 import { randomInt } from './random.js'
 
+function showError(error) {
+  alert(`${error.type}: ${error.message}\n`)
+}
 // Global exception handlers
 window.addEventListener('error', (event) => {
-  const error = event.error
-  alert(`${error.type}: ${error.message}\n`)
+  showError(event.error)
   event.preventDefault()
 })
 window.addEventListener('unhandledrejection', (event) => {
@@ -83,8 +85,14 @@ function onSetChange(index) {
     .then((p) => {
       renderCollectionRows(card, { set })
     })
+    .catch((e) => {
+      console.log(e.message)
+      showError(new ErrorEvent('File error', {
+        message: `processing parameter values`
+      })
+      )
+    })
 }
-
 // Set (or value) changed, 
 app.addEventListener('change', (e) => {
   if (e.target.id == 'set') {
