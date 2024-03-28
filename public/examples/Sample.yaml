@@ -1,6 +1,6 @@
 # Sample showing available featurea
-- title: Title 
-- set: YouTube Set 
+- title: Sample Config
+- set: YouTube Nora Jones 
   mediaTemplate: YouTube
   params:
     - name: Video Sections
