@@ -12,7 +12,7 @@
       values:
         - Wibble
         - Wobble
-- set: IFR Jam Tracks
+- set: With Media
   mediaTemplate: "https://parameters.musicpracticetools.net/examples/audio/${Style}_key_of_${Key}.mp3"
   noteTemplate: "File: .../audio/${Style}_key_of_${Key}.mp3"
   params:
