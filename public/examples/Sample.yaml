@@ -13,7 +13,7 @@
         - Wibble
         - Wobble
 - set: IFR Jam Tracks
-  mediaTemplate: "http://localhost:5173//examples/audio/${Style}_key_of_${Key}.mp3"
+  mediaTemplate: "https://parameters.musicpracticetools.net/examples/audio/${Style}_key_of_${Key}.mp3"
   noteTemplate: "File: .../audio/${Style}_key_of_${Key}.mp3"
   params:
   - name: Style
