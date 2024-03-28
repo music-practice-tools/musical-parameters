@@ -62,39 +62,40 @@ function extendPlayer(proto) {
   }
 }
 
+function callStateFunc(player) {
+  if (player.stateFunc) {
+    player.stateFunc(player.getPlayerTimeState())
+  }
+}
+
+function startPoll(player) {
+  if (!interval) {
+    interval = setInterval(() => {
+      callStateFunc(player)
+    }, 450)
+  }
+}
+
+function stopPoll() {
+  cleanup()
+}
+
+function cleanup() {
+  if (interval) {
+    clearInterval(interval)
+    interval = undefined
+  }
+}
+
 export function youTubeLoad() {
   let { promise, resolve } = Promise.withResolvers();
 
-  function callStateFunc(player) {
-    if (player.stateFunc) {
-      player.stateFunc(player.getPlayerTimeState())
-    }
-  }
   function onPlayerReady(event) {
     player = event.target
     resolve(player)
     if (cuedVideo) {
       playVideo(player, cuedVideo)
       cuedVideo = undefined
-    }
-  }
-
-  function startPoll(player) {
-    if (!interval) {
-      interval = setInterval(() => {
-        callStateFunc(player)
-      }, 450)
-    }
-  }
-
-  function stopPoll() {
-    cleanup()
-  }
-
-  function cleanup() {
-    if (interval) {
-      clearInterval(interval)
-      interval = undefined
     }
   }
 
@@ -142,14 +143,6 @@ export function youTubeLoad() {
   }
 
   if (window.YT) {
-    if (player) {
-      player.loadVideoById('')
-      player.stopVideo()  // as destroy() doesn't
-      player.destroy();
-      player = undefined
-      cuedVideo = undefined
-      stopPoll()
-    }
     window.onYouTubeIframeAPIReady()
   }
   else {
@@ -157,4 +150,13 @@ export function youTubeLoad() {
   }
 
   return promise
+}
+
+export function youTubeUnload() {
+  if (window.YT && player) {
+    stopPoll()
+    player.destroy();
+    player = undefined
+    cuedVideo = undefined
+  }
 }

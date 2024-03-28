@@ -1,0 +1,26 @@
+# Sample showing available featurea
+- title: Title 
+- set: YouTube Set 
+  mediaTemplate: YouTube
+  params:
+    - name: Video Sections
+      values:
+        - [A, [tO4dxvguQDk, 0, 38]]
+        - [B, [tO4dxvguQDk, 59, 81]]
+        - [Piano, [tO4dxvguQDk, 125, 146]]
+    - name: Text values
+      values:
+        - Wibble
+        - Wobble
+- set: IFR Jam Tracks
+  mediaTemplate: "http://localhost:5173//examples/audio/${Style}_key_of_${Key}.mp3"
+  noteTemplate: "File: .../audio/${Style}_key_of_${Key}.mp3"
+  params:
+  - name: Style
+    values:
+      - [Pop, pop]
+      - [Jazz, jazz]
+  - name: Key
+    values:
+      - [A♭, Ab]
+      - A

@@ -60,10 +60,10 @@ function pickSet() {
   onSetChange(newSetIndex)
 }
 
-function toggleAudio(audio) {
+function toggleAudio(player) {
   const stopped = document.querySelector('#media-mode').value == "stopped"
-  const method = audio.paused && !stopped ? 'play' : 'pause'
-  audio[method]()
+  const method = player.paused && !stopped ? 'play' : 'pause'
+  player[method]()
 }
 
 // Collection loaded
@@ -117,23 +117,23 @@ card.addEventListener('valueset', (e) => {
 
 // touch to background
 window.addEventListener('touchend', (e) => {
-  const audio = app.querySelector('audio')
-  if (e.target.id == 'app' && !!audio) {
+  const player = app.querySelector('#player')
+  if (e.target.id == 'app' && !!player) {
     e.preventDefault()
     e.stopPropagation()
-    toggleAudio(audio)
+    toggleAudio(player)
   }
 })
 
 // Key
 window.addEventListener('keyup', (e) => {
-  const audio = app.querySelector('audio')
+  const player = app.querySelector('#player')
   if (e.code == 'KeyN') {
     doNext()
   } else if (e.code == 'KeyS') {
     pickSet()
-  } else if (!!audio && (e.code == 'KeyP' || e.code == 'Space')) {
-    toggleAudio(audio)
+  } else if (!!player && (e.code == 'KeyP' || e.code == 'Space')) {
+    toggleAudio(player)
     e.stopPropagation()
     e.preventDefault()
   } else if (e.code.startsWith('Digit')) {

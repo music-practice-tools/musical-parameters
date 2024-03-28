@@ -1,5 +1,5 @@
 import { storeYaml, parseAndDispatchYaml } from './process-yaml.js'
-import { youTubeLoad } from './youtube.js'
+import { youTubeLoad, youTubeUnload } from './youtube.js'
 
 const opts = {
   startIn: 'desktop',
@@ -34,7 +34,7 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
       `
       }</div>
     ${(hasMedia && !hasYoutube)
-        ? `<player id="player" controls loop></player>`
+        ? `<audio id="player" controls loop></audio>`
         : ''
       }
     ${(!hasMedia && hasYoutube)
@@ -174,6 +174,7 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
   if (!hasMedia && hasYoutube) {
     promise = youTubeLoad()
   } else {
+    youTubeUnload()
     const player = app.querySelector('#player')
     promise = Promise.resolve(player)
   }

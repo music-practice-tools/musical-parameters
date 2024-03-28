@@ -9,18 +9,20 @@
 
 <body>
   <h1>About Musical Parameters</h1>
-  <p>A mobile-friendly web app that presents sets of parameters each with a current value selected from
-    several possibilities. The displayed value for each parameter can be randomly selected, both individually or all at
-    once. In addition, the displayed value for each can be manually selected.</p>
+  <p>A flash card like web app that presents sets of parameters each with a current value selected from
+    several possibilities. Buttons allow the selected value for each parameter to be randomly selected, both individually or all at
+    once. In addition, each value can be manually selected.</p>
   <p>Options for how each value is selected include: from all values, using all values, or locked.</p>
-  <p>Additionally, audio files can be specified and played for selected values using a simple media player. Plus, the
-    display of a text note is possible based on the current values.
+  <p>Online audio files can be played with a filename specified by the selected values.
+     A simple media player is provided with pause and speed controls. 
+     Youtube videos can also be played and viewed with video per value.
+     Plus, a text note is can be displayed based on the current selected values.
   </p>
-  <p>This is not a ready-to-use app, rather like a word processor, it is a tool that requires
-    configuration files that specify what the user sees, including the sets of parameters, values, media files and text
-    notes. These configuration files are created using <a href="https://yaml.org/">yaml format</a> which aims to be
-    human friendly but is still a technical language (see examples below). In addition a value for the base URL of
-    media files can be passed in the URL query string.
+  <p>Musical Parameters uses configuration files to specify the sets of parameters and values.
+    notes. These files can be online and specified in the URL or loaded from the local file system.
+    The <a href="https://yaml.org/">yaml format</a> is used in an attempt to be
+    human friendly, but it is a fairly technical language (see examples below). 
+    To keep file locations out of online files the base URL of media files can be passed in the URL query string.
   </p>
   <p>
     Originally designed to generate random musical parameters for practicing, composing etc. in response to a request by
@@ -30,9 +32,11 @@
   <h1>Operating Notes</h1>
   <section>
     <ul>
-      <li>Configuration files located on the web can be specified with a "?file=https://.....yaml" at the end of the app IRL.
-        Alternatively, local files can be loaded using the "Load" link. The contents of the last loaded file will be remembered unless overridden in the URL.
-        If the file is altered simply re load it.
+      <li>Configuration files located on the web can be specified with a "?file=https://.....yaml" at the end of the app
+        IRL.
+        Alternatively, local files can be loaded using the "Load" link. The contents of the last loaded file will be
+        remembered unless overridden in the URL.
+        If the file is edited simply reload it.
       </li>
       <li>If multiple sets of parameters are available, choose one by clicking on the name at the left in the top row.
         Select a random set using &#x1F504; to the right of the set name selector.
@@ -70,7 +74,7 @@
     </ul>
   </section>
 
-  <h1>Example Musical Parameter files</h1>
+  <h1>Example Configuration Files</h1>
   <section>
     <p>Open, download or view an examples. If you download you can upload when offline.</p>
     <ul>

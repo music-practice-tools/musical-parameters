@@ -39,13 +39,13 @@ function interpolate(str, objValues, arrParams) {
 }
 
 function play(media, pause=false) {
-  const audio = app.querySelector('audio')
-  const rate = audio.playbackRate // as is reset
-  audio.src = media
-  audio.load()
-  audio.play().then(audio.playbackRate = rate).catch(() => { }) // user needs to interact for play
+  const player = app.querySelector('#player')
+  const rate = player.playbackRate // as is reset
+  player.src = media
+  player.load()
+  player.play().then(player.playbackRate = rate).catch(() => { }) // user needs to interact for play
   if (pause) {
-    audio.pause()
+    player.pause()
   }
 }
 
