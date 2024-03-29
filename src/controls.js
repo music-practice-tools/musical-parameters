@@ -180,7 +180,7 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
   }
   return promise.then((player) => {
     if (player) {
-      processPlayerControls(player, true)
+      processPlayerControls(player)
     }
   })
 }
