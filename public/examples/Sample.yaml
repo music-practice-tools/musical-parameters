@@ -1,18 +1,21 @@
 # Sample showing available feature
 - title: Sample Config
 - set: YouTube Nora Jones 
-  mediaTemplate: YouTube
+  mediaTemplate: YouTube   # indicates youTube video ids in values
+  noteTemplate: "Video: ${Video Sections}"  # Optional note
   params:
     - name: Video Sections
       values:
-        - [A, [tO4dxvguQDk, 0, 38]]
+        - [A, [tO4dxvguQDk, 0, 38]] # Display Text, [start time], [end time]
         - [B, [tO4dxvguQDk, 59, 81]]
-        - [Piano, [tO4dxvguQDk, 125, 146]]
+        - [Piano, [tO4dxvguQDk, 125, 2:26]] # Time format is SS, MM:SS or HH:MM:SS - one or 2 digits each
+        - [End, [tO4dxvguQDk, 146]]
     - name: Text values
       values:
-        - Wibble
-        - Wobble
+        - First Value
+        - Second Value
 - set: With Media
+  # MediaTemplate specific URL of media based on parameter values
   mediaTemplate: "https://parameters.musicpracticetools.net/examples/audio/${Style}_key_of_${Key}.mp3"
   noteTemplate: "File: .../audio/${Style}_key_of_${Key}.mp3"
   params:

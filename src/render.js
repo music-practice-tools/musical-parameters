@@ -20,11 +20,13 @@ export function renderApp(element, { image }) {
 
 // first value
 function youTubeVideoValue(values) {
+  const hmsToSeconds = (time) => time.split(':').reduce((acc, time) => (60 * acc) + parseInt(time), 0)
+
   const video = Object.values(values).find((el) => Array.isArray(el))
   return video ? {
     videoId: video[0],
-    startSeconds: video[1],
-    endSeconds: video[2]
+    startSeconds: hmsToSeconds(video[1]?.toString() ?? '0'),
+    endSeconds: hmsToSeconds(video[2]?.toString() ?? '0')
   } : undefined
 }
 
@@ -88,6 +90,7 @@ export const debouncedUpdate = debounce((set, values) => {
   } else {
     // first value with a video
     const video = youTubeVideoValue(values)
+    console.log(video)
     if (video) {
       youTubePlay(video)
     }
