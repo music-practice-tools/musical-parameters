@@ -10,21 +10,13 @@ function injectYTAPI() {
   // when ready this calls onYouTubeIframeAPIReady
 }
 
-function playVideo(player, { videoId, startSeconds = undefined, endSeconds = undefined }) {
-  player.loadVideoById({
-    videoId,
-    startSeconds,
-    endSeconds
-  })
-}
-
 let player
 let cuedVideo  // to playing when player is ready
 let interval
 
 export function youTubePlay(video) {
   if (player) {
-    playVideo(player, video);
+    player.loadAndPlayVideo(video);
     cuedVideo = undefined
   }
   {
@@ -42,6 +34,7 @@ function extendPlayer(proto) {
     return {
       duration: this.getDuration(),
       time: this.getCurrentTime(),
+      end: this.endSeconds,
       isPlaying: this.getPlayerState() == YT.PlayerState.PLAYING,
     }
   }
@@ -51,11 +44,20 @@ function extendPlayer(proto) {
     },
   })
   proto.loop = true
+  proto.endTime = undefined
   proto.pause = function () {
     this.pauseVideo()
   }
   proto.play = function () {
     this.playVideo()
+  }
+  proto.loadAndPlayVideo = function({ videoId, startSeconds = undefined, endSeconds = undefined }) {
+    this.endSeconds = endSeconds
+    this.loadVideoById({
+      videoId,
+      startSeconds,
+      endSeconds
+    })
   }
   proto.setStateFunc = function (func) {
     this.stateFunc = func
@@ -94,7 +96,7 @@ export function youTubeLoad() {
     player = event.target
     resolve(player)
     if (cuedVideo) {
-      playVideo(player, cuedVideo)
+      player.loadAndPlayVideo(cuedVideo)
       cuedVideo = undefined
     }
   }

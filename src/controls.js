@@ -151,13 +151,13 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
     // Youtube specific player controls
     const playButton = app.querySelector('#playButton')
     if (playButton) {
-      player.setStateFunc(({ duration, time, isPlaying }) => {
+      player.setStateFunc(({ duration, time, end, isPlaying }) => {
         if (!isPlaying) {
           playButton.setAttribute('data-paused', '')
           playButton.setAttribute('aria-label', 'Play')
         } else {
           const videoTime = document.querySelector('#videoTime')
-          videoTime.textContent = `${formatTime(time)} / ${formatTime(duration)}`
+          videoTime.textContent = `${formatTime(time)} / ${formatTime(end ?? duration)}`
           playButton.removeAttribute('data-paused')
           playButton.setAttribute('aria-label', 'Pause')
         }
