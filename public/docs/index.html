@@ -12,16 +12,16 @@
   <p>A flash card like web app that presents sets of parameters each with a current value selected from
     several possibilities. Buttons allow the selected value for each parameter to be randomly selected, both individually or all at
     once. In addition, each value can be manually selected.</p>
-  <p>Options for how each value is selected include: from all values, using all values, or locked.</p>
+  <p>Options for how each value is selected include: from all values, using all values once, or locked.</p>
   <p>Online audio files can be played with a filename specified by the selected values.
      A simple media player is provided with pause and speed controls. 
      Youtube videos can also be played with a video specified per value.
      Plus, a text note is can be displayed based on the current selected values.
   </p>
-  <p>Musical Parameters uses configuration files to specify the sets of parameters and values.
-    notes. These files can be online and specified in the URL or loaded from the local file system.
+  <p>Musical Parameters uses configuration files to specify the sets of parameters and values, media files, YouTube videos and notes.
+    These files can be online and specified in the URL or loaded from the local file system.
     The <a href="https://yaml.org/">yaml format</a> is used in an attempt to be
-    human friendly, but it is a fairly technical language (see examples below). 
+    human friendly, but it is still a fairly technical language (see examples below). 
     To keep file locations out of online files the base URL of media files can be passed in the URL query string.
   </p>
   <p>
@@ -32,8 +32,8 @@
   <h1>Operating Notes</h1>
   <section>
     <ul>
-      <li>Configuration files located on the web can be specified with a "?file=https://.....yaml" at the end of the app
-        IRL.
+      <li>Configuration files located on the web can be specified with a "?file=https://..../filename.yaml" at the end of the app
+        URL.
         Alternatively, local files can be loaded using the "Load" link. The contents of the last loaded file will be
         remembered unless overridden in the URL.
         If the file is edited simply reload it. 
@@ -42,7 +42,7 @@
       <li>If multiple sets of parameters are available, choose one by clicking on the name at the left in the top row.
         Select a random set using &#x1F504; to the right of the set name selector.
       </li>
-      <li>Generate new a selection of values for all parameters with &#x1F504; icon button at the right of the top row.
+      <li>Generate a new selection of values for all parameters with &#x1F504; icon button at the right of the top row.
         A new selection is chosen every time the page is displayed or refreshed.
       </li>
       <li>Pick new random values for individual parameters using &#x1F504; icon buttons on the right end of each row.
