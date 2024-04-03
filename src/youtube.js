@@ -1,6 +1,5 @@
 function injectYTAPI() {
   // YouTube iFrame API
-  // Might not be needed if script async now fully supported
   const script = document.createElement('script')
   script.id = 'youtube'
   script.src = 'https://www.youtube.com/iframe_api'
@@ -155,6 +154,7 @@ export function youTubeLoad() {
 }
 
 export function youTubeUnload() {
+  // Perhaps better to hide?
   if (window.YT && player) {
     stopPoll()
     player.destroy();

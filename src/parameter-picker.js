@@ -13,7 +13,7 @@ export function createParameterPicker(name, values) {
   const render = (element, { name, value, values, menuExpanded }) => {
     let content = value
     if (values) {
-      content = `<select>${values.map((val, i) => {
+      content = `<select title="Select value">${values.map((val, i) => {
         val = !Array.isArray(val) ? [val, val] : val
         return `<option value="${i}" ${val[0] == value ? 'selected' : ''}>${val[0]
           }</option>`
@@ -24,7 +24,7 @@ export function createParameterPicker(name, values) {
     <div class="picker-name">${name}:</div>
     <div class="picker-value">${content}</div>
     <div class="picker-btns">
-      <button class="picker-btn" title="Pick new" aria-label="Pick new">\u{1F504}</button>
+      <button class="picker-btn" title="Pick value" aria-label="Pick value">\u{1F504}</button>
       <button class="picker-menu-btn" title="Picker options" aria-label="Picker options" aria-haspopup="dialog" aria-control="picker-menu" 
       aria-expanded=${menuExpanded ? 'true' : 'false'}>&nbsp;&#8942;&nbsp;</button>
     </div></div>`

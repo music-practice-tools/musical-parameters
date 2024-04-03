@@ -5,7 +5,7 @@ export function createParametersHeader(names) {
     const select =
       names.length == 1
         ? `<span id="set">${names[0]}</span>`
-        : `<select id="set">${names.map(
+        : `<select id="set" title="Select set">${names.map(
           (name, i) => `<option value="${i}">${name}</option>`
         )}</select>
           `
@@ -14,7 +14,7 @@ export function createParametersHeader(names) {
     <div class="picker-header-value">${select}</div>
     ${(names.length > 1) ? `<button id="pick-set" title="Pick set - S key" aria-label="Pick set">\u{1F504}</button>` : '' }
     <div id="note"><span>&nbsp;</span></div>
-    <button id="pick-all" title="Pick new values - N key" aria-label="Pick all">\u{1F504}</button></div>`
+    <button id="pick-all" title="Pick values - N key" aria-label="Pick all">\u{1F504}</button></div>`
   }
 
   const element = document.createElement('div')

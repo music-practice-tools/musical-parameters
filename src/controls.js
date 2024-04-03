@@ -25,10 +25,10 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
   function render(element) {
     element.className = 'controls'
     element.innerHTML = `
-    <div><a href="/docs/">About</a>
+    <div><a href="/docs/" title="Documentation">About</a>
     ${hasFileSystemAccessAPI
-        ? `<button style="border:0;" id="load-file" title="Load from file" aria-label="Load file">Load</button>`
-        : `<label id="load-label" aria-label="Load file" tabindex="0">Load
+        ? `<button style="border:0;" id="load-file" title="Load file" aria-label="Load file">Load</button>`
+        : `<label id="load-label" title="Load file" aria-label="Load file" tabindex="0">Load
         <input id="load-file" type="file" accept="text/yaml,.yaml" class="visually-hidden" tabindex="-1" >
       </label>
       `
@@ -39,7 +39,7 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
       }
     ${(!hasMedia && hasYoutube)
         ? `<div id="ytcontrols">
-          <button id="playButton" class="playButton" data-paused=""></button>
+          <button id="playButton" class="playButton" data-paused="" title="Play/pause - Space key"></button>
           <span id="videoTime">0:00 / 0:00</span>
           </div>`
         : ''
@@ -60,7 +60,7 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
             <option value="0.25">0.25x&nbsp;</option>
           </select>
           ${(hasYoutube)
-          ? '<label>Show video: <input id="showVideo" type="checkbox"/></label>' : ''} 
+          ? '<label title="Show video">Show: <input id="showVideo" type="checkbox"/></label>' : ''} 
               </div>
               <div id="ytVideo" class="hidden">`
         : ''
