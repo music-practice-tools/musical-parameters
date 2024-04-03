@@ -117,7 +117,7 @@ card.addEventListener('valueset', (e) => {
 
 // touch to background
 window.addEventListener('touchend', (e) => {
-  const player = app.querySelector('#player')
+  const player = app.querySelector('#player') ?? app.querySelector('#ytVideo').player
   if (e.target.id == 'app' && !!player) {
     e.preventDefault()
     e.stopPropagation()
@@ -127,7 +127,7 @@ window.addEventListener('touchend', (e) => {
 
 // Key
 window.addEventListener('keyup', (e) => {
-  const player = app.querySelector('#player')
+  const player = app.querySelector('#player') ?? app.querySelector('#ytVideo').player
   if (e.code == 'KeyN') {
     doNext()
   } else if (e.code == 'KeyS') {

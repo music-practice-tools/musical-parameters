@@ -29,6 +29,27 @@ function extendPlayer(proto) {
   }
 
   // TODO MDN says this kills optimisations
+  // Public
+  Object.defineProperty(proto, 'playbackRate', {
+    set(rate) {
+      this.setPlaybackRate(parseFloat(rate));
+    },
+  })
+  Object.defineProperty(proto, 'paused', {
+    get() {
+      return this.getPlayerState() != YT.PlayerState.PLAYING
+    },
+  })
+  proto.pause = function () {
+    this.pauseVideo()
+  }
+  proto.play = function () {
+    this.playVideo()
+  }
+
+  // Private
+  proto.loop = true
+  proto.endTime = undefined
   proto.getPlayerTimeState = function () {
     return {
       duration: this.getDuration(),
@@ -37,20 +58,7 @@ function extendPlayer(proto) {
       isPlaying: this.getPlayerState() == YT.PlayerState.PLAYING,
     }
   }
-  Object.defineProperty(proto, 'playbackRate', {
-    set(rate) {
-      this.setPlaybackRate(parseFloat(rate));
-    },
-  })
-  proto.loop = true
-  proto.endTime = undefined
-  proto.pause = function () {
-    this.pauseVideo()
-  }
-  proto.play = function () {
-    this.playVideo()
-  }
-  proto.loadAndPlayVideo = function({ videoId, startSeconds = undefined, endSeconds = undefined }) {
+  proto.loadAndPlayVideo = function ({ videoId, startSeconds = undefined, endSeconds = undefined }) {
     this.endSeconds = endSeconds
     this.loadVideoById({
       videoId,
@@ -98,6 +106,7 @@ export function youTubeLoad() {
       player.loadAndPlayVideo(cuedVideo)
       cuedVideo = undefined
     }
+    player.getIframe().player = player
   }
 
   function onPlayerStateChange(event) {
