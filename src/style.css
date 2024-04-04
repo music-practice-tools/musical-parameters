@@ -323,6 +323,7 @@ input.visually-hidden:focus-within+label {
 
   button {
     background-color: #f9f9f9;
+    line-height: 0;
   }
 
   .card {
