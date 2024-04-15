@@ -47,9 +47,18 @@ let state = {
 }
 
 function doNext() {
-  const pickAll = app.querySelector('#pick-all')
-  if (pickAll) {
-    pickAll.click()
+  const mediaMode = app.querySelector('#media-mode')
+  if (mediaMode.value == 'loop-all') {
+    const picker = app.querySelectorAll('.picker-value select')[0] ?? undefined
+    if (picker) {
+      picker.selectedIndex = (picker.selectedIndex == picker.length - 1) ? 0 : picker.selectedIndex + 1
+      picker.click()
+    }
+  } else {
+    const pickAll = app.querySelector('#pick-all')
+    if (pickAll) {
+      pickAll.click()
+    }
   }
 }
 

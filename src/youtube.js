@@ -115,9 +115,10 @@ export function youTubeLoad() {
       stopPoll()
       startPoll(player)
     } else {
+      const wasPlaying = !!interval // we extra end events
       stopPoll()
       // cant get loop to work with single video - maybe needs playlist
-      if (playerStatus == YT.PlayerState.ENDED) {
+      if (playerStatus == YT.PlayerState.ENDED && wasPlaying) {
         if (player.loop) { // end video
           const seekTime = cuedVideo.startSeconds ? cuedVideo.startSeconds : 0
           player.seekTo(seekTime)

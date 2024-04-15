@@ -32,6 +32,12 @@ export function createParameterPicker(name, values) {
 
   const element = document.createElement('div')
 
+  function notifyValueSet(name, value) {
+    element.dispatchEvent(
+      new CustomEvent('valueset', { bubbles: true, detail: { name, value } })
+    )
+  }
+
   let itemPicker
   const onClick = (thisPicker, value) => {
     if (!value) {
@@ -50,9 +56,7 @@ export function createParameterPicker(name, values) {
     }
     if (value) {
       render(element, { name, value: value[0], values, menuExpanded })
-      element.dispatchEvent(
-        new CustomEvent('valueset', { bubbles: true, detail: { name, value } })
-      )
+      notifyValueSet(name, value)
     }
   }
 
@@ -61,12 +65,16 @@ export function createParameterPicker(name, values) {
     showPickerMenu(target)
   }
 
-  element.addEventListener('input', (e) => {
-    const select = e.target
+  function getSelectionValue(select) {
     let value = values[select.value]
     if (!Array.isArray(value)) {
       value = [value, value]
     }
+    return value
+  }
+
+  element.addEventListener('input', (e) => {
+    const value = getSelectionValue(e.target)
     menuExpanded = false
     onClick(true, value)
   })
@@ -78,6 +86,10 @@ export function createParameterPicker(name, values) {
       } else if (e.target.className == 'picker-menu-btn') {
         onMenuClick(e.target)
       }
+    }
+    else if (e.target.nodeName == 'SELECT' && !e.isTrusted) { // Used by main to indicate a change
+      const value = getSelectionValue(e.target)
+      notifyValueSet(name, value)
     }
   })
 

@@ -48,6 +48,7 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
         ? `<div>
           <select id="media-mode">
             <option value="loop" selected>Loop 1</option>
+            <option value="loop-all" >Loop All</option>
             <option value="shuffle" >Shuffle</option>
             <option value="stopped" >Stopped</option>
           </select>
@@ -126,7 +127,7 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
   function processPlayerControls(player) {
     const mediaMode = app.querySelector('#media-mode')
     mediaMode.addEventListener('change', (e) => {
-      player.loop = !!(mediaMode.value == 'loop')
+      player.loop = !!(mediaMode.value == 'loop') // loop all handled in main
       const method = mediaMode.value == "stopped" ? 'pause' : 'play'
       player[method]()
     })
