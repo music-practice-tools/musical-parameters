@@ -115,7 +115,6 @@ app.addEventListener('ended', (e) => {
   doNext()
 })
 
-
 // value changed
 card.addEventListener('valueset', (e) => {
   const { name, value } = e.detail
@@ -124,9 +123,11 @@ card.addEventListener('valueset', (e) => {
   debouncedUpdate(state.currentSet, state.values)
 })
 
+const playerElement = () => app.querySelector('#player') ?? app.querySelector('#ytVideo').player 
+
 // touch to background
 window.addEventListener('touchend', (e) => {
-  const player = app.querySelector('#player') ?? app.querySelector('#ytVideo').player
+  const player = playerElement().player
   if (e.target.id == 'app' && !!player) {
     e.preventDefault()
     e.stopPropagation()
@@ -136,7 +137,7 @@ window.addEventListener('touchend', (e) => {
 
 // Key
 window.addEventListener('keyup', (e) => {
-  const player = app.querySelector('#player') ?? app.querySelector('#ytVideo').player
+  const player = playerElement()
   if (e.code == 'KeyN') {
     doNext()
   } else if (e.code == 'KeyS') {

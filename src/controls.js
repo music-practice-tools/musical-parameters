@@ -171,6 +171,16 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
     }
   }
 
+  function bubbleEnded(player) {
+    player.addEventListener('ended', (e) => {
+      e.target.parentElement.dispatchEvent(
+        new CustomEvent('ended', {
+          bubbles: true,
+        })
+      )
+    })
+  }
+
   let promise
   if (!hasMedia && hasYoutube) {
     promise = youTubeLoad()
@@ -182,6 +192,9 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
   return promise.then((player) => {
     if (player) {
       processPlayerControls(player)
+      if (hasMedia) {
+        bubbleEnded(player) // as media element's ended event does not bubble
+      }
     }
   })
 }

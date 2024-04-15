@@ -16,8 +16,8 @@ function interpolate(str, objValues, arrParams) {
   return str.replace(/\${([^}]+)}/g, (_, prop) => {
     const matches = [...prop.matchAll(/([\w\s]+)[\(\,\)]/g)]
     if (matches.length) {
-    // Is function call of form (param1, param2...)
-    const captures = matches.map((a) => a[1]) // => capturing group contents ie param
+      // Is function call of form (param1, param2...)
+      const captures = matches.map((a) => a[1]) // => capturing group contents ie param
       const actionName = captures.shift()
       const objParams = {}
       arrParams.forEach((elem) => {
@@ -38,7 +38,7 @@ function interpolate(str, objValues, arrParams) {
   })
 }
 
-function play(media, pause=false) {
+function play(media, pause = false) {
   const player = app.querySelector('#player')
   const rate = player.playbackRate // as is reset
   player.src = media
