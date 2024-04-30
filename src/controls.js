@@ -61,7 +61,7 @@ export function createControls(parent, hasMedia = false, hasYoutube = false) {
             <option value="0.25">0.25x&nbsp;</option>
           </select>
           ${(hasYoutube)
-          ? '<label title="Show video">Show: <input id="showVideo" type="checkbox"/></label>' : ''} 
+          ? '<label title="Show video">Video: <input id="showVideo" type="checkbox"/></label>' : ''} 
               </div>
               <div id="ytVideo" class="hidden">`
         : ''
