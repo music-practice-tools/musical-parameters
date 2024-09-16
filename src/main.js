@@ -123,7 +123,7 @@ card.addEventListener('valueset', (e) => {
   debouncedUpdate(state.currentSet, state.values)
 })
 
-const playerElement = () => app.querySelector('#player') ?? app.querySelector('#ytVideo').player 
+const playerElement = () => app.querySelector('#player') ?? app.querySelector('#ytVideo')?.player 
 
 // touch to background
 window.addEventListener('touchend', (e) => {
