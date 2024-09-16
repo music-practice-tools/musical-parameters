@@ -1,4 +1,4 @@
-import Scale from '@tonaljs/scale'
+import * as Scale from '@tonaljs/scale'
 
 // invoked with this being values
 const actions = {
