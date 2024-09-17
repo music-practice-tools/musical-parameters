@@ -127,7 +127,7 @@ const playerElement = () => app.querySelector('#player') ?? app.querySelector('#
 
 // touch to background
 window.addEventListener('touchend', (e) => {
-  const player = playerElement().player
+  const player = playerElement()
   if (e.target.id == 'app' && !!player) {
     e.preventDefault()
     e.stopPropagation()
